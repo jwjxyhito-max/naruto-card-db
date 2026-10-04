@@ -1,0 +1,1 @@
+import {cards} from "../lib/cards";export default function sitemap(){const base="https://naruto-card-db.vercel.app";return [{url:base,lastModified:new Date()},{url:base+"/cards",lastModified:new Date()},{url:base+"/ranking",lastModified:new Date()},...cards.map(c=>({url:base+"/card/"+encodeURIComponent(c.id),lastModified:new Date()}))]}
