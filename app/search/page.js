@@ -1,0 +1,1 @@
+export default async function Search({searchParams}){const p=await searchParams;const q=p.q||"";return <main><a className="back" href="/">← TOP</a><section className="detail"><span className="eyebrow">SEARCH</span><h1>「{q}」</h1><p>検索DBの土台を準備済みです。カードデータ投入後、番号・名称・キャラクター・シリーズ横断検索に対応します。</p></section></main>}
