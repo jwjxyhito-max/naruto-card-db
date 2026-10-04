@@ -10,6 +10,7 @@ const hot=[
 
 const guides=[
  {href:"/cards",title:"NARUTO旧カード一覧",text:"カード番号から収録情報・相場・希少性を確認"},
+ {href:"/promo",title:"プロモカード一覧",text:"PR忍・PR術など通常番号とは別のカードを確認"},
  {href:"/ranking",title:"注目・高額カード",text:"市場で注目したい旧カードを優先度別に確認"},
  {href:"/analysis",title:"旧カード相場分析",text:"新作・新TCGの動きと旧カード市場を分析"},
  {href:"/search",title:"カード番号・名前検索",text:"忍-204などの番号やキャラクター名から探す"}
@@ -32,7 +33,7 @@ export default function Home(){
     <form action="/search"><input name="q" aria-label="カード検索" placeholder="カード番号・カード名で検索　例：忍-204"/><button>検索</button></form>
   </section>
 
-  <nav className="dbnav" aria-label="主要メニュー"><a href="/cards">全カード一覧</a><a href="/ranking">注目カード</a><a href="/analysis">相場分析</a><a href="/search">カード検索</a></nav>
+  <nav className="dbnav" aria-label="主要メニュー"><a href="/cards">忍カード一覧</a><a href="/promo">プロモカード</a><a href="/ranking">注目カード</a><a href="/analysis">相場分析</a><a href="/search">カード検索</a></nav>
 
   <section>
    <div className="sectionHead"><h2>目的から探す</h2><span>SEO GUIDE</span></div>
