@@ -1,0 +1,1 @@
+export default function robots(){return {rules:{userAgent:"*",allow:"/"},sitemap:"https://naruto-card-db.vercel.app/sitemap.xml"}}
