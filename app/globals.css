@@ -9,3 +9,35 @@
 .officialCard{margin:34px 0;padding:28px;border:1px solid #333;text-align:center}.officialCard h2{margin:10px 0 22px}.officialCard a{display:flex;flex-direction:column;align-items:center;gap:14px;color:#ff7a00;text-decoration:none}.officialCard img{display:block;max-width:360px;width:100%;height:auto;object-fit:contain;background:#111;border:1px solid #333}.officialCard small{display:block;margin-top:14px;color:#777;line-height:1.6}@media(max-width:700px){.officialCard{padding:20px 14px}.officialCard img{max-width:300px}}
 
 .affiliateSection{border-top:1px solid #333;padding:55px 0 70px}.affiliateLead{color:#aaa;line-height:1.8;max-width:760px}.affiliateGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0 18px}.affiliateGrid a{display:flex;flex-direction:column;gap:10px;min-height:170px;padding:24px;border:1px solid #49331e;background:#12100d;color:#f5f0e6;text-decoration:none}.affiliateGrid a:hover{border-color:#ff7a00}.affiliateGrid span{color:#aaa;font-size:13px}.affiliateGrid strong{margin-top:auto;color:#ff7a00;font-size:12px}.storageGuideLink{display:inline-block;color:#ff7a00;text-decoration:none;font-weight:800;margin-top:8px}.affiliateNote{display:block;color:#777;margin-top:14px}.guidePage{max-width:900px}.guideHero{padding:60px 0 40px}.guideHero h1{font-size:clamp(36px,6vw,64px);line-height:1.05}.guideHero p,.guideStep p{color:#aaa;line-height:1.85}.guideStep{border-top:1px solid #333;padding:42px 0}.guideStep h2{font-size:28px}.guideProducts{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.guideProducts a{background:#ff7a00;color:#080808;text-decoration:none;padding:14px 18px;font-weight:900}.guideNote{border-left:3px solid #ff7a00;padding:4px 0 4px 16px;color:#aaa;line-height:1.8}@media(max-width:700px){.affiliateGrid{grid-template-columns:1fr}.affiliateGrid a{min-height:145px}.guideHero{padding:45px 0 30px}.guideStep h2{font-size:24px}}
+
+/* Compact homepage: keep detail/database pages unchanged */
+.homeCompactGrid{margin-bottom:54px}
+.homeCompactGrid .card{min-height:190px;padding:20px}
+.homeCompactGrid .num{font-size:27px;margin-top:18px}
+.homeCompactGrid .card p{line-height:1.5;margin:9px 0}
+.homeCompactGrid .card b{bottom:18px}
+.homeMore{display:inline-block;margin:-28px 0 58px;color:#ff7a00;text-decoration:none;font-size:13px;font-weight:900}
+.homeAbout{padding:42px 0}.homeAbout h2{font-size:30px}
+@media(max-width:700px){
+ main{padding:0 18px}
+ header{height:68px}
+ .hero{padding:34px 0 46px}
+ .hero h1{font-size:34px;margin:12px 0}
+ .hero p{line-height:1.55}
+ .hero form{margin-top:24px}
+ .dbnav{margin:-20px 0 38px;gap:7px}
+ .dbnav a{padding:10px 8px;min-width:96px;font-size:11px}
+ .homeCompactGrid{grid-template-columns:1fr 1fr;gap:9px;margin:14px 0 42px}
+ .homeCompactGrid .card{min-height:165px;padding:14px}
+ .homeCompactGrid .card h3{font-size:15px;margin:9px 0}
+ .homeCompactGrid .card p{font-size:12px;margin:6px 0;line-height:1.4}
+ .homeCompactGrid .num{font-size:20px;margin-top:10px}
+ .homeCompactGrid .rank{font-size:9px;padding:4px 6px}
+ .homeCompactGrid .card b{position:static;display:block;margin-top:10px;font-size:10px}
+ .homeMore{margin:-20px 0 44px}
+ .affiliateSection{padding:38px 0 46px}
+ .affiliateGrid{grid-template-columns:repeat(3,1fr);gap:7px}
+ .affiliateGrid a{min-height:125px;padding:12px}
+ .affiliateGrid b{font-size:12px}.affiliateGrid span{font-size:10px}.affiliateGrid strong{font-size:9px}
+ .homeAbout{padding:34px 0}.homeAbout h2{font-size:25px}
+}
