@@ -1,5 +1,5 @@
 import {psaRecords,psaUpdatedAt,highValueRanking,lowPopRanking} from "../../lib/psaRecords";
-import {psaOpportunityRecords,opportunityStats} from "../../lib/psaOpportunity";
+import {psaOpportunityRecords,opportunityStats,psaCalcConfig} from "../../lib/psaOpportunity";
 
 export const metadata={
  title:"NARUTO PSA10ランキング｜高額・低POPカード",
@@ -39,14 +39,19 @@ export default function PsaRanking(){
     <p>未鑑定 {r.rawCondition} <b>$ {r.rawPrice.toFixed(2)}</b> <small>({r.rawSource} / {r.rawStatus})</small></p>
     <p>PSA10 確認実売 <b>$ {r.psa10Price.toFixed(2)}</b> <small>({r.psaSaleDate})</small></p>
     <p>単純価格差 <b>+$ {s.spread.toFixed(2)}</b> / 約 <b>{s.multiple.toFixed(1)}倍</b></p>
+    <p>総原価（未鑑定＋鑑定総費用） <b>約 ¥{Math.round(s.totalCostJpy).toLocaleString()}</b></p>
+    <p>PSA10時の粗差益 <b>{s.grossProfitJpy>=0?"+":""}¥{Math.round(s.grossProfitJpy).toLocaleString()}</b></p>
+    <p>損益分岐PSA10確率 <b>{(s.breakEvenProbability*100).toFixed(1)}%</b></p>
+    <p>提出期待値スコア <b>{s.score}</b></p>
     <p>PSA10 POP <b>{r.psa10Pop}</b></p>
     <a href={r.rawUrl} target="_blank" rel="noreferrer">未鑑定ソース →</a><br/>
     <a href={r.psaUrl} target="_blank" rel="noreferrer"><b>PSA公式 →</b></a>
    </article>})}</div>
-   <p style={{fontSize:12,opacity:.7}}>※これは利益予測ではありません。鑑定料金、往復送料、保険、販売手数料、税、カード状態、PSA10取得率を控除していない単純な市場価格差です。未鑑定品がPSA10になる保証はありません。</p>
+   <p style={{fontSize:12,opacity:.7}}>計算前提：1USD=¥{psaCalcConfig.usdJpy}、鑑定関連総費用=¥{psaCalcConfig.gradingTotalJpy.toLocaleString()}。販売手数料・販売時送料は現在0円設定のため粗い試算です。PSA10取得を保証するものではありません。</p>
+   <p style={{fontSize:12,opacity:.7}}>スコア基準：S=損益分岐30%未満 / A=30〜50%未満 / B=50〜70%未満 / WATCH=70%以上。</p>
   </section>
 
-  <section className="about"><h2>提出期待値スコアは次段階</h2><p>同一カードの未鑑定SOLDデータを増やした後、鑑定コストとPSA10取得率を別入力にして「損益分岐PSA10確率」を計算できる形へ拡張します。確認できない相場は推測で埋めません。</p></section>
+  <section className="about"><h2>PSA提出期待値スコア</h2><p>総原価 ÷ PSA10売却時の受取額で「最低何%の確率でPSA10を取れれば損益分岐になるか」を計算します。今後はPSA9価格・販売手数料・実送料も追加して精度を上げます。確認できない相場は推測で埋めません。</p></section>
   <p><a href="/psa"><b>← PSA10実績DBへ</b></a>　<a href="/"><b>トップへ</b></a></p>
   <footer>非公式ファンデータベース / PSA公式で確認できた情報を確認日時点で記録しています。</footer>
  </main>
