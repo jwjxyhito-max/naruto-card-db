@@ -94,8 +94,8 @@ export default async function Page({params}){
    {officialImage&&<section className="officialCard">
     <span className="eyebrow">OFFICIAL CARD IMAGE</span>
     <h2>{c.id} {c.name}</h2>
-    <a href={officialImage} target="_blank" rel="noreferrer"><img src={officialImage} alt={`${c.id} ${c.name} 公式カード画像`}/><b>画像をタップして拡大 ↗</b></a>
-    <small>画像出典：テレビ東京 NARUTO旧公式カードリスト。画像は当サイトへ保存せず公式URLを参照しています。</small>
+    <a href={c.source||"https://www.tv-tokyo.co.jp/anime/naruto2002/goods/card_01.html"} target="_blank" rel="noreferrer"><b>テレビ東京の旧公式カードリストで確認する ↗</b></a>
+    <small>外部サイト側の画像直リンク制限を避けるため、カード画像の直接表示は行わず公式カードリストへ案内しています。</small>
    </section>}
 
    <div className="quickActions">
