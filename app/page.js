@@ -1,5 +1,6 @@
 import {cards} from "../lib/cards";
 import {getMarketAnalysis} from "../lib/getMarketAnalysis";
+import VisitCounter from "./components/VisitCounter";
 
 const guides=[
  {href:"/cards",title:"旧カード一覧",text:"番号・収録から探す"},
@@ -45,6 +46,7 @@ export default async function Home(){
     <input name="q" aria-label="カード検索" placeholder="カード番号・カード名で検索　例：忍-204"/>
     <button>検索</button>
    </form>
+   <VisitCounter />
   </section>
 
   <nav className="dbnav" aria-label="主要メニュー">
