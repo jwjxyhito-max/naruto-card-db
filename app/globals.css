@@ -74,3 +74,13 @@
 .marketDelta span{border:1px solid #49331e;padding:7px 9px;color:#ff9b43;font-size:11px;font-weight:800}
 .droppedMarket{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0;padding:12px;border:1px solid #333}
 .droppedMarket b{font-size:12px;color:#ff7a00}.droppedMarket span{font-size:11px;color:#aaa}
+
+/* Card value judgment */
+.valuePanel{margin:34px 0;padding:24px;border:1px solid #49331e;background:#100e0b}
+.valueMetrics{display:grid;grid-template-columns:repeat(4,1fr);margin:18px 0;border-top:1px solid #333;border-bottom:1px solid #333}
+.valueMetrics div{padding:15px;border-right:1px solid #333}.valueMetrics div:last-child{border-right:0}
+.valueMetrics small{display:block;color:#777;margin-bottom:5px}.valueMetrics b{font-size:18px;color:#f5f0e6}
+.valueVerdict{display:flex;gap:12px;align-items:flex-start}.valueVerdict>span{background:#ff7a00;color:#090909;font-size:11px;font-weight:900;padding:6px 9px;white-space:nowrap}.valueVerdict p{margin:2px 0}
+.valueMove{color:#ff9b43!important;font-weight:800}.compactValue{padding-bottom:18px}
+.cardStorageCta{margin:38px 0;padding:24px;border:1px solid #333}.cardStorageCta h2{margin:8px 0}.cardStorageCta p{color:#aaa}.cardStorageCta a{color:#ff7a00;text-decoration:none;font-weight:900}
+@media(max-width:700px){.valueMetrics{grid-template-columns:1fr 1fr}.valueMetrics div{border-bottom:1px solid #333}.valueMetrics div:nth-child(2n){border-right:0}.valueVerdict{flex-direction:column;gap:7px}.valuePanel,.cardStorageCta{padding:17px}}
