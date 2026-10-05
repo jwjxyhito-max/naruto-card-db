@@ -13,7 +13,7 @@ export default async function NewsPage(){
   <section className="newsHero">
    <div className="brand">NARUTO NEWS WATCH</div>
    <h1>NARUTO最新ニュース</h1>
-   <p>公式発表を優先して整理。Dotが新情報を捕捉し、確認済みデータをSupabaseへ追加すると、このページへ自動反映する構成です。</p>
+   <p>NARUTO・BORUTO・完全新作アニメ・NARUTO CARD GAME・世界イベントの最新公式情報を、見やすく整理して掲載しています。</p>
   </section>
 
   <div className="newsGrid">
