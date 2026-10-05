@@ -28,7 +28,7 @@ export default async function Page({params}){
  const officialImage=ninjaNo?`https://www.tv-tokyo.co.jp/anime/naruto2002/goods/cardimg/n${ninjaNo}.jpg`:null;
  const related=cards.filter(x=>x.id!==c.id&&(x.character===c.character||x.series===c.series)).slice(0,6);
 
- const numericPrice=live?Number(String(live.price).replace(/[^0-9]/g,"")):null;
+ const releaseYear=String(c.release||"").match(/^(20\\d{2})/)?.[1]||null;\n const numericPrice=live?Number(String(live.price).replace(/[^0-9]/g,"")):null;
  const storageLabel=numericPrice>=5000?"高額カード向け保管":numericPrice>=1000?"スリーブ＋ケース保管":"基本スリーブ保管";
  const storageProduct=numericPrice>=5000
   ? {name:"マグネットローダー",url:"https://link.amazon/B0etIAWiI",note:"高額カードは角・表面を守れるローダーを優先"}
@@ -87,7 +87,7 @@ export default async function Page({params}){
     <div><small>カード番号</small><p>{c.id}</p></div>
     <div><small>キャラクター</small><p>{c.character}</p></div>
     <div><small>収録シリーズ</small><p>{c.series}</p></div>
-    <div><small>発売時期</small><p>{c.release}</p></div>
+    <div><small>発売時期</small><p>{releaseYear?<a className="inlineYearLink" href={"/year/"+releaseYear}>{c.release} → {releaseYear}年一覧</a>:c.release}</p></div>
     <div><small>種類</small><p>{c.type}</p></div>
     <div><small>相場メモ</small><p>{m?.market||c.market}</p></div>
     <div><small>分析</small><p>{c.note}</p></div>
