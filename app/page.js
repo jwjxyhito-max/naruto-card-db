@@ -21,8 +21,9 @@ export const dynamic="force-dynamic";
 export default async function Home(){
  const marketAnalysis=await getMarketAnalysis();
  const watch=cards.filter(c=>["A","B","WATCH"].includes(c.rank));
- const watchPreview=watch.slice(0,6);
+ const watchPreview=watch.slice(0,3);
  const hot=marketAnalysis.picks;
+ const hotPreview=hot.slice(0,3);
  return <main>
   <header><div className="brand">NARUTO OLD CARD DATABASE</div><div className="sub">旧カードの「何なのか・どこにある・いくらか」を追う</div></header>
 
