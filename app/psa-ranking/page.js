@@ -1,4 +1,5 @@
 import {psaRecords,psaUpdatedAt,highValueRanking,lowPopRanking} from "../../lib/psaRecords";
+import {psaOpportunityRecords,opportunityStats} from "../../lib/psaOpportunity";
 
 export const metadata={
  title:"NARUTO PSA10ランキング｜高額・低POPカード",
@@ -31,7 +32,21 @@ export default function PsaRanking(){
    </article>)}</div>
   </section>
 
-  <section className="about"><h2>未鑑定 → PSA10価格差ランキング</h2><p>準備中。同一カード・同一仕様の未鑑定SOLDを確認できたものだけ追加します。出品価格（ASK）を実売として計算せず、状態差も明示して期待値を算出します。</p></section>
+  <section>
+   <div className="sectionHead"><h2>未鑑定 → PSA10価格差</h2><span>VERIFIED MATCH ONLY</span></div>
+   <div className="grid">{psaOpportunityRecords.map((r,i)=>{const s=opportunityStats(r);return <article className="card" key={r.id}>
+    <div className="rank">#{i+1} / PRICE SIGNAL</div><div className="num">{r.id}</div><h3>{r.name}</h3>
+    <p>未鑑定 {r.rawCondition} <b>$ {r.rawPrice.toFixed(2)}</b> <small>({r.rawSource} / {r.rawStatus})</small></p>
+    <p>PSA10 確認実売 <b>$ {r.psa10Price.toFixed(2)}</b> <small>({r.psaSaleDate})</small></p>
+    <p>単純価格差 <b>+$ {s.spread.toFixed(2)}</b> / 約 <b>{s.multiple.toFixed(1)}倍</b></p>
+    <p>PSA10 POP <b>{r.psa10Pop}</b></p>
+    <a href={r.rawUrl} target="_blank" rel="noreferrer">未鑑定ソース →</a><br/>
+    <a href={r.psaUrl} target="_blank" rel="noreferrer"><b>PSA公式 →</b></a>
+   </article>})}</div>
+   <p style={{fontSize:12,opacity:.7}}>※これは利益予測ではありません。鑑定料金、往復送料、保険、販売手数料、税、カード状態、PSA10取得率を控除していない単純な市場価格差です。未鑑定品がPSA10になる保証はありません。</p>
+  </section>
+
+  <section className="about"><h2>提出期待値スコアは次段階</h2><p>同一カードの未鑑定SOLDデータを増やした後、鑑定コストとPSA10取得率を別入力にして「損益分岐PSA10確率」を計算できる形へ拡張します。確認できない相場は推測で埋めません。</p></section>
   <p><a href="/psa"><b>← PSA10実績DBへ</b></a>　<a href="/"><b>トップへ</b></a></p>
   <footer>非公式ファンデータベース / PSA公式で確認できた情報を確認日時点で記録しています。</footer>
  </main>
