@@ -35,7 +35,7 @@ export default function Home(){
     <form action="/search"><input name="q" aria-label="カード検索" placeholder="カード番号・カード名で検索　例：忍-204"/><button>検索</button></form>
   </section>
 
-  <nav className="dbnav" aria-label="主要メニュー"><a href="/cards">忍カード一覧</a><a href="/promo">プロモカード</a><a href="/ranking">注目カード</a><a href="/analysis">相場分析</a><a href="/psa">PSA鑑定</a><a href="/search">カード検索</a></nav>
+  <nav className="dbnav" aria-label="主要メニュー"><a href="/cards">忍カード一覧</a><a href="/promo">プロモカード</a><a href="/ranking">注目カード</a><a href="/analysis">相場分析</a><a href="/psa">PSA鑑定</a><a href="/psa-simulator">PSA計算</a><a href="/search">カード検索</a></nav>
 
   <section>
    <div className="sectionHead"><h2>目的から探す</h2><span>SEO GUIDE</span></div>
