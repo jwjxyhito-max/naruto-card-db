@@ -29,7 +29,10 @@ export default async function Page({params}){
  const related=cards.filter(x=>x.id!==c.id&&(x.character===c.character||x.series===c.series)).slice(0,6);
 
  const numericPrice=live?Number(String(live.price).replace(/[^0-9]/g,"")):null;
- const storageLabel=numericPrice>=5000?"高額カード向け保管":numericPrice>=1000?"硬質ケース併用":"基本スリーブ保管";
+ const storageLabel=numericPrice>=5000?"高額カード向け保管":numericPrice>=1000?"スリーブ＋ケース保管":"基本スリーブ保管";
+ const storageProduct=numericPrice>=5000
+  ? {name:"マグネットローダー",url:"https://link.amazon/B0etIAWiI",note:"高額カードは角・表面を守れるローダーを優先"}
+  : {name:"トレカ用スリーブ",url:"https://link.amazon/B05QqCBV6",note:numericPrice>=1000?"まずスリーブで保護し、必要に応じて硬質ケースへ":"低価格帯でも擦れ・皮脂を防ぐ基本保管"};
 
  return <main>
   <a className="back" href="/">← NARUTO旧カードDB</a>
@@ -110,7 +113,12 @@ export default async function Page({params}){
     <span className="eyebrow">STORAGE GUIDE</span>
     <h2>{storageLabel}</h2>
     <p>{live?`${live.price}で確認中のカード。状態を落とさない保管方法を価格帯から選べます。`:"カードの状態を落とさない基本保管を確認できます。"}</p>
-    <a href="/storage-guide">このカードの保管方法を見る →</a>
+    <div className="storageProductChoice">
+     <span>{storageProduct.note}</span>
+     <a href={storageProduct.url} target="_blank" rel="sponsored nofollow noreferrer">{storageProduct.name}をAmazonで見る →</a>
+    </div>
+    <a href="/storage-guide">このカードの保管方法を詳しく見る →</a>
+    <small className="affiliateNote">※Amazonアソシエイトのリンクを使用しています。</small>
    </section>
 
    <section className="related">
