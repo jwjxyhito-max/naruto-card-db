@@ -1,5 +1,5 @@
 import {cards} from "../lib/cards";
-import {marketAnalysis} from "../lib/marketAnalysis";
+import {getMarketAnalysis} from "../lib/getMarketAnalysis";
 
 const guides=[
  {href:"/cards",title:"NARUTO旧カード一覧",text:"カード番号から収録情報・相場・希少性を確認"},
@@ -16,7 +16,10 @@ export const metadata={
  alternates:{canonical:"/"}
 };
 
-export default function Home(){
+export const dynamic="force-dynamic";
+
+export default async function Home(){
+ const marketAnalysis=await getMarketAnalysis();
  const watch=cards.filter(c=>["A","B","WATCH"].includes(c.rank));
  const watchPreview=watch.slice(0,6);
  const hot=marketAnalysis.picks;
@@ -29,7 +32,7 @@ export default function Home(){
     <p>収録シリーズ、販売済み相場、希少性まで。確認済みの根拠を積み上げる専門データベースです。</p>
 
     <a className="analysisCta" href="/analysis">
-      <span>{marketAnalysis.cadence} / 最終確認 {marketAnalysis.updatedAt}</span>
+      <span>{marketAnalysis.cadence} / 最終確認 {marketAnalysis.updatedAt}{marketAnalysis.isStale?" / 更新確認中":""}</span>
       <b>2027年新TCGに向けた「今集めたい5枚」を全文で見る →</b>
     </a>
 
@@ -44,7 +47,7 @@ export default function Home(){
   </section>
 
   <section>
-   <div className="sectionHead"><h2>今の注目5枚</h2><span>{marketAnalysis.updatedAt} / {marketAnalysis.cadence}</span></div>
+   <div className="sectionHead"><h2>今の注目5枚</h2><span>{marketAnalysis.updatedAt} / {marketAnalysis.cadence}{marketAnalysis.isStale?" / 更新確認中":""}</span></div>
    <div className="grid homeCompactGrid">{hot.map(c=><div className="card" key={c.id}><div className="rank">{c.judge}</div><div className="num">{c.id}</div><h3>{c.name}</h3><p>現在確認価格 <b>{c.price}</b></p><p>{c.summary}</p><a href="/analysis"><b>全文分析を見る →</b></a></div>)}</div>
    <p style={{fontSize:12,opacity:.7}}>※表示価格は確認時点の出品価格で、成約相場・価値を保証するものではありません。SOLD、状態、仕様、海外ASK/SOLDを分けて更新します。</p>
   </section>
