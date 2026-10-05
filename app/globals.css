@@ -88,3 +88,9 @@
 .storageProductChoice{display:flex;flex-direction:column;gap:8px;margin:16px 0}
 .storageProductChoice span{color:#aaa;font-size:12px;line-height:1.6}
 .storageProductChoice a{display:inline-block;width:max-content;max-width:100%;background:#ff7a00;color:#080808!important;padding:11px 14px;text-decoration:none;font-weight:900;font-size:12px}
+
+/* Year archive SEO */
+.yearNav{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 36px}
+.yearNav a{border:1px solid #444;color:#ddd;text-decoration:none;padding:10px 14px;font-size:12px;font-weight:800}
+.yearNav a:hover,.yearNav a.active{border-color:#ff7a00;color:#ff7a00}
+.inlineYearLink{color:#ff7a00;text-decoration:none;font-weight:800}
