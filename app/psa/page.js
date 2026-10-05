@@ -1,43 +1,49 @@
+import {psaRecords,psaUpdatedAt} from "../../lib/psaRecords";
+
 export const metadata={
- title:"NARUTOカード PSA鑑定・価値判断｜NARUTO旧カードDB",
- description:"NARUTOカードのPSA鑑定状況、PSA10の価値判断、2027年NARUTO CARD GAMEのPSA対応情報を追跡するページです。",
+ title:"NARUTO PSA10実績DB｜鑑定枚数・落札実績・PSA相場",
+ description:"PSA公式で確認できるNARUTOカードのPSA10実績、Population、PSA Estimate、販売実績を整理。旧NARUTO CCGから日本カードまで追跡します。",
  alternates:{canonical:"/psa"}
 };
 
-const officialPsa="https://www.psacard.com/ja-JP/support/faq";
-const newTcg="https://www.naruto-cardgame.com/jp/";
-
 export default function PsaPage(){
+ const sorted=[...psaRecords].sort((a,b)=>b.pop===a.pop?0:a.pop-b.pop);
  return <main>
-  <header><div className="brand">NARUTO OLD CARD DATABASE</div><div className="sub">PSA GRADING WATCH</div></header>
+  <header><div className="brand">NARUTO OLD CARD DATABASE</div><div className="sub">PSA 10 VERIFIED DATABASE</div></header>
   <section className="hero">
-   <span className="eyebrow">PSA / VALUE / 2027 NEW TCG</span>
-   <h1>NARUTOカードを、<br/>「PSAに出す価値」まで追う。</h1>
-   <p>旧カードの鑑定状況と、2027年夏に世界同時発売予定の新しいNARUTO CARD GAMEのPSA対応を継続確認します。</p>
+   <span className="eyebrow">PSA / POPULATION / SALES</span>
+   <h1>NARUTOのPSA10、<br/>実績から価値を追う。</h1>
+   <p>PSA公式のCert Verificationで確認できた鑑定実績を蓄積。Population、PSA Estimate、直近の確認済み販売価格を分けて表示します。</p>
   </section>
 
   <section>
-   <div className="sectionHead"><h2>現在のPSA状況</h2><span>STATUS</span></div>
-   <div className="grid">
-    <div className="card"><div className="rank">OLD</div><h3>NARUTO旧カード</h3><p>PSA Japanの主要受付タイトル一覧にはNARUTOは明記されていません。カードごとの受付可否はPSA公式のグレーディング可否検索で確認します。</p><a href={officialPsa} target="_blank" rel="noreferrer"><b>PSA公式で確認 →</b></a></div>
-    <div className="card"><div className="rank">2027</div><h3>NARUTO CARD GAME</h3><p>2027年夏に世界同時発売予定。PSAのグレーディング対応は現時点で未確定のため、公式発表を確認後に更新します。</p><a href={newTcg} target="_blank" rel="noreferrer"><b>新TCG公式を見る →</b></a></div>
-   </div>
+   <div className="sectionHead"><h2>PSA10実績DB</h2><span>更新 {psaUpdatedAt} / {psaRecords.length} RECORDS</span></div>
+   <div className="grid">{sorted.map(r=>
+    <article className="card" key={r.cert}>
+     <div className="rank">{r.tag} / POP {r.pop}</div>
+     <div className="num">{r.year} / {r.card}</div>
+     <h3>{r.name}</h3>
+     <p>{r.set}</p>
+     <p><b>{r.grade}</b>　PSA Population <b>{r.pop}</b></p>
+     <p>PSA Estimate <b>{r.estimate}</b></p>
+     <p>確認済み販売実績 <b>{r.lastSale}</b> <small>({r.saleDate})</small></p>
+     <a href={r.url} target="_blank" rel="noreferrer"><b>PSA公式Certで確認 →</b></a>
+    </article>)}</div>
+   <p style={{fontSize:12,opacity:.7}}>※Population・Estimate・販売履歴は変動します。ここでは確認日時点のPSA公式表示を記録し、価格を保証するものではありません。</p>
   </section>
 
   <section>
-   <div className="sectionHead"><h2>今後追加するPSA判断データ</h2><span>ROADMAP</span></div>
+   <div className="sectionHead"><h2>このDBで見るポイント</h2><span>VALUE SIGNALS</span></div>
    <div className="grid">
-    <div className="card"><h3>未鑑定相場</h3><p>販売済み価格を中心に、未鑑定カードの基準価格を追跡。</p></div>
-    <div className="card"><h3>PSA10相場</h3><p>PSA10の確認価格・販売履歴を分けて記録。</p></div>
-    <div className="card"><h3>PSA Population</h3><p>確認できるカードは鑑定枚数・PSA10枚数を記録。</p></div>
-    <div className="card"><h3>提出期待値</h3><p>未鑑定価格とPSA10価格の差、鑑定費用、状態リスクから提出判断を補助。</p></div>
+    <div className="card"><h3>POPの少なさ</h3><p>PSA10枚数が少ないほど供給面では希少。ただし需要がなければ高値になるとは限りません。</p></div>
+    <div className="card"><h3>実売価格</h3><p>PSA Estimateだけでなく、PSAが表示するオークション等の販売履歴を優先して確認します。</p></div>
+    <div className="card"><h3>旧カード × 2027</h3><p>2027年の新NARUTO CARD GAMEをきっかけに旧カードへの需要が変化するか継続観測します。</p></div>
    </div>
   </section>
 
-  <section className="about"><h2>PSA提出おすすめ度（準備中）</h2><p>将来は各カードを S / A / B / WATCH で表示します。ただしグレード取得を保証するものではなく、センタリング、角、表面、印刷状態など実物状態によって結果は変わります。</p></section>
-  <section className="about"><h2>2027年に向けて先にデータを貯める。</h2><p>新TCG発売後にゼロから始めるのではなく、発売前からカード情報・初動相場・希少性・PSA公式の対応状況を蓄積。PSA対応が確認された時点で、カード詳細から鑑定判断までつながるデータベースへ拡張します。</p></section>
-
+  <section className="about"><h2>今後の拡張</h2><p>カード詳細ページに「未鑑定相場 → PSA10相場 → POP → 価格差 → 提出期待値」を追加予定。PSAで受付可能かどうかはタイトル・カードごとに公式情報を確認し、未確認のものを受付可能とは表示しません。</p></section>
+  <section className="about"><h2>PSAとの提携を見据えたデータ基盤</h2><p>まず第三者として検証可能なPSA公式データを積み上げます。将来Affiliateや広告提携を行う場合も、提携前のデータと広告・送客表示を明確に分離します。</p></section>
   <p><a href="/"><b>← トップへ戻る</b></a></p>
-  <footer>非公式ファンデータベース。PSAとの提携・スポンサー関係を示すものではありません。受付可否・料金・サービス内容は必ずPSA公式情報をご確認ください。</footer>
+  <footer>非公式ファンデータベース / PSAとの提携・スポンサー関係を示すものではありません。PSA、PSA10等の情報は確認時点のPSA公式データを参照しています。</footer>
  </main>
 }
