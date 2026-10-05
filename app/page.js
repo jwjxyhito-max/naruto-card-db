@@ -18,6 +18,7 @@ export const metadata={
 
 export default function Home(){
  const watch=cards.filter(c=>["A","B","WATCH"].includes(c.rank));
+ const watchPreview=watch.slice(0,6);
  const hot=marketAnalysis.picks;
  return <main>
   <header><div className="brand">NARUTO OLD CARD DATABASE</div><div className="sub">旧カードの「何なのか・どこにある・いくらか」を追う</div></header>
@@ -39,18 +40,19 @@ export default function Home(){
 
   <section>
    <div className="sectionHead"><h2>目的から探す</h2><span>SEO GUIDE</span></div>
-   <div className="grid">{guides.map(g=><a className="card" href={g.href} key={g.href}><h3>{g.title}</h3><p>{g.text}</p><b>見る →</b></a>)}</div>
+   <div className="grid homeCompactGrid">{guides.map(g=><a className="card" href={g.href} key={g.href}><h3>{g.title}</h3><p>{g.text}</p><b>見る →</b></a>)}</div>
   </section>
 
   <section>
    <div className="sectionHead"><h2>今の注目5枚</h2><span>{marketAnalysis.updatedAt} / {marketAnalysis.cadence}</span></div>
-   <div className="grid">{hot.map(c=><div className="card" key={c.id}><div className="rank">{c.judge}</div><div className="num">{c.id}</div><h3>{c.name}</h3><p>現在確認価格 <b>{c.price}</b></p><p>{c.summary}</p><a href="/analysis"><b>全文分析を見る →</b></a></div>)}</div>
+   <div className="grid homeCompactGrid">{hot.map(c=><div className="card" key={c.id}><div className="rank">{c.judge}</div><div className="num">{c.id}</div><h3>{c.name}</h3><p>現在確認価格 <b>{c.price}</b></p><p>{c.summary}</p><a href="/analysis"><b>全文分析を見る →</b></a></div>)}</div>
    <p style={{fontSize:12,opacity:.7}}>※表示価格は確認時点の出品価格で、成約相場・価値を保証するものではありません。SOLD、状態、仕様、海外ASK/SOLDを分けて更新します。</p>
   </section>
 
   <section>
    <div className="sectionHead"><h2>重点監視カード</h2><span>{cards.length} RECORDS / DOT DATA</span></div>
-   <div className="grid">{watch.map(c=><a className="card" href={"/card/"+encodeURIComponent(c.id)} key={c.id}><div className="rank">{c.rank}</div><div className="num">{c.id}</div><h3>{c.name}</h3><p>{c.market}</p><b>詳細を見る →</b></a>)}</div>
+   <div className="grid homeCompactGrid">{watchPreview.map(c=><a className="card" href={"/card/"+encodeURIComponent(c.id)} key={c.id}><div className="rank">{c.rank}</div><div className="num">{c.id}</div><h3>{c.name}</h3><p>{c.market}</p><b>詳細を見る →</b></a>)}</div>
+   {watch.length>6&&<a className="homeMore" href="/ranking">重点監視カードをすべて見る（{watch.length}件） →</a>}
   </section>
 
   <section className="affiliateSection">
@@ -65,8 +67,7 @@ export default function Home(){
    <small className="affiliateNote">※Amazonアソシエイトのリンクを使用しています。</small>
   </section>
 
-  <section className="about"><h2>NARUTO旧カードの調べ方</h2><p>まずカード番号またはカード名で検索し、個別ページで収録情報と市場データを確認してください。関連カード・ランキング・分析ページを行き来できる構造にし、確認できた事実と予測を分けて掲載します。</p></section>
-  <section className="about"><h2>確認できたものから載せる。</h2><p>現在出品・販売済み・確認済み事実・分析・予測を混ぜず、未確認は「不明」と表示します。</p></section>
+  <section className="about homeAbout"><h2>このDBについて</h2><p>カード番号・名前から検索し、収録情報・市場データ・PSA情報を確認できます。現在出品・販売済み・確認済み事実・分析・予測を混ぜず、未確認は「不明」と表示します。</p></section>
   <footer>非公式ファンデータベース / 画像は外部参照を基本とします。</footer>
  </main>
 }
