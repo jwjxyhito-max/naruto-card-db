@@ -28,7 +28,8 @@ export default async function Page({params}){
  const officialImage=ninjaNo?`https://www.tv-tokyo.co.jp/anime/naruto2002/goods/cardimg/n${ninjaNo}.jpg`:null;
  const related=cards.filter(x=>x.id!==c.id&&(x.character===c.character||x.series===c.series)).slice(0,6);
 
- const releaseYear=String(c.release||"").match(/^(20\\d{2})/)?.[1]||null;\n const numericPrice=live?Number(String(live.price).replace(/[^0-9]/g,"")):null;
+ const releaseYear=String(c.release||"").match(/^(20\d{2})/)?.[1]||null;
+ const numericPrice=live?Number(String(live.price).replace(/[^0-9]/g,"")):null;
  const storageLabel=numericPrice>=5000?"高額カード向け保管":numericPrice>=1000?"スリーブ＋ケース保管":"基本スリーブ保管";
  const storageProduct=numericPrice>=5000
   ? {name:"マグネットローダー",url:"https://link.amazon/B0etIAWiI",note:"高額カードは角・表面を守れるローダーを優先"}
