@@ -166,3 +166,15 @@
  .homeHeroVisual{margin-bottom:10px}
  .homeHeroVisual img{aspect-ratio:16/9;object-fit:cover;object-position:center top}
 }
+
+
+/* Daily card deep analysis */
+.deepAnalysis{margin:28px 0;padding:24px;border:1px solid rgba(237,139,66,.42);border-radius:18px;background:linear-gradient(145deg,rgba(216,101,25,.10),rgba(255,255,255,.025))}
+.deepAnalysis h2{margin:8px 0 16px;font-size:clamp(24px,4vw,36px)}
+.deepAnalysis h3{margin:22px 0 8px;font-size:18px}
+.deepAnalysis p{line-height:1.85;opacity:.9}
+.analysisFacts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+.analysisFacts div{padding:14px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(0,0,0,.18)}
+.analysisFacts small{display:block;opacity:.6;margin-bottom:6px}.analysisFacts b{font-size:15px}
+.deepAnalysis>small{display:block;margin-top:18px;line-height:1.7;opacity:.62}
+@media(max-width:640px){.deepAnalysis{padding:18px 15px}.analysisFacts{grid-template-columns:repeat(2,minmax(0,1fr))}}
