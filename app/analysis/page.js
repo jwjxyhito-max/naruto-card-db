@@ -1,4 +1,4 @@
-import {marketAnalysis} from "../../lib/marketAnalysis";
+import {getMarketAnalysis} from "../../lib/getMarketAnalysis";
 
 export const metadata={
  title:"NARUTO旧カード相場分析｜今集めたい5枚",
@@ -6,14 +6,17 @@ export const metadata={
  alternates:{canonical:"/analysis"}
 };
 
-export default function AnalysisPage() {
+export const dynamic="force-dynamic";
+
+export default async function AnalysisPage() {
+  const marketAnalysis=await getMarketAnalysis();
   const {picks}=marketAnalysis;
   return (
     <main className="analysisPage">
       <a className="back" href="/">← トップへ戻る</a>
 
       <section className="analysisHero">
-        <span className="eyebrow">{marketAnalysis.cadence} / 最終確認 {marketAnalysis.updatedAt}</span>
+        <span className="eyebrow">{marketAnalysis.cadence} / 最終確認 {marketAnalysis.updatedAt}{marketAnalysis.isStale?" / 更新確認中":""}</span>
         <h1>{marketAnalysis.headline}</h1>
         <p>{marketAnalysis.lead}</p>
       </section>
