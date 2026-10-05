@@ -6,8 +6,13 @@ import {notFound} from "next/navigation";
 export async function generateMetadata({params}){
  const {id}=await params;
  const decoded=decodeURIComponent(id);
- const c=findCard(decoded);
- if(!c)return {};
+ let c=findCard(decoded);
+ if(!c){
+  const marketAnalysis=await getMarketAnalysis();
+  const live=marketAnalysis.picks?.find(p=>p.id===decoded);
+  if(!live)return {};
+  c={id:live.id,name:live.name};
+ }
  return {
   title:`${c.id} ${c.name}の相場・収録情報`,
   description:`${c.id} ${c.name}の相場、収録シリーズ、発売時期、種類、調査状況を確認。NARUTO旧カードをカード番号単位で整理しています。`,
@@ -18,15 +23,30 @@ export async function generateMetadata({params}){
 
 export default async function Page({params}){
  const {id}=await params;
- const c=findCard(decodeURIComponent(id));
- if(!c)notFound();
+ const decoded=decodeURIComponent(id);
+ const marketAnalysis=await getMarketAnalysis();
+ const live=marketAnalysis.picks?.find(p=>p.id===decoded)||null;
+ const dbCard=findCard(decoded);
+ if(!dbCard&&!live)notFound();
 
- const [marketAnalysis]=await Promise.all([getMarketAnalysis()]);
- const live=marketAnalysis.picks?.find(p=>p.id===c.id)||null;
+ const c=dbCard||{
+  id:live.id,
+  name:live.name,
+  character:live.name,
+  series:"収録シリーズ確認中",
+  release:"不明",
+  type:"市場分析対象",
+  rank:live.judge,
+  market:`現在 ${live.price} / 同状態SOLD中央値 ${live.median}`,
+  note:"4時間ごとの市場分析で注目中。収録シリーズ・発売時期は確認でき次第追記します。",
+  source:null
+ };
  const m=getMarketData(c.id);
  const ninjaNo=String(c.id).match(/^忍-(\d+)$/)?.[1];
- const officialImage=ninjaNo?`https://www.tv-tokyo.co.jp/anime/naruto2002/goods/cardimg/n${ninjaNo}.jpg`:null;
- const related=cards.filter(x=>x.id!==c.id&&(x.character===c.character||x.series===c.series)).slice(0,6);
+ const officialImage=dbCard&&ninjaNo?`https://www.tv-tokyo.co.jp/anime/naruto2002/goods/cardimg/n${ninjaNo}.jpg`:null;
+ const related=dbCard
+  ? cards.filter(x=>x.id!==c.id&&(x.character===c.character||x.series===c.series)).slice(0,6)
+  : cards.filter(x=>x.id!==c.id&&x.character===c.character).slice(0,6);
 
  const releaseYear=String(c.release||"").match(/^(20\d{2})/)?.[1]||null;
  const numericPrice=live?Number(String(live.price).replace(/[^0-9]/g,"")):null;
