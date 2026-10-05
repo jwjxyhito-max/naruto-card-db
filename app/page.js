@@ -48,7 +48,7 @@ export default async function Home(){
 
   <section>
    <div className="sectionHead"><h2>今の注目5枚</h2><span>{marketAnalysis.updatedAt} / {marketAnalysis.cadence}{marketAnalysis.isStale?" / 更新確認中":""}</span></div>
-   <div className="grid homeCompactGrid">{hot.map(c=><div className="card" key={c.id}><div className="rank">{c.judge}</div><div className="num">{c.id}</div><h3>{c.name}</h3><p>現在確認価格 <b>{c.price}</b></p><p>{c.summary}</p><a href="/analysis"><b>全文分析を見る →</b></a></div>)}</div>
+   <div className="grid homeCompactGrid">{hotPreview.map(c=><div className="card" key={c.id}><div className="rank">{c.judge}</div><div className="num">{c.id}</div><h3>{c.name}</h3><p>現在確認価格 <b>{c.price}</b></p><p>{c.summary}</p><a href="/analysis"><b>全文分析を見る →</b></a></div>)}</div>
    <p style={{fontSize:12,opacity:.7}}>※表示価格は確認時点の出品価格で、成約相場・価値を保証するものではありません。SOLD、状態、仕様、海外ASK/SOLDを分けて更新します。</p>
   </section>
 
