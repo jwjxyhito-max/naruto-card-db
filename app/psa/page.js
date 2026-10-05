@@ -41,6 +41,11 @@ export default function PsaPage(){
    </div>
   </section>
 
+  <section>
+   <div className="sectionHead"><h2>PSAランキング</h2><span>VALUE / LOW POP</span></div>
+   <a className="analysisCta" href="/psa-ranking"><span>PSA公式確認データから自動集計</span><b>PSA10高額・POP10以下ランキングを見る →</b></a>
+  </section>
+
   <section className="about"><h2>今後の拡張</h2><p>カード詳細ページに「未鑑定相場 → PSA10相場 → POP → 価格差 → 提出期待値」を追加予定。PSAで受付可能かどうかはタイトル・カードごとに公式情報を確認し、未確認のものを受付可能とは表示しません。</p></section>
   <section className="about"><h2>PSAとの提携を見据えたデータ基盤</h2><p>まず第三者として検証可能なPSA公式データを積み上げます。将来Affiliateや広告提携を行う場合も、提携前のデータと広告・送客表示を明確に分離します。</p></section>
   <p><a href="/"><b>← トップへ戻る</b></a></p>
