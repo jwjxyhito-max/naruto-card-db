@@ -157,3 +157,12 @@
 .newsItem p{margin:0;line-height:1.7;opacity:.82}
 .newsHigh{border-color:rgba(237,139,66,.55)}
 .newsSourceNote{margin-top:20px;font-size:12px;opacity:.66;line-height:1.7}
+
+
+/* Home main visual */
+.homeHeroVisual{display:block;width:100%;max-width:1536px;margin:0 auto 18px;overflow:hidden;background:#080808;text-decoration:none}
+.homeHeroVisual img{display:block;width:100%;height:auto;aspect-ratio:2/1;object-fit:cover}
+@media (max-width:640px){
+ .homeHeroVisual{margin-bottom:10px}
+ .homeHeroVisual img{aspect-ratio:16/9;object-fit:cover;object-position:center top}
+}
