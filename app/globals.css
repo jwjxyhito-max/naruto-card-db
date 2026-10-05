@@ -94,3 +94,30 @@
 .yearNav a{border:1px solid #444;color:#ddd;text-decoration:none;padding:10px 14px;font-size:12px;font-weight:800}
 .yearNav a:hover,.yearNav a.active{border-color:#ff7a00;color:#ff7a00}
 .inlineYearLink{color:#ff7a00;text-decoration:none;font-weight:800}
+
+
+.visitCounter{
+  margin:14px 0 0;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:7px 11px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  background:rgba(255,255,255,.04);
+  font-size:12px;
+  line-height:1;
+}
+.visitCounterLabel{
+  font-size:10px;
+  letter-spacing:.12em;
+  opacity:.62;
+}
+.visitCounter strong{
+  font-size:15px;
+  font-variant-numeric:tabular-nums;
+}
+.visitCounter>span:last-child{opacity:.68}
+@media (max-width:640px){
+  .visitCounter{margin-top:12px;padding:7px 10px}
+}
