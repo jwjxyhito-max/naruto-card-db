@@ -44,6 +44,9 @@ export default function PsaRanking(){
     <p>損益分岐PSA10確率 <b>{(s.breakEvenProbability*100).toFixed(1)}%</b></p>
     <p>提出期待値スコア <b>{s.score}</b></p>
     <p>PSA10 POP <b>{r.psa10Pop}</b></p>
+    <p>PSA9 POP <b>{r.psa9Pop??"未確認"}</b> / PSA9実売 <b>{r.psa9Price==null?"未確認":"$ "+r.psa9Price.toFixed(2)}</b></p>
+    {r.psa9Price==null?<p><b>PSA9期待利益計算：データ待ち</b><br/><small>実売価格を確認でき次第、PSA10・9・8以下の確率を使った期待利益へ自動拡張します。</small></p>:null}
+    {r.psa9Url?<a href={r.psa9Url} target="_blank" rel="noreferrer">PSA Populationで9/10枚数を見る →</a>:null}
     <a href={r.rawUrl} target="_blank" rel="noreferrer">未鑑定ソース →</a><br/>
     <a href={r.psaUrl} target="_blank" rel="noreferrer"><b>PSA公式 →</b></a>
    </article>})}</div>
@@ -51,7 +54,7 @@ export default function PsaRanking(){
    <p style={{fontSize:12,opacity:.7}}>スコア基準：S=損益分岐30%未満 / A=30〜50%未満 / B=50〜70%未満 / WATCH=70%以上。</p>
   </section>
 
-  <section className="about"><h2>PSA提出期待値スコア</h2><p>総原価 ÷ PSA10売却時の受取額で「最低何%の確率でPSA10を取れれば損益分岐になるか」を計算します。今後はPSA9価格・販売手数料・実送料も追加して精度を上げます。確認できない相場は推測で埋めません。</p></section>
+  <section className="about"><h2>PSA提出期待値スコア</h2><p>総原価 ÷ PSA10売却時の受取額で「最低何%の確率でPSA10を取れれば損益分岐になるか」を計算します。PSA9実売が確認できたカードは、PSA10・PSA9・8以下の各確率を使った期待利益へ拡張します。販売手数料・実送料も追加して精度を上げます。確認できない相場は推測で埋めません。</p></section>
   <p><a href="/psa"><b>← PSA10実績DBへ</b></a>　<a href="/"><b>トップへ</b></a></p>
   <footer>非公式ファンデータベース / PSA公式で確認できた情報を確認日時点で記録しています。</footer>
  </main>
