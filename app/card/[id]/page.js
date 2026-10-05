@@ -114,6 +114,27 @@ export default async function Page({params}){
     <div><small>分析</small><p>{c.note}</p></div>
    </div>
 
+   {c.id==="忍-1"&&<section className="deepAnalysis">
+    <span className="eyebrow">DAILY DEEP ANALYSIS / #001</span>
+    <h2>忍-1 うずまきナルト｜旧カードの原点を追う</h2>
+    <p><strong>位置づけ：</strong>2002年12月13日発売「巻ノ壱」の公式カードリスト先頭に掲載された、主人公うずまきナルトの忍カードNo.1。忍-2はうちはサスケ、忍-3は春野サクラと続きます。</p>
+    <div className="analysisFacts">
+     <div><small>発売</small><b>2002年12月13日</b></div>
+     <div><small>シリーズ</small><b>巻ノ壱</b></div>
+     <div><small>直近確認SOLD</small><b>18,200円</b></div>
+     <div><small>確認日</small><b>2026年9月29日</b></div>
+    </div>
+    <h3>相場の見方</h3>
+    <p>現時点で確認できる実売には価格差があります。古いカードは傷・白欠け・反りなど状態差の影響が大きいため、単純な平均価格ではなく「同番号・同仕様・状態」を揃えて追跡します。</p>
+    <h3>このカードが面白い理由</h3>
+    <p>「2002年の最初期」「主人公ナルト」「忍カード番号1」という3つのコレクション要素を持ちます。単なるナルトのカードではなく、旧シリーズの入口として説明しやすい一枚です。</p>
+    <h3>今後の予測</h3>
+    <p><strong>サイト独自分析：</strong>美品と並品のSOLD差が今後も維持・拡大するかを重点監視します。新しいNARUTOカードゲームへの注目が旧カードへ波及する可能性はありますが、値上がりを保証する材料ではありません。SOLDを追加しながら答え合わせします。</p>
+    <h3>PSA・保管判断</h3>
+    <p>番号1のコレクション性があるため、傷の少ない個体は鑑定候補として継続観察。鑑定前はスリーブ＋硬質ケースまたはローダーで、表面・角・湿気・紫外線から守るのを優先します。</p>
+    <small>事実・SOLD・分析・予測を分けて掲載しています。相場は確認時点の記録で、将来価格を保証するものではありません。</small>
+   </section>}
+
    {m&&<section className="history">
     <span className="eyebrow">VERIFIED MARKET DATA</span>
     <h2>{c.id} {c.name}の実売調査</h2>
