@@ -52,6 +52,18 @@ export default function Home(){
    <div className="grid">{watch.map(c=><a className="card" href={"/card/"+encodeURIComponent(c.id)} key={c.id}><div className="rank">{c.rank}</div><div className="num">{c.id}</div><h3>{c.name}</h3><p>{c.market}</p><b>詳細を見る →</b></a>)}</div>
   </section>
 
+  <section className="affiliateSection">
+   <div className="sectionHead"><h2>NARUTOカード収集・保管用品</h2><span>AMAZON / STORAGE</span></div>
+   <p className="affiliateLead">旧カードは状態も大切。まずはスリーブ、特に残したいカードはローダー、枚数が増えたらストレージで整理。</p>
+   <div className="affiliateGrid">
+    <a href="https://link.amazon/B05QqCBV6" target="_blank" rel="sponsored nofollow noreferrer"><b>トレカ用スリーブ</b><span>基本のカード保護に</span><strong>Amazonで見る →</strong></a>
+    <a href="https://link.amazon/B0etIAWiI" target="_blank" rel="sponsored nofollow noreferrer"><b>マグネットローダー</b><span>お気に入り・高額カードに</span><strong>Amazonで見る →</strong></a>
+    <a href="https://link.amazon/B06uxlbxz" target="_blank" rel="sponsored nofollow noreferrer"><b>カードストレージ</b><span>増えた旧カードの整理に</span><strong>Amazonで見る →</strong></a>
+   </div>
+   <a className="storageGuideLink" href="/guide/card-storage">NARUTO旧カードの保管方法を詳しく見る →</a>
+   <small className="affiliateNote">※Amazonアソシエイトのリンクを使用しています。</small>
+  </section>
+
   <section className="about"><h2>NARUTO旧カードの調べ方</h2><p>まずカード番号またはカード名で検索し、個別ページで収録情報と市場データを確認してください。関連カード・ランキング・分析ページを行き来できる構造にし、確認できた事実と予測を分けて掲載します。</p></section>
   <section className="about"><h2>確認できたものから載せる。</h2><p>現在出品・販売済み・確認済み事実・分析・予測を混ぜず、未確認は「不明」と表示します。</p></section>
   <footer>非公式ファンデータベース / 画像は外部参照を基本とします。</footer>
