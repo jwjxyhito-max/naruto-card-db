@@ -42,6 +42,11 @@ export default function PsaPage(){
   </section>
 
   <section>
+   <div className="sectionHead"><h2>PSA鑑定シミュレーター</h2><span>EXPECTED VALUE</span></div>
+   <a className="analysisCta" href="/psa-simulator"><span>未鑑定価格・PSA9/10・鑑定費を入力</span><b>このカードをPSAに出すべきか計算する →</b></a>
+  </section>
+
+  <section>
    <div className="sectionHead"><h2>PSAランキング</h2><span>VALUE / LOW POP</span></div>
    <a className="analysisCta" href="/psa-ranking"><span>PSA公式確認データから自動集計</span><b>PSA10高額・POP10以下ランキングを見る →</b></a>
   </section>
