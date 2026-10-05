@@ -1,12 +1,5 @@
 import {cards} from "../lib/cards";
-
-const hot=[
- {id:"忍-288",name:"うずまきナルト",price:"¥4,000",judge:"本命",note:"同状態SOLD中央値 約¥8,850。現行安値帯。"},
- {id:"忍-203",name:"うちはイタチ",price:"¥4,999",judge:"本命",note:"折れなし記載。同状態SOLD中央値 約¥7,800。"},
- {id:"忍-112",name:"砂瀑の我愛羅",price:"¥1,200",judge:"注目",note:"目立った傷なし。低資金で持ちやすい。"},
- {id:"忍-289",name:"うちはサスケ",price:"¥5,000",judge:"注目",note:"NYCC新アニメ・新TCG発表と近いサスケ枠。"},
- {id:"忍-85",name:"うずまきナルト",price:"¥5,555",judge:"注目",note:"2003年初期ナルト。生カード長期保有向け。"}
-];
+import {marketAnalysis} from "../lib/marketAnalysis";
 
 const guides=[
  {href:"/cards",title:"NARUTO旧カード一覧",text:"カード番号から収録情報・相場・希少性を確認"},
@@ -24,12 +17,20 @@ export const metadata={
 
 export default function Home(){
  const watch=cards.filter(c=>["A","B","WATCH"].includes(c.rank));
+ const hot=marketAnalysis.picks;
  return <main>
   <header><div className="brand">NARUTO OLD CARD DATABASE</div><div className="sub">旧カードの「何なのか・どこにある・いくらか」を追う</div></header>
+
   <section className="hero">
     <span className="eyebrow">DATABASE / MARKET / ARCHIVE</span>
     <h1>NARUTO旧カードを、<br/>番号から追える場所へ。</h1>
     <p>収録シリーズ、販売済み相場、希少性まで。確認済みの根拠を積み上げる専門データベースです。</p>
+
+    <a className="analysisCta" href="/analysis">
+      <span>{marketAnalysis.cadence} / 最終確認 {marketAnalysis.updatedAt}</span>
+      <b>2027年新TCGに向けた「今集めたい5枚」を全文で見る →</b>
+    </a>
+
     <form action="/search"><input name="q" aria-label="カード検索" placeholder="カード番号・カード名で検索　例：忍-204"/><button>検索</button></form>
   </section>
 
@@ -41,9 +42,9 @@ export default function Home(){
   </section>
 
   <section>
-   <div className="sectionHead"><h2>今の注目5枚</h2><span>2026-10-04 MERCARI CHECK</span></div>
-   <div className="grid">{hot.map(c=><div className="card" key={c.id}><div className="rank">{c.judge}</div><div className="num">{c.id}</div><h3>{c.name}</h3><p>現在確認価格 <b>{c.price}</b></p><p>{c.note}</p><a href={"/search?q="+encodeURIComponent(c.id)}><b>同番号をDBで見る →</b></a></div>)}</div>
-   <p style={{fontSize:12,opacity:.7}}>※表示価格は確認時点の出品価格で、成約相場・価値を保証するものではありません。SOLD、状態、仕様を分けて判定を更新します。</p>
+   <div className="sectionHead"><h2>今の注目5枚</h2><span>{marketAnalysis.updatedAt} / {marketAnalysis.cadence}</span></div>
+   <div className="grid">{hot.map(c=><div className="card" key={c.id}><div className="rank">{c.judge}</div><div className="num">{c.id}</div><h3>{c.name}</h3><p>現在確認価格 <b>{c.price}</b></p><p>{c.summary}</p><a href="/analysis"><b>全文分析を見る →</b></a></div>)}</div>
+   <p style={{fontSize:12,opacity:.7}}>※表示価格は確認時点の出品価格で、成約相場・価値を保証するものではありません。SOLD、状態、仕様、海外ASK/SOLDを分けて更新します。</p>
   </section>
 
   <section>
