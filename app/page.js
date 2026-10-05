@@ -27,6 +27,10 @@ export default async function Home(){
  const hotPreview=hot.slice(0,3);
 
  return <main>
+  <a className="homeHeroVisual" href="/analysis" aria-label="NARUTO CARD DB 相場分析を見る">
+   <img src="https://raw.githubusercontent.com/jwjxyhito-max/naruto-card-db/main/8340944f-47b4-41ce-8706-5d4d41d6f411.png" alt="NARUTO CARD DB - NARUTOカードの世界をもっと深く" />
+  </a>
+
   <header>
    <div className="brand">NARUTO OLD CARD DATABASE</div>
    <div className="sub">旧カードの「何なのか・どこにある・いくらか」を追う</div>
