@@ -35,7 +35,7 @@ export default async function AnalysisPage() {
               <div className="analysisRank">#{p.rank} / {p.judge}</div>
               <div className="num">{p.id}</div>
               <h2>{p.name}</h2>
-              <div className="analysisMetrics">
+              {(p.previousPrice||p.isNewEntry||p.rankChange)&&<div className="marketDelta">{p.previousPrice&&<span>前回 {p.previousPrice} → 現在 {p.price}{p.priceChangeText&&`（${p.priceChangeText}）`}</span>}{p.rankChange>0&&<span>順位 ↑ {p.rankChange}</span>}{p.rankChange<0&&<span>順位 ↓ {Math.abs(p.rankChange)}</span>}{p.isNewEntry&&<span>TOP5新規</span>}</div>}\n              <div className="analysisMetrics">
                 <div><small>現在価格</small><b>{p.price}</b></div>
                 <div><small>同状態SOLD中央値</small><b>{p.median}</b></div>
                 <div><small>サンプル</small><b>{p.samples}</b></div>
