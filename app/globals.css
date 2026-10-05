@@ -84,3 +84,7 @@
 .valueMove{color:#ff9b43!important;font-weight:800}.compactValue{padding-bottom:18px}
 .cardStorageCta{margin:38px 0;padding:24px;border:1px solid #333}.cardStorageCta h2{margin:8px 0}.cardStorageCta p{color:#aaa}.cardStorageCta a{color:#ff7a00;text-decoration:none;font-weight:900}
 @media(max-width:700px){.valueMetrics{grid-template-columns:1fr 1fr}.valueMetrics div{border-bottom:1px solid #333}.valueMetrics div:nth-child(2n){border-right:0}.valueVerdict{flex-direction:column;gap:7px}.valuePanel,.cardStorageCta{padding:17px}}
+
+.storageProductChoice{display:flex;flex-direction:column;gap:8px;margin:16px 0}
+.storageProductChoice span{color:#aaa;font-size:12px;line-height:1.6}
+.storageProductChoice a{display:inline-block;width:max-content;max-width:100%;background:#ff7a00;color:#080808!important;padding:11px 14px;text-decoration:none;font-weight:900;font-size:12px}
