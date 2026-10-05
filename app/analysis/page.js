@@ -54,12 +54,17 @@ export default async function AnalysisPage(){
       <div><small>同状態SOLD中央値</small><b>{p.median}</b></div>
       <div><small>サンプル</small><b>{p.samples}</b></div>
       <div><small>中央値比</small><b>{p.discount}</b></div>
+      {p.profit&&<div><small>概算利益</small><b>{p.profit}</b></div>}
+      {p.roi&&<div><small>ROI</small><b>{p.roi}</b></div>}
      </div>
 
      <p>{p.summary}</p>
      <p>{p.detail}</p>
      <p><strong>海外：</strong>{p.overseas}</p>
-     <a className="mercariBtn" href={p.mercariUrl} target="_blank" rel="noreferrer">メルカリの現行出品を見る →</a>
+     <div className="marketLinks">
+      <a className="mercariBtn" href={p.mercariUrl} target="_blank" rel="noreferrer">メルカリの現行出品を見る →</a>
+      {p.ebayUrl&&<a className="mercariBtn" href={p.ebayUrl} target="_blank" rel="noreferrer">eBayで同番号を見る →</a>}
+     </div>
     </article>)}
    </div>
   </section>
