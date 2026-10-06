@@ -18,8 +18,8 @@ export default function PsaPage(){
 
   <section>
    <div className="sectionHead"><h2>PSA10実績DB</h2><span>更新 {psaUpdatedAt} / {psaRecords.length} RECORDS</span></div>
-   <div className="grid">{sorted.map(r=>
-    <article className="card" key={r.cert}>
+   <div className="grid psaGrid">{sorted.map(r=>
+    <article className="card psaCard" key={r.cert}>
      <div className="rank">{r.tag} / POP {r.pop}</div>
      <div className="num">{r.year} / {r.card}</div>
      <h3>{r.name}</h3>
