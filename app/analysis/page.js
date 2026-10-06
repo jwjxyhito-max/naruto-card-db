@@ -19,13 +19,6 @@ export default async function AnalysisPage(){
   <section className="analysisHero">
    <span className="eyebrow">{marketAnalysis.cadence} / 最終確認 {marketAnalysis.updatedAt}{marketAnalysis.isStale?" / 更新確認中":""}</span>
    <h1>{marketAnalysis.headline}</h1>
-   <p>{marketAnalysis.lead}</p>
-  </section>
-
-  <section className="analysisIntro">
-   <div><b>集計ルール</b><span>同番号 / 単品 / 同状態を優先</span></div>
-   <div><b>海外</b><span>ASKとSOLDを分離</span></div>
-   <div><b>更新</b><span>{marketAnalysis.cadence}</span></div>
   </section>
 
   <section>
@@ -66,6 +59,16 @@ export default async function AnalysisPage(){
       {p.ebayUrl&&<a className="mercariBtn" href={p.ebayUrl} target="_blank" rel="noreferrer">eBayで同番号を見る →</a>}
      </div>
     </article>)}
+   </div>
+  </section>
+
+  <section className="analysisMethod">
+   <div className="sectionHead"><h2>この分析の見方</h2><span>METHOD</span></div>
+   <p className="analysisLead">{marketAnalysis.lead}</p>
+   <div className="analysisIntro">
+    <div><b>集計ルール</b><span>同番号 / 単品 / 同状態を優先</span></div>
+    <div><b>海外</b><span>ASKとSOLDを分離</span></div>
+    <div><b>更新</b><span>{marketAnalysis.cadence}</span></div>
    </div>
   </section>
 
