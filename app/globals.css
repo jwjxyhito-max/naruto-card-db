@@ -178,3 +178,58 @@
 .analysisFacts small{display:block;opacity:.6;margin-bottom:6px}.analysisFacts b{font-size:15px}
 .deepAnalysis>small{display:block;margin-top:18px;line-height:1.7;opacity:.62}
 @media(max-width:640px){.deepAnalysis{padding:18px 15px}.analysisFacts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+/* PSA database cards: keep metrics and source link in normal document flow */
+.psaCard{
+  min-height:0;
+  padding-bottom:24px;
+}
+.psaCard b{
+  position:static;
+  bottom:auto;
+  display:inline;
+  font-size:inherit;
+}
+.psaCard>p{
+  margin:12px 0;
+}
+.psaCard>a{
+  display:inline-block;
+  margin-top:14px;
+  color:#ff7a00;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:900;
+}
+.psaCard>a b{
+  color:inherit;
+  font-size:inherit;
+}
+@media(max-width:700px){
+  .psaGrid{
+    grid-template-columns:1fr;
+    gap:12px;
+    margin-bottom:48px;
+  }
+  .psaCard{
+    padding:20px;
+  }
+  .psaCard .num{
+    font-size:30px;
+    margin-top:22px;
+  }
+  .psaCard h3{
+    margin:14px 0 10px;
+  }
+  .psaCard>p{
+    margin:10px 0;
+    line-height:1.55;
+  }
+  .psaCard>a{
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px solid #2a2a2a;
+    width:100%;
+  }
+}
