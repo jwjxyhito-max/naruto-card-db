@@ -21,6 +21,19 @@ export default async function AnalysisPage(){
    <h1>{marketAnalysis.headline}</h1>
   </section>
 
+  <section className="analysisSection">
+   <div className="sectionHead"><h2>2027年までの追い風</h2><span>OFFICIAL EVENTS</span></div>
+   <div className="timeline">
+    {(marketAnalysis.catalysts||[]).map((x,i)=><div key={i}><b>{x.date}</b><p>{x.text}</p></div>)}
+   </div>
+   <div className="sourceLinks">
+    <a href="https://naruto-official.com/news/01_2661" target="_blank" rel="noreferrer">公式：NARUTO CARD GAME</a>
+    <a href="https://naruto-official.com/news/01_2695" target="_blank" rel="noreferrer">公式：NYCC / 完全新作アニメ</a>
+    <a href="https://naruto-official.com/news/01_2688" target="_blank" rel="noreferrer">公式：BORUTO 9巻</a>
+    <a href="https://naruto-official.com/news/01_2686" target="_blank" rel="noreferrer">公式：Ninja Show NARUTO</a>
+   </div>
+  </section>
+
   <section>
    <div className="sectionHead"><h2>現在の5枚</h2><span>{marketAnalysis.updatedAt}</span></div>
 
@@ -75,19 +88,6 @@ export default async function AnalysisPage(){
   <section className="analysisSection">
    <div className="sectionHead"><h2>海外需要（eBay）の見方</h2><span>SOLD &gt; ASK</span></div>
    {(marketAnalysis.overseasSummary||[]).map((x,i)=><p key={i}>{x}</p>)}
-  </section>
-
-  <section className="analysisSection">
-   <div className="sectionHead"><h2>2027年までの追い風</h2><span>OFFICIAL EVENTS</span></div>
-   <div className="timeline">
-    {(marketAnalysis.catalysts||[]).map((x,i)=><div key={i}><b>{x.date}</b><p>{x.text}</p></div>)}
-   </div>
-   <div className="sourceLinks">
-    <a href="https://naruto-official.com/news/01_2661" target="_blank" rel="noreferrer">公式：NARUTO CARD GAME</a>
-    <a href="https://naruto-official.com/news/01_2695" target="_blank" rel="noreferrer">公式：NYCC / 完全新作アニメ</a>
-    <a href="https://naruto-official.com/news/01_2688" target="_blank" rel="noreferrer">公式：BORUTO 9巻</a>
-    <a href="https://naruto-official.com/news/01_2686" target="_blank" rel="noreferrer">公式：Ninja Show NARUTO</a>
-   </div>
   </section>
 
   <section className="analysisSection">
