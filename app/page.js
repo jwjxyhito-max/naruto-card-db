@@ -85,7 +85,7 @@ export default async function Home(){
      .sort((a,b)=>{
       const promoA=/プロモーション/.test(a), promoB=/プロモーション/.test(b);
       if(promoA!==promoB) return promoA?-1:1;
-      const num=s=>{const m=s.match(/巻ノ([一二三四五六七八九十]+)/);if(!m)return 999;const map={"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9,"十":10};return map[m[1]]??999};
+      const num=s=>{const m=s.match(/巻ノ([壱一二三四五六七八九十]+)/);if(!m)return 999;const map={"壱":1,"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9,"十":10};return map[m[1]]??999};
       const na=num(a),nb=num(b);if(na!==nb)return na-nb;
       return a.localeCompare(b,"ja");
      })
