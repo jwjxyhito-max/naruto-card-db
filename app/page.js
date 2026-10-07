@@ -89,6 +89,21 @@ export default async function Home(){
    <div className="seriesFoot"><a href="/cards">登録カードをすべて見る →</a><a href="/promo">プロモだけを見る →</a></div>
   </section>
 
+  <section className="characterSection">
+   <div className="sectionHead"><h2>キャラクターから探す</h2><span>CHARACTER INDEX</span></div>
+   <p className="seriesLead">好きなキャラクターから、登録済みの旧カードへ直接アクセス。</p>
+   <div className="characterGrid">
+    {[...new Set(cards.map(c=>c.character).filter(v=>v&&v!=="不明"&&v!=="複数"))]
+     .map(name=>({name,count:cards.filter(c=>c.character===name).length}))
+     .sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name,"ja"))
+     .slice(0,12)
+     .map((x,i)=><a key={x.name} href={"/search?character="+encodeURIComponent(x.name)}>
+      <span>{String(i+1).padStart(2,"0")}</span><b>{x.name}</b><small>{x.count} CARDS</small>
+     </a>)}
+   </div>
+   <a className="characterMore" href="/search">全条件からカードを検索する →</a>
+  </section>
+
   <section>
    <div className="sectionHead">
     <h2>今の注目TOP3</h2>
