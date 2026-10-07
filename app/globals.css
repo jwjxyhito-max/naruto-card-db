@@ -247,3 +247,15 @@
 .searchResultHead span{font-size:12px;opacity:.7}
 @media(max-width:720px){.searchFilters{grid-template-columns:1fr 1fr}.advancedSearch{padding:15px}.searchActions{align-items:stretch;flex-direction:column}.searchActions button{width:100%}}
 @media(max-width:420px){.searchFilters{grid-template-columns:1fr}}
+
+
+/* Desktop search layout fix */
+@media(min-width:721px){
+ .advancedSearch{max-width:100%;padding:24px}
+ .advancedSearch>label:first-child{display:grid;grid-template-columns:150px minmax(360px,1fr);align-items:center;column-gap:18px}
+ .advancedSearch>label:first-child input{min-height:48px}
+ .searchFilters{grid-template-columns:repeat(4,minmax(150px,1fr));gap:16px;margin-top:18px}
+ .advancedSearch input,.advancedSearch select{min-height:46px}
+ .searchActions{justify-content:flex-end;margin-top:20px}
+ .searchActions button{min-width:210px;white-space:nowrap}
+}
