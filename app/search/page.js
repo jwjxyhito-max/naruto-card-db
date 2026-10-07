@@ -1,4 +1,4 @@
-import {cards} from "../../lib/cards";
+import {cards} from "../../lib/cards";\nimport {sortCards} from "../../lib/cardSort";
 
 const options=(key)=>[...new Set(cards.map(c=>c[key]).filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),"ja"));
 
@@ -13,8 +13,8 @@ export default async function Search({searchParams}){
  const series=p.series||"";
  const character=p.character||"";
  const rank=p.rank||"";
- const promo=p.promo||"";
- const found=cards.filter(c=>{
+ const promo=p.promo||"";\n const sort=p.sort||"number";
+ const found=sortCards(cards.filter(c=>{
   const text=[c.id,c.name,c.character,c.series].join(" ").toLowerCase();
   const isPromo=/^PR|プロモ/i.test(c.id)||/プロモ/i.test(c.series||"");
   return (!q||text.includes(q))
