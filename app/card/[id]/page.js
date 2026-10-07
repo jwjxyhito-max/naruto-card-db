@@ -1,3 +1,4 @@
+import {marketRecord,formatSold} from "../../../lib/dotMarket";
 import {findCard,cards} from "../../../lib/cards";
 import {getMarketData} from "../../../lib/market";
 import {getMarketAnalysis} from "../../../lib/getMarketAnalysis";
