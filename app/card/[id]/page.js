@@ -148,6 +148,24 @@ export default async function Page({params}){
     <small>事実・SOLD・分析・予測を分けて掲載しています。相場は確認時点の記録で、将来価格を保証するものではありません。</small>
    </section>}
 
+   <section className="deepAnalysis">
+    <span className="eyebrow">CARD VALUE CHECK</span>
+    <h2>{c.id} {c.name}｜収集・PSA判断</h2>
+    <div className="analysisFacts">
+     <div><small>コレクション軸</small><b>{c.character||c.name}</b></div>
+     <div><small>収録</small><b>{c.series||"確認中"}</b></div>
+     <div><small>年代</small><b>{releaseYear?releaseYear+"年":"確認中"}</b></div>
+     <div><small>市場データ</small><b>{live?"監視中":m?m.soldCount+"件確認":"調査中"}</b></div>
+    </div>
+    <h3>このカードの見方</h3>
+    <p>{c.id}「{c.name}」は、キャラクター人気だけでなく、収録シリーズ・発売時期・カード番号・状態を分けて評価します。旧カードは同じ番号でも白欠け、角傷、表面傷、反りで実売価格が大きく変わるため、出品価格ではなく同仕様のSOLDを優先します。</p>
+    <h3>PSA候補として見るポイント</h3>
+    <p>{c.character||c.name}の人気、初期・節目の番号、希少な配布条件などのコレクション性に加え、センタリング、四隅、縁、表裏の傷を確認します。鑑定料を含めた採算が取れるかは、未鑑定美品とPSA鑑定品の実売差が確認できてから判断します。</p>
+    <h3>今後の相場チェック</h3>
+    <p>同番号・同仕様のSOLD件数、状態別の価格差、海外需要、PSA鑑定品の実売を継続確認します。データ不足時は価格を推測せず「調査中」とし、確認できた実売から更新します。</p>
+    <small>相場・PSA評価は将来価格や鑑定結果を保証するものではありません。</small>
+   </section>
+
    {m&&<section className="history">
     <span className="eyebrow">VERIFIED MARKET DATA</span>
     <h2>{c.id} {c.name}の実売調査</h2>
