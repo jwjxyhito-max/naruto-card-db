@@ -1,3 +1,4 @@
+import {getDbStats,marketStatus} from "../lib/status";
 import CardMarquee from "./components/CardMarquee";
 import {cards} from "../lib/cards";
 import {getMarketAnalysis} from "../lib/getMarketAnalysis";
