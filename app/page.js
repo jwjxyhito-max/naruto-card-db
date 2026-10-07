@@ -104,6 +104,20 @@ export default async function Home(){
    <a className="characterMore" href="/search">全条件からカードを検索する →</a>
   </section>
 
+  <section className="newCardsSection">
+   <div className="sectionHead"><h2>最近追加されたカード</h2><span>NEW CARDS / DATABASE</span></div>
+   <div className="newCardsRail">
+    {cards.slice(-10).reverse().map((card,i)=><a key={card.id} href={"/card/"+encodeURIComponent(card.id)}>
+     <div className="newCardTop"><span>{i<3?"NEW":"UPDATE"}</span><small>{card.type||"CARD"}</small></div>
+     <div className="num">{card.id}</div>
+     <b>{card.name}</b>
+     <p>{card.series}</p>
+     <strong>カード詳細 →</strong>
+    </a>)}
+   </div>
+   <div className="newCardsFoot"><span>← 横にスライドして見る →</span><a href="/cards">カード一覧へ →</a></div>
+  </section>
+
   <section>
    <div className="sectionHead">
     <h2>今の注目TOP3</h2>
