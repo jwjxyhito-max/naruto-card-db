@@ -299,3 +299,20 @@
 .characterMore{display:block;text-align:right;margin-top:13px;font-size:13px;font-weight:800}
 @media(max-width:800px){.characterGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:600px){.characterGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.characterGrid>a{padding:12px 10px}.characterMore{text-align:left}}
+
+
+/* Recently added cards */
+.newCardsSection{margin-top:38px}
+.newCardsRail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,260px);gap:12px;overflow-x:auto;padding:2px 2px 14px;scroll-snap-type:x proximity}
+.newCardsRail>a{scroll-snap-align:start;display:flex;flex-direction:column;min-height:190px;padding:17px;border:1px solid rgba(255,255,255,.13);border-radius:15px;background:linear-gradient(160deg,rgba(255,255,255,.065),rgba(255,122,0,.055));text-decoration:none}
+.newCardTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.newCardTop span{padding:4px 7px;border-radius:999px;background:#ff7300;color:#090909;font-size:9px;font-weight:1000;letter-spacing:.12em}
+.newCardTop small{font-size:9px;opacity:.55}
+.newCardsRail .num{font-size:12px;color:#ff8a1f;font-weight:900}
+.newCardsRail b{font-size:19px;margin:7px 0}
+.newCardsRail p{font-size:11px;opacity:.62;line-height:1.55;flex:1;margin:0 0 14px}
+.newCardsRail strong{font-size:12px}
+.newCardsFoot{display:flex;justify-content:space-between;align-items:center;font-size:11px;opacity:.72}
+.newCardsFoot a{font-weight:900}
+@media(min-width:900px){.newCardsRail{grid-auto-columns:minmax(235px,1fr)}}
+@media(max-width:720px){.newCardsRail{grid-auto-columns:74%}.newCardsFoot{align-items:flex-start;gap:10px}}
