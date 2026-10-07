@@ -1,10 +1,41 @@
 import "./globals.css";
 import OfficialLinksBar from "./components/OfficialLinksBar";
+
+const siteUrl="https://naruto-card-db.vercel.app";
+
 export const metadata={
- metadataBase:new URL("https://naruto-card-db.vercel.app"),
- title:{default:"NARUTO旧カードDB",template:"%s | NARUTO旧カードDB"},
- description:"NARUTO旧トレーディングカードの収録情報・相場・希少性をカード番号から調べる非公式データベース",
- robots:{index:true,follow:true},
- openGraph:{type:"website",locale:"ja_JP",siteName:"NARUTO旧カードDB",title:"NARUTO旧カードDB",description:"カード番号・キャラクター名からNARUTO旧カードの収録情報・相場・希少性を検索"}
+ metadataBase:new URL(siteUrl),
+ title:{default:"NARUTO旧カードDB｜カード番号・相場・PSA・収録情報",template:"%s | NARUTO旧カードDB"},
+ description:"NARUTO旧トレーディングカードをカード番号から検索。収録シリーズ、発売時期、SOLD相場、希少性、PSA鑑定候補、関連カードを整理する非公式データベース。",
+ alternates:{canonical:"/"},
+ robots:{index:true,follow:true,googleBot:{index:true,follow:true,"max-image-preview":"large","max-snippet":-1,"max-video-preview":-1}},
+ openGraph:{
+  type:"website",
+  locale:"ja_JP",
+  url:siteUrl,
+  siteName:"NARUTO旧カードDB",
+  title:"NARUTO旧カードDB｜カード番号・相場・PSA・収録情報",
+  description:"NARUTO旧カードの収録情報・SOLD相場・希少性・PSA鑑定候補をカード番号から調べる非公式データベース"
+ },
+ twitter:{
+  card:"summary_large_image",
+  title:"NARUTO旧カードDB｜カード番号・相場・PSA・収録情報",
+  description:"NARUTO旧カードの収録情報・SOLD相場・希少性・PSA鑑定候補をカード番号から検索"
+ },
+ category:"collectibles"
 };
-export default function RootLayout({children}){return <html lang="ja"><body><OfficialLinksBar />{children}</body></html>}
+
+export default function RootLayout({children}){
+ const websiteJsonLd={
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  name:"NARUTO旧カードDB",
+  url:siteUrl,
+  description:"NARUTO旧トレーディングカードの収録情報・相場・希少性を整理する非公式データベース",
+  inLanguage:"ja"
+ };
+ return <html lang="ja"><body>
+  <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(websiteJsonLd)}} />
+  <OfficialLinksBar />{children}
+ </body></html>
+}
