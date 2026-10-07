@@ -1,3 +1,4 @@
+import CardMarquee from "./components/CardMarquee";
 import {cards} from "../lib/cards";
 import {getMarketAnalysis} from "../lib/getMarketAnalysis";
 import VisitCounter from "./components/VisitCounter";
