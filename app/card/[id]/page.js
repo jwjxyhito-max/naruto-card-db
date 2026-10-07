@@ -64,6 +64,18 @@ export default async function Page({params}){
    <div className="status">{c.rank}</div>
    <p>{c.id}「{c.name}」の収録情報・相場・関連カードをまとめています。</p>
 
+   <nav className="cardDetailNav" aria-label="カード詳細メニュー">
+    <a href="#basic">基本情報</a><a href="#market">SOLD・相場</a><a href="#analysis">分析・予測</a><a href="#psa-storage">PSA・保管</a><a href="#related">関連カード</a>
+   </nav>
+
+   <section id="basic" className="cardSnapshot">
+    <div><small>カード番号</small><b>{c.id}</b></div>
+    <div><small>キャラクター</small><b>{c.character}</b></div>
+    <div><small>シリーズ</small><b>{c.series}</b></div>
+    <div><small>発売</small><b>{c.release}</b></div>
+   </section>
+
+   <div id="market"></div>
    {live&&<section className="valuePanel">
     <div className="sectionHead"><h2>現在の価値判断</h2><span>{marketAnalysis.updatedAt}</span></div>
     <div className="valueMetrics">
@@ -105,7 +117,7 @@ export default async function Page({params}){
     <a href={"/search?q="+encodeURIComponent(c.series)}>「{c.series}」収録カードを探す →</a>
    </div>
 
-   <div className="detailGrid">
+   <div className="detailGrid" id="analysis">
     <div><small>カード番号</small><p>{c.id}</p></div>
     <div><small>キャラクター</small><p>{c.character}</p></div>
     <div><small>収録シリーズ</small><p>{c.series}</p></div>
@@ -152,7 +164,7 @@ export default async function Page({params}){
     <p>現在、実売データを調査中です。確認できたSOLDから順次反映します。</p>
    </section>}
 
-   <section className="cardStorageCta">
+   <section className="cardStorageCta" id="psa-storage">
     <span className="eyebrow">STORAGE GUIDE</span>
     <h2>{storageLabel}</h2>
     <p>{live?`${live.price}で確認中のカード。状態を落とさない保管方法を価格帯から選べます。`:"カードの状態を落とさない基本保管を確認できます。"}</p>
@@ -164,7 +176,7 @@ export default async function Page({params}){
     <small className="affiliateNote">※Amazonアソシエイトのリンクを使用しています。</small>
    </section>
 
-   <section className="related">
+   <section className="related" id="related">
     <span className="eyebrow">RELATED CARDS</span>
     <h2>{c.name}の関連カード</h2>
     <div className="grid">{related.map(x=><a className="card" href={"/card/"+encodeURIComponent(x.id)} key={x.id}><div className="num">{x.id}</div><h3>{x.name}</h3><p>{x.series}</p><b>{x.id}の相場・収録情報 →</b></a>)}</div>
