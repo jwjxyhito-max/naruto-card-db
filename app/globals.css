@@ -274,3 +274,15 @@
 .portalGrid .portalMain strong{display:inline-block;margin-top:16px}
 @media(max-width:720px){.portalGrid{grid-template-columns:1fr 1fr}.portalGrid .portalMain{grid-column:span 2}.portalGrid>a{min-height:112px;padding:16px}.portalGrid b{font-size:18px}.portalGrid .portalMain b{font-size:25px}}
 @media(max-width:420px){.portalGrid{grid-template-columns:1fr}.portalGrid .portalMain{grid-column:auto}}
+
+
+/* Series archive rail */
+.seriesSection{margin-top:38px}
+.seriesLead{margin:-2px 0 16px;opacity:.72}
+.seriesRail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:12px;overflow-x:auto;padding:2px 2px 12px;scroll-snap-type:x proximity}
+.seriesRail>a{scroll-snap-align:start;display:flex;flex-direction:column;min-height:125px;padding:18px;border-radius:15px;border:1px solid rgba(255,255,255,.13);background:linear-gradient(150deg,rgba(255,122,0,.13),rgba(255,255,255,.025));text-decoration:none}
+.seriesRail span{font-size:9px;letter-spacing:.2em;color:#ff7a00;font-weight:900}
+.seriesRail b{font-size:16px;line-height:1.5;margin:10px 0;flex:1}
+.seriesRail small{opacity:.62;font-weight:800}
+.seriesFoot{display:flex;gap:18px;justify-content:flex-end;margin-top:8px;font-size:13px;font-weight:800}
+@media(max-width:720px){.seriesRail{grid-auto-columns:78%}.seriesFoot{justify-content:flex-start;flex-wrap:wrap}}
