@@ -58,6 +58,7 @@ export default async function Home(){
   <nav className="dbnav" aria-label="主要メニュー">
    <a href="/cards">忍カード一覧</a>
    <a href="/promo">プロモ</a>
+   <a href="/shippuden">疾風伝</a>
    <a href="/ranking">注目</a>
    <a href="/analysis">相場分析</a>
    <a href="/psa">PSA</a>
