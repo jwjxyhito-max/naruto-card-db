@@ -65,10 +65,15 @@ export default async function Home(){
    <a href="/search">検索</a>
   </nav>
 
-  <section className="homeQuickSection">
-   <div className="sectionHead"><h2>目的から探す</h2><span>QUICK GUIDE</span></div>
-   <div className="quickGuideGrid">
-    {guides.map(g=><a href={g.href} key={g.href}><b>{g.title}</b><span>{g.text}</span></a>)}
+  <section className="portalSection">
+   <div className="sectionHead"><h2>カードを探す・調べる</h2><span>EXPLORE DATABASE</span></div>
+   <div className="portalGrid">
+    <a className="portalMain" href="/search"><span>CARD SEARCH</span><b>カードを探す</b><p>番号・名前・シリーズ・キャラクター・注目ランクから絞り込み。</p><strong>検索を開く →</strong></a>
+    <a href="/cards"><span>ARCHIVE</span><b>旧カード一覧</b><p>登録カードを番号順に確認</p></a>
+    <a href="/promo"><span>PROMO</span><b>プロモカード</b><p>PR忍・PR術をまとめて確認</p></a>
+    <a href="/ranking"><span>RANKING</span><b>注目カード</b><p>市場で追うカードを優先度別に</p></a>
+    <a href="/analysis"><span>MARKET</span><b>相場分析</b><p>SOLD・価格変化・今後の材料</p></a>
+    <a href="/psa"><span>GRADING</span><b>PSA鑑定</b><p>鑑定と価値判断の入口</p></a>
    </div>
   </section>
 
