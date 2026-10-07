@@ -77,6 +77,18 @@ export default async function Home(){
    </div>
   </section>
 
+  <section className="seriesSection">
+   <div className="sectionHead"><h2>シリーズから探す</h2><span>SERIES ARCHIVE</span></div>
+   <p className="seriesLead">収録シリーズを入口に、登録済みカードをまとめて確認できます。</p>
+   <div className="seriesRail">
+    {[...new Set(cards.map(c=>c.series).filter(Boolean))].map(s=>{
+     const count=cards.filter(c=>c.series===s).length;
+     return <a key={s} href={"/search?series="+encodeURIComponent(s)}><span>SERIES</span><b>{s}</b><small>{count} CARDS</small></a>
+    })}
+   </div>
+   <div className="seriesFoot"><a href="/cards">登録カードをすべて見る →</a><a href="/promo">プロモだけを見る →</a></div>
+  </section>
+
   <section>
    <div className="sectionHead">
     <h2>今の注目TOP3</h2>
