@@ -81,9 +81,17 @@ export default async function Home(){
    <div className="sectionHead"><h2>シリーズから探す</h2><span>SERIES ARCHIVE</span></div>
    <p className="seriesLead">収録シリーズを入口に、登録済みカードをまとめて確認できます。</p>
    <div className="seriesRail">
-    {[...new Set(cards.map(c=>c.series).filter(Boolean))].map(s=>{
-     const count=cards.filter(c=>c.series===s).length;
-     return <a key={s} href={"/search?series="+encodeURIComponent(s)}><span>SERIES</span><b>{s}</b><small>{count} CARDS</small></a>
+    {[...new Set(cards.map(c=>c.series).filter(Boolean))]
+     .sort((a,b)=>{
+      const promoA=/プロモーション/.test(a), promoB=/プロモーション/.test(b);
+      if(promoA!==promoB) return promoA?-1:1;
+      const num=s=>{const m=s.match(/巻ノ([一二三四五六七八九十]+)/);if(!m)return 999;const map={"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9,"十":10};return map[m[1]]??999};
+      const na=num(a),nb=num(b);if(na!==nb)return na-nb;
+      return a.localeCompare(b,"ja");
+     })
+     .map(s=>{
+      const count=cards.filter(c=>c.series===s).length;
+      return <a key={s} href={"/search?series="+encodeURIComponent(s)}><span>SERIES</span><b>{s}</b><small>{count} CARDS</small></a>
     })}
    </div>
    <div className="seriesFoot"><a href="/cards">登録カードをすべて見る →</a><a href="/promo">プロモだけを見る →</a></div>
