@@ -1,3 +1,4 @@
+import Script from "next/script";
 import "./globals.css";
 import OfficialLinksBar from "./components/OfficialLinksBar";
 
@@ -35,6 +36,13 @@ export default function RootLayout({children}){
   inLanguage:"ja"
  };
  return <html lang="ja"><body>
+  <Script src="https://www.googletagmanager.com/gtag/js?id=G-9F6Z3TXQ7G" strategy="afterInteractive" />
+  <Script id="ga4" strategy="afterInteractive">{`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9F6Z3TXQ7G');
+  `}</Script>
   <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(websiteJsonLd)}} />
   <OfficialLinksBar />{children}
  </body></html>
