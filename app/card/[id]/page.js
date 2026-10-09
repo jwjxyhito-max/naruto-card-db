@@ -1,3 +1,4 @@
+import {deepAnalysisRecords} from "../../../lib/deepAnalysisRecords";
 import {marketRecord,formatSold} from "../../../lib/dotMarket";
 import {findCard,cards} from "../../../lib/cards";
 import {getMarketData} from "../../../lib/market";
@@ -43,6 +44,7 @@ export default async function Page({params}){
   source:null
  };
  const m=getMarketData(c.id);
+ const deepRecord=deepAnalysisRecords[c.id]||null;
  const ninjaNo=String(c.id).match(/^忍-(\d+)$/)?.[1];
  const officialImage=dbCard&&ninjaNo?`https://www.tv-tokyo.co.jp/anime/naruto2002/goods/cardimg/n${ninjaNo}.jpg`:null;
  const related=dbCard
@@ -174,6 +176,22 @@ export default async function Page({params}){
     <p><a href="https://naruto-card.jp/guides/tournament-win-promos" target="_blank" rel="noreferrer">2005年夏の大会賞品資料を読む ↗</a></p>
     <small>2026年10月9日調査。成約表示と独自分析を区別。取引時点の価格であり現在の買取保証額ではありません。</small>
    </section>}
+   {deepRecord&&<section className="deepAnalysis">
+    <span className="eyebrow">CARD RESEARCH / STRUCTURED ANALYSIS</span>
+    <h2>{c.id} {c.name}｜個別分析・SOLD追跡</h2>
+    <div className="analysisFacts">
+     <div><small>注目点</small><b>{deepRecord.angle}</b></div>
+     <div><small>実売データ</small><b>{m?m.soldCount+"件確認":"未確認"}</b></div>
+     <div><small>最終調査</small><b>{m?.checkedAt||"確認待ち"}</b></div>
+     <div><small>検証状況</small><b>{deepRecord.status}</b></div>
+    </div>
+    <h3>このカード固有の注目点</h3><p>{deepRecord.note}</p>
+    <h3>SOLD・相場の判断</h3><p>{m?m.market:"同番号・同加工・同状態のSOLDを確認するまで価格は設定しません。出品価格を実売と混同しません。"}</p>
+    <h3>PSA鑑定・保管</h3><p>角・縁・表裏の擦れ、反り、センタリングを確認し、鑑定料と同仕様のPSA鑑定品SOLDが確認できた場合のみ採算を判断します。</p>
+    <h3>今後の見通し（予測）</h3><p>{deepRecord.outlook}</p>
+    <small>カード固有の観察と予測を区別。価格未確認のカードに推定相場は掲載しません。</small>
+   </section>}
+
    <section className="deepAnalysis">
     <span className="eyebrow">CARD VALUE CHECK</span>
     <h2>{c.id} {c.name}｜収集・PSA判断</h2>
