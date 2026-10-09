@@ -45,6 +45,10 @@ export default async function Page({params}){
  };
  const m=getMarketData(c.id);
  const deepRecord=deepAnalysisRecords[c.id]||null;
+ const soldRecord=marketRecord(c.id);
+ const soldPrices=(soldRecord?.sold||[]).filter(x=>Number.isFinite(x)&&x>0).slice().sort((a,b)=>a-b);
+ const soldMedian=soldPrices.length?(soldPrices.length%2?soldPrices[(soldPrices.length-1)/2]:(soldPrices[soldPrices.length/2-1]+soldPrices[soldPrices.length/2])/2):null;
+ const yen=n=>n==null?"未確認":n.toLocaleString("ja-JP")+"円";
  const ninjaNo=String(c.id).match(/^忍-(\d+)$/)?.[1];
  const officialImage=dbCard&&ninjaNo?`https://www.tv-tokyo.co.jp/anime/naruto2002/goods/cardimg/n${ninjaNo}.jpg`:null;
  const related=dbCard
@@ -185,6 +189,16 @@ export default async function Page({params}){
      <div><small>最終調査</small><b>{m?.checkedAt||"確認待ち"}</b></div>
      <div><small>検証状況</small><b>{deepRecord.status}</b></div>
     </div>
+    <h3>確認できたSOLD価格（個別標本）</h3>
+    {soldPrices.length>0?<><div className="analysisFacts">
+     <div><small>記録済みSOLD中央値（参考）</small><b>{yen(soldMedian)}</b></div>
+     <div><small>最低SOLD</small><b>{yen(soldPrices[0])}</b></div>
+     <div><small>最高SOLD</small><b>{yen(soldPrices[soldPrices.length-1])}</b></div>
+     <div><small>金額が記録された件数</small><b>{soldPrices.length}件</b></div>
+    </div>
+    <p>確認価格：{soldPrices.map(yen).join(" ／ ")}</p>
+    <small>数字はDOTの保存済みSOLD記録による参考値。日時・取引URL・状態が全件紐付いていないため、同仕様の確定相場ではありません。上部のSOLD確認件数と金額記録件数は異なる場合があります。</small>
+    </>:<p>個別SOLD金額はまだ記録されていません。確認できた取引から追加します。</p>}
     <h3>このカード固有の注目点</h3><p>{deepRecord.note}</p>
     <h3>SOLD・相場の判断</h3><p>{m?m.market:"同番号・同加工・同状態のSOLDを確認するまで価格は設定しません。出品価格を実売と混同しません。"}</p>
     <h3>PSA鑑定・保管</h3><p>角・縁・表裏の擦れ、反り、センタリングを確認し、鑑定料と同仕様のPSA鑑定品SOLDが確認できた場合のみ採算を判断します。</p>
