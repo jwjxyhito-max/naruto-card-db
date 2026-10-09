@@ -1,4 +1,5 @@
-import {cards} from "../../lib/cards";\nimport {sortCards} from "../../lib/cardSort";
+import {cards} from "../../lib/cards";
+import {sortCards} from "../../lib/cardSort";
 export const metadata={title:"NARUTO忍カード一覧 | NARUTO OLD CARD DATABASE",description:"NARUTO旧カードの忍カードをカード番号順に探せる一覧。確認済みカードから段階的に追加しています。"};
 const num=id=>Number(String(id).split("-")[1])||999999;
 export default function Page(){
@@ -15,7 +16,8 @@ export default function Page(){
    <div><small>現在の最大確認番号</small><p>忍-{max}</p></div>
    <div><small>未登録番号</small><p>{gaps.length}件（照合中）</p></div>
   </div>
-  <form className="sortBar"><label>並び替え<select name="sort" defaultValue={sort}><option value="number">カード番号順</option><option value="series">シリーズ順</option><option value="rarity">レア度順</option></select></label><button type="submit">並び替え</button></form>\n  <div className="miniLinks"><a href="/promo">プロモカード一覧を見る →</a><a href="/year/2002">2002年 →</a><a href="/year/2003">2003年 →</a><a href="/year/2005">2005年 →</a><a href="/year/2006">2006年 →</a></div>
+  <form className="sortBar"><label>並び替え<select name="sort" defaultValue="number"><option value="number">カード番号順</option><option value="series">シリーズ順</option><option value="rarity">レア度順</option></select></label><button type="submit">並び替え</button></form>
+  <div className="miniLinks"><a href="/promo">プロモカード一覧を見る →</a><a href="/year/2002">2002年 →</a><a href="/year/2003">2003年 →</a><a href="/year/2005">2005年 →</a><a href="/year/2006">2006年 →</a></div>
   <div className="grid">{list.map(c=><a className="card" href={"/card/"+encodeURIComponent(c.id)} key={c.id}><div className="rank">{c.rank}</div><div className="num">{c.id}</div><h3>{c.name}</h3><p>{c.character} / {c.series}</p><b>{c.id}の詳細を見る →</b></a>)}</div>
  </section></main>
 }
