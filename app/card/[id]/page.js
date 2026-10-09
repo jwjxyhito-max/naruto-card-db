@@ -70,6 +70,33 @@ export default async function Page({params}){
    <div className="status">{c.rank}</div>
    <p>{c.id}「{c.name}」の収録情報・相場・関連カードをまとめています。</p>
 
+   {deepRecord&&<section className="deepAnalysis">
+    <span className="eyebrow">CARD RESEARCH / STRUCTURED ANALYSIS</span>
+    <h2>{c.id} {c.name}｜個別分析・SOLD追跡</h2>
+    <div className="analysisFacts">
+     <div><small>注目点</small><b>{deepRecord.angle}</b></div>
+     <div><small>実売データ</small><b>{m?m.soldCount+"件確認":"未確認"}</b></div>
+     <div><small>最終調査</small><b>{m?.checkedAt||"確認待ち"}</b></div>
+     <div><small>検証状況</small><b>{deepRecord.status}</b></div>
+    </div>
+    <h3>確認できたSOLD価格（個別標本）</h3>
+    {soldPrices.length>0?<><div className="analysisFacts">
+     <div><small>記録済みSOLD中央値（参考）</small><b>{yen(soldMedian)}</b></div>
+     <div><small>最低SOLD</small><b>{yen(soldPrices[0])}</b></div>
+     <div><small>最高SOLD</small><b>{yen(soldPrices[soldPrices.length-1])}</b></div>
+     <div><small>金額が記録された件数</small><b>{soldPrices.length}件</b></div>
+    </div>
+    <p>確認価格：{soldPrices.map(yen).join(" ／ ")}</p>
+    <small>数字はDOTの保存済みSOLD記録による参考値。日時・取引URL・状態が全件紐付いていないため、同仕様の確定相場ではありません。上部のSOLD確認件数と金額記録件数は異なる場合があります。</small>
+    </>:<p>個別SOLD金額はまだ記録されていません。確認できた取引から追加します。</p>}
+    <h3>このカード固有の注目点</h3><p>{deepRecord.note}</p>
+    <h3>SOLD・相場の判断</h3><p>{m?m.market:"同番号・同加工・同状態のSOLDを確認するまで価格は設定しません。出品価格を実売と混同しません。"}</p>
+    <h3>PSA鑑定・保管</h3><p>角・縁・表裏の擦れ、反り、センタリングを確認し、鑑定料と同仕様のPSA鑑定品SOLDが確認できた場合のみ採算を判断します。</p>
+    <h3>今後の見通し（予測）</h3><p>{deepRecord.outlook}</p>
+    <small>カード固有の観察と予測を区別。価格未確認のカードに推定相場は掲載しません。</small>
+   </section>}
+
+
    <nav className="cardDetailNav" aria-label="カード詳細メニュー">
     <a href="#basic">基本情報</a><a href="#market">SOLD・相場</a><a href="#analysis">分析・予測</a><a href="#psa-storage">PSA・保管</a><a href="#related">関連カード</a>
    </nav>
@@ -180,32 +207,6 @@ export default async function Page({params}){
     <p><a href="https://naruto-card.jp/guides/tournament-win-promos" target="_blank" rel="noreferrer">2005年夏の大会賞品資料を読む ↗</a></p>
     <small>2026年10月9日調査。成約表示と独自分析を区別。取引時点の価格であり現在の買取保証額ではありません。</small>
    </section>}
-   {deepRecord&&<section className="deepAnalysis">
-    <span className="eyebrow">CARD RESEARCH / STRUCTURED ANALYSIS</span>
-    <h2>{c.id} {c.name}｜個別分析・SOLD追跡</h2>
-    <div className="analysisFacts">
-     <div><small>注目点</small><b>{deepRecord.angle}</b></div>
-     <div><small>実売データ</small><b>{m?m.soldCount+"件確認":"未確認"}</b></div>
-     <div><small>最終調査</small><b>{m?.checkedAt||"確認待ち"}</b></div>
-     <div><small>検証状況</small><b>{deepRecord.status}</b></div>
-    </div>
-    <h3>確認できたSOLD価格（個別標本）</h3>
-    {soldPrices.length>0?<><div className="analysisFacts">
-     <div><small>記録済みSOLD中央値（参考）</small><b>{yen(soldMedian)}</b></div>
-     <div><small>最低SOLD</small><b>{yen(soldPrices[0])}</b></div>
-     <div><small>最高SOLD</small><b>{yen(soldPrices[soldPrices.length-1])}</b></div>
-     <div><small>金額が記録された件数</small><b>{soldPrices.length}件</b></div>
-    </div>
-    <p>確認価格：{soldPrices.map(yen).join(" ／ ")}</p>
-    <small>数字はDOTの保存済みSOLD記録による参考値。日時・取引URL・状態が全件紐付いていないため、同仕様の確定相場ではありません。上部のSOLD確認件数と金額記録件数は異なる場合があります。</small>
-    </>:<p>個別SOLD金額はまだ記録されていません。確認できた取引から追加します。</p>}
-    <h3>このカード固有の注目点</h3><p>{deepRecord.note}</p>
-    <h3>SOLD・相場の判断</h3><p>{m?m.market:"同番号・同加工・同状態のSOLDを確認するまで価格は設定しません。出品価格を実売と混同しません。"}</p>
-    <h3>PSA鑑定・保管</h3><p>角・縁・表裏の擦れ、反り、センタリングを確認し、鑑定料と同仕様のPSA鑑定品SOLDが確認できた場合のみ採算を判断します。</p>
-    <h3>今後の見通し（予測）</h3><p>{deepRecord.outlook}</p>
-    <small>カード固有の観察と予測を区別。価格未確認のカードに推定相場は掲載しません。</small>
-   </section>}
-
    <section className="deepAnalysis">
     <span className="eyebrow">CARD VALUE CHECK</span>
     <h2>{c.id} {c.name}｜収集・PSA判断</h2>
