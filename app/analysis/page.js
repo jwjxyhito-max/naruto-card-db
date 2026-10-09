@@ -17,7 +17,7 @@ export default async function AnalysisPage(){
   <a className="back" href="/">← トップへ戻る</a>
 
   <section className="analysisHero">
-   <span className="eyebrow">{marketAnalysis.cadence} / 最終確認 {marketAnalysis.updatedAt}{marketAnalysis.isStale?" / 更新確認中":""}</span>
+   <span className="eyebrow">NARUTO旧カード｜実売相場・注目カード分析</span>
    <h1>{marketAnalysis.headline}</h1>
   </section>
 
@@ -35,7 +35,7 @@ export default async function AnalysisPage(){
   </section>
 
   <section>
-   <div className="sectionHead"><h2>現在の5枚</h2><span>{marketAnalysis.updatedAt}</span></div>
+   <div className="sectionHead"><h2>現在の5枚</h2><span>MARKET PICKS</span></div>
 
    {dropped.length>0&&<div className="droppedMarket">
     <b>前回TOP5から外れたカード</b>
@@ -81,7 +81,7 @@ export default async function AnalysisPage(){
    <div className="analysisIntro">
     <div><b>集計ルール</b><span>同番号 / 単品 / 同状態を優先</span></div>
     <div><b>海外</b><span>ASKとSOLDを分離</span></div>
-    <div><b>更新</b><span>{marketAnalysis.cadence}</span></div>
+    <div><b>評価</b><span>実売・状態差・出典を確認</span></div>
    </div>
   </section>
 
@@ -96,6 +96,6 @@ export default async function AnalysisPage(){
    <p className="analysisNote">{marketAnalysis.disclaimer}</p>
   </section>
 
-  <footer>非公式ファンデータベース / 4時間ごとの確認データを反映します。</footer>
+  <footer>非公式ファンデータベース / 確認できた市場情報を掲載しています。</footer>
  </main>;
 }
