@@ -44,7 +44,7 @@ export default async function Home(){
    <p>収録シリーズ、販売済み相場、希少性まで。確認済みの根拠を積み上げる専門データベースです。</p>
 
    <a className="analysisCta" href="/analysis">
-    <span>{marketAnalysis.cadence} / 最終確認 {marketAnalysis.updatedAt}{marketAnalysis.isStale?" / 更新確認中":""}</span>
+    <span>NARUTO旧カード｜実売相場・カード検索・注目カードを掲載中</span>
     <b>2027年新TCGに向けた「今集めたい5枚」を全文で見る →</b>
    </a>
 
@@ -130,7 +130,7 @@ export default async function Home(){
   <section>
    <div className="sectionHead">
     <h2>今の注目TOP3</h2>
-    <span>{marketAnalysis.updatedAt} / {marketAnalysis.cadence}{marketAnalysis.isStale?" / 更新確認中":""}</span>
+    <span>SOLD実績・注目カード</span>
    </div>
    <div className="grid homeCompactGrid">
     {hotPreview.map(c=><div className="card" key={c.id}>
