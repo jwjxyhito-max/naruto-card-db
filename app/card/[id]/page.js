@@ -148,6 +148,32 @@ export default async function Page({params}){
     <small>事実・SOLD・分析・予測を分けて掲載しています。相場は確認時点の記録で、将来価格を保証するものではありません。</small>
    </section>}
 
+   {c.id==="PR忍-1-R"&&<section className="deepAnalysis" id="pr-ninja-1-r-analysis">
+    <span className="eyebrow">VERIFIED SOLD / PROMO DEEP ANALYSIS</span>
+    <h2>PR忍-1-R うずまきナルト｜大会賞品プロモの相場と価値</h2>
+    <p><strong>確認できた配布背景：</strong>2005年夏の勝ち抜き戦で、5勝達成者が選択できたBランク賞品の一つ。PR忍-4、PR作-5との選択式で、銀色の特製ナルトコインと任務完遂証明書も賞品欄に記載されています。配布枚数は未確認です。</p>
+    <div className="analysisFacts">
+     <div><small>確認SOLD価格帯（下記4件）</small><b>160,000〜300,000円</b></div>
+     <div><small>確認SOLD</small><b>4件（重複要精査）</b></div>
+     <div><small>カード仕様</small><b>PR忍-1-R／箔押し</b></div>
+     <div><small>配布</small><b>2005年夏・5勝賞品</b></div>
+    </div>
+    <h3>実売履歴と根拠リンク</h3>
+    <div className="historyRow"><b>2026/07/28 Yahoo!フリマ</b><span>160,000円</span></div>
+    <div className="historyRow"><b>2026/08/01 Yahoo!フリマ</b><span>300,000円</span></div>
+    <div className="historyRow"><b>2026/08/08 Yahoo!フリマ</b><span>259,999円</span></div>
+    <div className="historyRow"><b>2026/10/03 オークション集計</b><span>245,000円</span></div>
+    <p><a href="https://paypayfleamarket.yahoo.co.jp/item/z651440312" target="_blank" rel="noreferrer">7/28 成約根拠 ↗</a> ／ <a href="https://paypayfleamarket.yahoo.co.jp/item/z652974126" target="_blank" rel="noreferrer">8/1 成約根拠 ↗</a> ／ <a href="https://paypayfleamarket.yahoo.co.jp/item/z657176454" target="_blank" rel="noreferrer">8/8 成約根拠 ↗</a> ／ <a href="https://noncky.net/list/2084064427?sort=price" target="_blank" rel="noreferrer">10/3 集計根拠 ↗</a></p>
+    <p><strong>相場判定：</strong>数十万円台の成約実績は確認できますが、標本数が少なく、状態差・同一個体の再販売・販路間重複は未精査です。4件の単純中央値を安定相場として断定しません。ラクマの89,000円SOLD表示も別途存在し、調査範囲によって価格帯が変わります。</p>
+    <h3>希少性とコレクション価値</h3>
+    <p>主人公ナルトの旧カードであり、一般パックの通常収録品とは異なる大会賞品という入手経路に特徴があります。5勝達成に加え、賞品が選択式だったことは注目点ですが、現存数や配布総数を推測で記載しません。</p>
+    <h3>PSA鑑定・状態別の判断</h3>
+    <p>高額帯のため、箔押し面の擦れ、四隅の白欠け、縁の傷、反り、表裏の状態を強い光で確認。PSA提出前に鑑定料・補償・往復送料と、同一番号の鑑定品SOLDを比較します。PSA10の取得や鑑定による値上がりは保証されません。</p>
+    <h3>今後の相場予測（独自分析）</h3>
+    <p>旧NARUTOカードへの関心が増せば大会賞品プロモの再評価余地はあります。一方、薄い取引市場では一件の高額成約だけで相場が大きく見えるリスクがあります。今後は同番号・同加工・状態別SOLD、再出品の有無、PSA実売、海外成約を追跡します。</p>
+    <p><a href="https://naruto-card.jp/guides/tournament-win-promos" target="_blank" rel="noreferrer">2005年夏の大会賞品資料を読む ↗</a></p>
+    <small>2026年10月9日調査。成約表示と独自分析を区別。取引時点の価格であり現在の買取保証額ではありません。</small>
+   </section>}
    <section className="deepAnalysis">
     <span className="eyebrow">CARD VALUE CHECK</span>
     <h2>{c.id} {c.name}｜収集・PSA判断</h2>
