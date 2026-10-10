@@ -46,6 +46,8 @@ export default async function Page({params}){
  const m=getMarketData(c.id);
  const deepRecord=deepAnalysisRecords[c.id]||null;
  const soldRecord=marketRecord(c.id);
+ const verifiedMarketCount=m?.soldCount||0;
+ const hasRecordedSold=Array.isArray(soldRecord?.sold)&&soldRecord.sold.some(v=>Number.isFinite(v)&&v>0);
  const soldPrices=(soldRecord?.sold||[]).filter(x=>Number.isFinite(x)&&x>0).slice().sort((a,b)=>a-b);
  const soldMedian=soldPrices.length?(soldPrices.length%2?soldPrices[(soldPrices.length-1)/2]:(soldPrices[soldPrices.length/2-1]+soldPrices[soldPrices.length/2])/2):null;
  const yen=n=>n==null?"未確認":n.toLocaleString("ja-JP")+"円";
@@ -75,9 +77,9 @@ export default async function Page({params}){
     <h2>{c.id} {c.name}｜個別分析・SOLD追跡</h2>
     <div className="analysisFacts">
      <div><small>注目点</small><b>{deepRecord.angle}</b></div>
-     <div><small>実売データ</small><b>{m?m.soldCount+"件確認":"未確認"}</b></div>
+     <div><small>実売データ</small><b>{verifiedMarketCount?verifiedMarketCount+"件確認":hasRecordedSold?"価格記録あり":"未確認"}</b></div>
      <div><small>最終調査</small><b>{m?.checkedAt||"確認待ち"}</b></div>
-     <div><small>検証状況</small><b>{deepRecord.status}</b></div>
+     <div><small>検証状況</small><b>{verifiedMarketCount||hasRecordedSold?"SOLD照合中":"SOLD未確認"}</b></div>
     </div>
     <h3>確認できたSOLD価格（個別標本）</h3>
     {soldPrices.length>0?<><div className="analysisFacts">
