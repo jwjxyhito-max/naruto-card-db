@@ -43,6 +43,34 @@ export default function RootLayout({children}){
     gtag('js', new Date());
     gtag('config', 'G-9F6Z3TXQ7G');
   `}</Script>
+  <Script id="naruto-analytics-click-events" strategy="afterInteractive">{\`
+    (function() {
+      function send(name, fields) {
+        if (typeof window.gtag === 'function') window.gtag('event', name, fields);
+      }
+      document.addEventListener('click', function(event) {
+        var node = event.target;
+        var anchor = node && node.closest ? node.closest('a[href]') : null;
+        if (!anchor) return;
+        var url;
+        try { url = new URL(anchor.getAttribute('href'), location.href); } catch (e) { return; }
+        if (url.protocol !== 'https:' && url.protocol !== 'http:') return;
+        if (url.origin !== location.origin) {
+          send('external_link_click', { destination_host: url.hostname, source_path: location.pathname });
+        } else if (url.pathname.indexOf('/card/') === 0) {
+          send('card_detail_click', { card_number: decodeURIComponent(url.pathname.split('/')[2] || ''), source_path: location.pathname });
+        } else if (url.pathname === '/analysis') {
+          send('market_analysis_click', { source_path: location.pathname });
+        }
+      }, true);
+      document.addEventListener('submit', function(event) {
+        var form = event.target;
+        if (!form || !form.getAttribute) return;
+        var action = form.getAttribute('action') || '';
+        if (action === '/search') send('card_search_submit', { source_path: location.pathname });
+      }, true);
+    })();
+  \`}</Script>
   <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(websiteJsonLd)}} />
   <OfficialLinksBar />{children}
  </body></html>
