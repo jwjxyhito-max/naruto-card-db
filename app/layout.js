@@ -43,7 +43,7 @@ export default function RootLayout({children}){
     gtag('js', new Date());
     gtag('config', 'G-9F6Z3TXQ7G');
   `}</Script>
-  <Script id="naruto-analytics-click-events" strategy="afterInteractive">{\`
+  <Script id="naruto-analytics-click-events" strategy="afterInteractive">{`
     (function() {
       function send(name, fields) {
         if (typeof window.gtag === 'function') window.gtag('event', name, fields);
@@ -70,7 +70,7 @@ export default function RootLayout({children}){
         if (action === '/search') send('card_search_submit', { source_path: location.pathname });
       }, true);
     })();
-  \`}</Script>
+  `}</Script>
   <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(websiteJsonLd)}} />
   <OfficialLinksBar />{children}
  </body></html>
