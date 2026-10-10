@@ -1,4 +1,5 @@
 import {deepAnalysisRecords} from "../../../lib/deepAnalysisRecords";
+import {dailyResearch} from "../../../lib/dailyResearch";
 import {marketRecord,formatSold} from "../../../lib/dotMarket";
 import {findCard,cards} from "../../../lib/cards";
 import {getMarketData} from "../../../lib/market";
@@ -45,6 +46,7 @@ export default async function Page({params}){
  };
  const m=getMarketData(c.id);
  const deepRecord=deepAnalysisRecords[c.id]||null;
+ const daily=dailyResearch[c.id]||null;
  const soldRecord=marketRecord(c.id);
  const verifiedMarketCount=m?.soldCount||0;
  const hasRecordedSold=Array.isArray(soldRecord?.sold)&&soldRecord.sold.some(v=>Number.isFinite(v)&&v>0);
@@ -98,6 +100,25 @@ export default async function Page({params}){
     <small>カード固有の観察と予測を区別。価格未確認のカードに推定相場は掲載しません。</small>
    </section>}
 
+
+   {daily&&<section className="deepAnalysis" id="daily-research">
+    <span className="eyebrow">TODAY'S CARD / #{String(daily.sequence).padStart(3,"0")}</span>
+    <h2>{daily.title}</h2>
+    <p>調査日：{daily.checkedAt}　／　{daily.attribute||"属性確認中"}　／　{daily.rarity||"レア度確認中"}</p>
+    {daily.history&&<><h3>歴史的位置づけ</h3><p>{daily.history}</p></>}
+    {daily.facts?.length>0&&<><h3>確認できた事実</h3><ul>{daily.facts.map((x,i)=><li key={i}>{x}</li>)}</ul></>}
+    {daily.sold?.length>0&&<><h3>確認SOLD（単品）</h3><div className="analysisFacts"><div><small>件数</small><b>{daily.sold.length}件</b></div><div><small>中央値</small><b>{yen((()=>{const v=daily.sold.map(x=>x.price).sort((a,b)=>a-b);return v.length%2?v[(v.length-1)/2]:(v[v.length/2-1]+v[v.length/2])/2})())}</b></div></div><ul>{daily.sold.map((x,i)=><li key={i}>{x.url?<a href={x.url} target="_blank" rel="noopener noreferrer">{yen(x.price)} ↗</a>:yen(x.price)} {x.condition||""} {x.period||""}</li>)}</ul></>}
+    {daily.bundles?.length>0&&<><h3>セットSOLD（単品とは別集計）</h3><ul>{daily.bundles.map((x,i)=><li key={i}>{x.label}：{yen(x.price)} {x.url&&<a href={x.url} target="_blank" rel="noopener noreferrer">根拠 ↗</a>}</li>)}</ul></>}
+    {daily.asks?.length>0&&<><h3>現在の出品価格（SOLDではありません）</h3><ul>{daily.asks.map((x,i)=><li key={i}>{x.label}：{yen(x.price)}</li>)}</ul></>}
+    {daily.marketMovement&&<><h3>相場の動き</h3><p>{daily.marketMovement}</p></>}
+    {daily.analysis&&<><h3>独自分析</h3><p>{daily.analysis}</p></>}
+    {daily.forecast&&<><h3>今後の予測</h3><p>{daily.forecast}</p></>}
+    {daily.buyDecision&&<><h3>購入判断</h3><p>{daily.buyDecision}</p></>}
+    {daily.psa&&<><h3>PSA鑑定</h3><p>{daily.psa}</p></>}
+    {daily.storage&&<><h3>保管</h3><p>{daily.storage}</p></>}
+    {daily.sources?.length>0&&<><h3>参照資料</h3><ul>{daily.sources.map((x,i)=><li key={i}><a href={x.url} target="_blank" rel="noopener noreferrer">{x.label} ↗</a></li>)}</ul></>}
+    <small>単品SOLD・セット取引・販売中価格・予測は区別して掲載しています。</small>
+   </section>}
 
    <nav className="cardDetailNav" aria-label="カード詳細メニュー">
     <a href="#basic">基本情報</a><a href="#market">SOLD・相場</a><a href="#analysis">分析・予測</a><a href="#psa-storage">PSA・保管</a><a href="#related">関連カード</a>
