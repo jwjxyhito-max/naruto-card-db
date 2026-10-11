@@ -1,10 +1,9 @@
 import {cards} from "../../lib/cards";
 import {sortCards} from "../../lib/cardSort";
-import {paginate,pageHref,queryValue} from "../../lib/catalogView";
+import {paginate,pageHref,queryValue,matchesCardQuery} from "../../lib/catalogView";
 import {PageIntro,CardTile,Pagination} from "../components/DatabaseUI";
 
 const options=key=>[...new Set(cards.map(c=>c[key]).filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),"ja"));
-const normalize=value=>value.normalize("NFKC").toLowerCase().replace(/[−‐–—ー]/g,"-");
 export const metadata={title:"カード検索｜番号・名前・シリーズから探す",description:"NARUTO旧カードをフリーワード・シリーズ・キャラクター・注目ランクから絞り込み検索できます。",alternates:{canonical:"/search"},robots:{index:false,follow:true,googleBot:{index:false,follow:true}}};
 
 export default async function Search({searchParams}){
@@ -14,9 +13,8 @@ export default async function Search({searchParams}){
  const promo=["promo","normal"].includes(p.promo)?p.promo:"";
  const sort=["number","series","rarity"].includes(p.sort)?p.sort:"number";
  const found=sortCards(cards.filter(c=>{
-  const text=normalize([c.id,c.name,c.character,c.series].join(" "));
   const isPromo=/^PR|^OP忍-/i.test(c.id)||/プロモ/i.test(c.series||"");
-  return (!q||text.includes(normalize(q)))&&(!series||c.series===series)&&(!character||c.character===character)&&(!rank||c.rank===rank)&&(!promo||(promo==="promo"?isPromo:!isPromo));
+  return (!q||matchesCardQuery(c,q))&&(!series||c.series===series)&&(!character||c.character===character)&&(!rank||c.rank===rank)&&(!promo||(promo==="promo"?isPromo:!isPromo));
  }),sort);
  const result=paginate(found,p.page);
  const href=page=>pageHref("/search",{q,series,character,rank,promo,sort:sort==="number"?"":sort},page);

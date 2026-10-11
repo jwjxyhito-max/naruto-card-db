@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {cards} from "../lib/cards.js";
 import {sortCards} from "../lib/cardSort.js";
-import {paginate,pageHref,queryValue} from "../lib/catalogView.js";
+import {paginate,pageHref,queryValue,matchesCardQuery} from "../lib/catalogView.js";
 
 test("Every registered card is reachable exactly once across paginated results",()=>{
  const original=cards.map(c=>c.id);
@@ -36,4 +36,14 @@ test("Pagination links retain Japanese search filters and sorting",()=>{
  assert.equal(url.searchParams.has("rank"),false);
  assert.equal(pageHref("/cards",{},1),"/cards");
  assert.equal(queryValue(["忍-1","忍-2"]),"");
+});
+
+test("Phone-friendly card-number input finds registered cards without changing name or series search",()=>{
+ const kakashi=cards.find(c=>c.id==="忍-11");
+ for(const query of ["忍-11","忍11","忍１１","忍−１１","忍 11","はたけカカシ","巻ノ壱"]){
+  assert.equal(matchesCardQuery(kakashi,query),true,query);
+ }
+ const promo=cards.find(c=>c.id==="PR忍-1-R");
+ assert.equal(matchesCardQuery(promo,"pr忍１r"),true);
+ assert.equal(matchesCardQuery(kakashi,"未登録のカード"),false);
 });
