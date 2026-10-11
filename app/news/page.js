@@ -9,7 +9,19 @@ export const dynamic="force-dynamic";
 
 export default async function NewsPage(){
  const news=await getLatestNews(30);
+ const itemListJsonLd={
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  name:"NARUTO最新ニュース",
+  itemListElement:news.map((item,index)=>({
+   "@type":"ListItem",
+   position:index+1,
+   name:item.title,
+   url:item.url
+  }))
+ };
  return <main className="newsPage">
+  <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(itemListJsonLd)}} />
   <a className="back" href="/">← NARUTO CARD DBトップへ戻る</a>
   <section className="newsHero">
    <div className="brand">NARUTO NEWS WATCH</div>
