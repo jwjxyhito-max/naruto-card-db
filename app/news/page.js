@@ -10,6 +10,7 @@ export const dynamic="force-dynamic";
 export default async function NewsPage(){
  const news=await getLatestNews(30);
  return <main className="newsPage">
+  <a className="back" href="/">← NARUTO CARD DBトップへ戻る</a>
   <section className="newsHero">
    <div className="brand">NARUTO NEWS WATCH</div>
    <h1>NARUTO最新ニュース</h1>
