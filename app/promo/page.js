@@ -1,31 +1,25 @@
 import {cards} from "../../lib/cards";
-export const metadata={title:"NARUTOプロモカード一覧 | NARUTO旧カードDB",description:"NARUTO旧カードのPR忍・PR作・PR忍伝・PR術・PR騎・PR依・OP忍を系統別に整理したプロモーションカード一覧。"};
-const groups=[
- ["PR忍","PR忍"],
- ["PR作","PR作"],
- ["PR忍伝","PR忍伝"],
- ["PR術","PR術"],
- ["PR騎","PR騎"],
- ["PR依","PR依"],
- ["OP忍","OP忍"]
-];
-const num=id=>Number(String(id).split("-")[1])||999999;
+import {sortCards,cardIdParts} from "../../lib/cardSort";
+import {PageIntro,SearchForm,CardTile} from "../components/DatabaseUI";
+
+export const metadata={title:"プロモカード一覧｜配布系統・カード番号から探す",description:"NARUTO旧カードのPR忍・PR作・PR忍伝・PR術・PR騎・PR依・OP忍など全登録プロモを系統別に整理。配布情報と実売相場を個別ページで確認できます。",alternates:{canonical:"/promo"}};
+const all=cards.filter(c=>/^PR|^OP忍-/.test(c.id));
+const known=["PR忍","PR作","PR忍伝","PR術","PR騎","PR依","OP忍"];
+const groups=[...known,...[...new Set(all.map(c=>cardIdParts(c.id).prefix))].filter(prefix=>!known.includes(prefix)).sort()]
+ .map(prefix=>({prefix,list:sortCards(all.filter(c=>cardIdParts(c.id).prefix===prefix))})).filter(group=>group.list.length);
+
 export default function Page(){
- const all=cards.filter(c=>/^PR|^OP忍-/.test(String(c.id)));
- return <main><a className="back" href="/">← TOP</a><section className="detail">
-  <span className="eyebrow">PROMO CARDS / {all.length} RECORDS</span>
-  <h1>プロモカード一覧</h1>
-  <p>プロモを系統別に分けて番号順で確認できます。配布経路や一次資料が未確認の項目は詳細ページに明記します。</p>
-  <div className="miniLinks"><a href="/cards">忍カード一覧を見る →</a>{groups.map(([key])=><a key={key} href={"#"+encodeURIComponent(key)}>{key} →</a>)}</div>
-  {groups.map(([key,label])=>{
-   const list=all.filter(c=>String(c.id).startsWith(key+"-")).sort((a,b)=>num(a.id)-num(b.id));
-   if(!list.length)return null;
-   return <section key={key} id={key} style={{scrollMarginTop:80}}>
-    <div className="sectionHead"><h2>{label}</h2><span>{list.length} RECORDS</span></div>
-    <div className="grid">{list.map(c=><a className="card" href={"/card/"+encodeURIComponent(c.id)} key={c.id}>
-     <div className="rank">{c.rank}</div><div className="num">{c.id}</div><h3>{c.name}</h3><p>{c.character} / {c.series}</p><b>{c.id}の詳細を見る →</b>
-    </a>)}</div>
-   </section>;
-  })}
- </section></main>;
+ return <main className="promoPage">
+  <PageIntro eyebrow="PROMOTION CARD ARCHIVE" title="プロモカード一覧" description="大会賞品・配布カードを系統別に。配布背景と仕様の違いを確かめて、一枚ずつ調べられます。"/>
+  <div className="catalogStats"><span><b>{all.length}</b> 登録プロモ</span><span><b>{groups.length}</b> 系統</span></div>
+  <SearchForm compact/>
+  <nav className="categoryTabs" aria-label="カードの区分"><a href="/cards">忍カード</a><a href="/promo" aria-current="page">プロモ</a><a href="/shippuden">疾風伝</a><a href="/search?promo=promo">プロモ検索</a></nav>
+  <nav className="promoIndex" aria-label="プロモ系統へ移動">{groups.map(({prefix,list})=><a href={"#"+encodeURIComponent(prefix)} key={prefix}><b>{prefix}</b><span>{list.length}枚 ↓</span></a>)}</nav>
+  <p className="mutedNote">未確認の配布経路・一次資料は、各カードの詳細に明記しています。</p>
+  {groups.map(({prefix,list})=><section className="promoGroup" id={prefix} key={prefix}>
+   <div className="sectionHead"><h2>{prefix}</h2><span>{list.length}枚</span></div>
+   <div className="grid catalogGrid">{list.map(card=><CardTile card={card} key={card.id}/>)}</div>
+   <a className="textLink" href="#main-content">系統一覧に戻る ↑</a>
+  </section>)}
+ </main>;
 }

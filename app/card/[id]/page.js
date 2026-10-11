@@ -5,6 +5,7 @@ import {findCard,cards} from "../../../lib/cards";
 import {getMarketData} from "../../../lib/market";
 import {getMarketAnalysis} from "../../../lib/getMarketAnalysis";
 import {notFound} from "next/navigation";
+import {Breadcrumbs,CardTile,DataNotice} from "../../components/DatabaseUI";
 
 export async function generateMetadata({params}){
  const {id}=await params;
@@ -78,6 +79,7 @@ export default async function Page({params}){
   : cards.filter(x=>x.id!==c.id&&x.character===c.character).slice(0,6);
 
  const releaseYear=String(c.release||"").match(/^(20\d{2})/)?.[1]||null;
+ const archive=/^PR|^OP忍-/.test(c.id)?{href:"/promo",label:"プロモ一覧"}:/^忍-\d+$/.test(c.id)?{href:"/cards",label:"忍カード一覧"}:/疾風伝|伝-/.test(c.series+" "+c.id)?{href:"/shippuden",label:"疾風伝カード"}:{href:"/search",label:"カード検索"};
  const numericPrice=live?Number(String(live.price).replace(/[^0-9]/g,"")):null;
  const storageLabel=numericPrice>=5000?"高額カード向け保管":numericPrice>=1000?"スリーブ＋ケース保管":"基本スリーブ保管";
  const storageProduct=numericPrice>=5000
@@ -98,18 +100,59 @@ export default async function Page({params}){
   inLanguage:"ja"
  };
 
- return <main>
-  <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(cardJsonLd)}} />
-  <a className="back" href="/">← NARUTO旧カードDB</a>
-  <section className="detail">
-   <span className="eyebrow">CARD RECORD / VERIFIED FIRST</span>
-   <h1>{c.id} {c.name}</h1>
-   <div className="status">{c.rank}</div>
-   <p>{c.id}「{c.name}」の収録情報・相場・関連カードをまとめています。</p>
+ return <main className="cardDetailPage">
+  <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(cardJsonLd).replace(/</g,"\\u003c")}} />
+  <Breadcrumbs items={[archive,{label:c.id}]}/>
+  <section className="detail cardDetail">
+   <header className="pageIntro cardIntro"><span className="eyebrow">CARD RECORD / {c.type}</span>
+    <h1><span className="cardNumber">{c.id}</span>{c.name}</h1>
+    <p>{c.series}</p><div className="status">注目ランク {c.rank}</div>
+   </header>
 
-   {deepRecord&&<section className="deepAnalysis">
-    <span className="eyebrow">CARD RESEARCH / STRUCTURED ANALYSIS</span>
-    <h2>{c.id} {c.name}｜個別分析・SOLD追跡</h2>
+   <nav className="cardDetailNav" aria-label="カード詳細の目次">
+    <a href="#market">SOLD・相場</a><a href="#analysis">個別分析</a>{daily&&<a href="#daily-research">連載分析</a>}<a href="#basic">基本情報</a><a href="#psa-storage">PSA・保管</a><a href="#related">関連カード</a>
+   </nav>
+
+   <section id="basic" className="cardSnapshot">
+    <div><small>カード番号</small><b>{c.id}</b></div>
+    <div><small>キャラクター</small><b>{c.character}</b></div>
+    <div><small>シリーズ</small><b>{c.series}</b></div>
+    <div><small>発売</small><b>{c.release}</b></div>
+   </section>
+
+   <div id="market" className="anchorTarget"></div>
+   {live&&<DataNotice analysis={marketAnalysis}/>}
+   {live&&<section className="valuePanel">
+    <div className="sectionHead"><h2>現在の価値判断</h2><span>{marketAnalysis.updatedAt}</span></div>
+    <div className="valueMetrics">
+     <div><small>出品確認価格</small><b>{live.price}</b></div>
+     <div><small>同状態SOLD中央値</small><b>{live.median}</b></div>
+     <div><small>SOLD標本</small><b>{live.samples}</b></div>
+     <div><small>中央値比</small><b>{live.discount}</b></div>
+    </div>
+    <div className="valueVerdict"><span>{live.judge}</span><p>{live.summary}</p></div>
+    {live.previousPrice&&<p className="valueMove">前回確認：{live.previousPrice} → 今回：{live.price}{live.priceChangeText&&`（${live.priceChangeText}）`}</p>}
+    <p><strong>海外：</strong>{live.overseas}</p>
+    <div className="miniLinks">
+     <a href={live.mercariUrl} target="_blank" rel="noreferrer">現行メルカリ出品を見る ↗</a>
+     <a href="/analysis">TOP5全文分析を見る →</a>
+    </div>
+   </section>}
+
+   {!live&&m&&<section className="valuePanel compactValue">
+    <div className="sectionHead"><h2>現在の価値判断</h2><span>MARKET CHECKED</span></div>
+    <div className="valueVerdict"><span>相場確認済み</span><p>{m.market}</p></div>
+    <p>SOLD標本 {m.soldCount}件を確認。TOP5対象外でも実売データは継続して蓄積します。</p>
+   </section>}
+
+   {!live&&!m&&<section className="valuePanel compactValue">
+    <div className="sectionHead"><h2>現在の価値判断</h2><span>RESEARCHING</span></div>
+    <div className="valueVerdict"><span>調査中</span><p>同番号・単品・状態を揃えたSOLDデータを収集中です。</p></div>
+   </section>}
+
+   <div id="analysis" className="anchorTarget"></div>
+   {deepRecord&&<details className="deepAnalysis researchDetails">
+    <summary>{c.id} {c.name}｜個別分析・SOLD追跡</summary><div className="researchContent">
     <div className="analysisFacts">
      <div><small>注目点</small><b>{deepRecord.angle}</b></div>
      <div><small>実売データ</small><b>{verifiedMarketCount?verifiedMarketCount+"件確認":hasRecordedSold?"価格記録あり":"未確認"}</b></div>
@@ -131,12 +174,11 @@ export default async function Page({params}){
     <h3>PSA鑑定・保管</h3><p>角・縁・表裏の擦れ、反り、センタリングを確認し、鑑定料と同仕様のPSA鑑定品SOLDが確認できた場合のみ採算を判断します。</p>
     <h3>今後の見通し（予測）</h3><p>{deepRecord.outlook}</p>
     <small>カード固有の観察と予測を区別。価格未確認のカードに推定相場は掲載しません。</small>
-   </section>}
+   </div></details>}
 
-
-   {daily&&<section className="deepAnalysis" id="daily-research">
+   {daily&&<details className="deepAnalysis researchDetails" id="daily-research" open>
+    <summary>{daily.title}</summary><div className="researchContent">
     <span className="eyebrow">TODAY'S CARD / #{String(daily.sequence).padStart(3,"0")}</span>
-    <h2>{daily.title}</h2>
     <p>調査日：{daily.checkedAt}　／　{daily.attribute||"属性確認中"}　／　{daily.rarity||"レア度確認中"}</p>
     {daily.history&&<><h3>歴史的位置づけ</h3><p>{daily.history}</p></>}
     {daily.facts?.length>0&&<><h3>確認できた事実</h3><ul>{daily.facts.map((x,i)=><li key={i}>{x}</li>)}</ul></>}
@@ -151,47 +193,7 @@ export default async function Page({params}){
     {daily.storage&&<><h3>保管</h3><p>{daily.storage}</p></>}
     {daily.sources?.length>0&&<><h3>参照資料</h3><ul>{daily.sources.map((x,i)=><li key={i}><a href={x.url} target="_blank" rel="noopener noreferrer">{x.label} ↗</a></li>)}</ul></>}
     <small>単品SOLD・セット取引・販売中価格・予測は区別して掲載しています。</small>
-   </section>}
-
-   <nav className="cardDetailNav" aria-label="カード詳細メニュー">
-    <a href="#basic">基本情報</a><a href="#market">SOLD・相場</a><a href="#analysis">分析・予測</a><a href="#psa-storage">PSA・保管</a><a href="#related">関連カード</a>
-   </nav>
-
-   <section id="basic" className="cardSnapshot">
-    <div><small>カード番号</small><b>{c.id}</b></div>
-    <div><small>キャラクター</small><b>{c.character}</b></div>
-    <div><small>シリーズ</small><b>{c.series}</b></div>
-    <div><small>発売</small><b>{c.release}</b></div>
-   </section>
-
-   <div id="market"></div>
-   {live&&<section className="valuePanel">
-    <div className="sectionHead"><h2>現在の価値判断</h2><span>{marketAnalysis.updatedAt}</span></div>
-    <div className="valueMetrics">
-     <div><small>現在確認価格</small><b>{live.price}</b></div>
-     <div><small>同状態SOLD中央値</small><b>{live.median}</b></div>
-     <div><small>SOLD標本</small><b>{live.samples}</b></div>
-     <div><small>中央値比</small><b>{live.discount}</b></div>
-    </div>
-    <div className="valueVerdict"><span>{live.judge}</span><p>{live.summary}</p></div>
-    {live.previousPrice&&<p className="valueMove">4時間前：{live.previousPrice} → 現在：{live.price}{live.priceChangeText&&`（${live.priceChangeText}）`}</p>}
-    <p><strong>海外：</strong>{live.overseas}</p>
-    <div className="miniLinks">
-     <a href={live.mercariUrl} target="_blank" rel="noreferrer">現行メルカリ出品を見る ↗</a>
-     <a href="/analysis">TOP5全文分析を見る →</a>
-    </div>
-   </section>}
-
-   {!live&&m&&<section className="valuePanel compactValue">
-    <div className="sectionHead"><h2>現在の価値判断</h2><span>MARKET CHECKED</span></div>
-    <div className="valueVerdict"><span>相場確認済み</span><p>{m.market}</p></div>
-    <p>SOLD標本 {m.soldCount}件を確認。TOP5対象外でも実売データは継続して蓄積します。</p>
-   </section>}
-
-   {!live&&!m&&<section className="valuePanel compactValue">
-    <div className="sectionHead"><h2>現在の価値判断</h2><span>RESEARCHING</span></div>
-    <div className="valueVerdict"><span>調査中</span><p>同番号・単品・状態を揃えたSOLDデータを収集中です。</p></div>
-   </section>}
+   </div></details>}
 
    {officialImage&&<section className="officialCard">
     <span className="eyebrow">OFFICIAL CARD IMAGE</span>
@@ -203,22 +205,18 @@ export default async function Page({params}){
    <div className="quickActions">
     {c.source&&<a href={c.source} target="_blank" rel="noreferrer">公式カードリストを見る ↗</a>}
     <a href={"/character/"+encodeURIComponent(c.character)}>「{c.character}」の旧カード一覧 →</a>
-    <a href={"/search?q="+encodeURIComponent(c.series)}>「{c.series}」収録カードを探す →</a>
+    <a href={"/search?series="+encodeURIComponent(c.series)}>「{c.series}」収録カードを探す →</a>
    </div>
 
-   <div className="detailGrid" id="analysis">
-    <div><small>カード番号</small><p>{c.id}</p></div>
-    <div><small>キャラクター</small><p>{c.character}</p></div>
-    <div><small>収録シリーズ</small><p>{c.series}</p></div>
+   <div className="detailGrid cardNotes">
     <div><small>発売時期</small><p>{releaseYear?<a className="inlineYearLink" href={"/year/"+releaseYear}>{c.release} → {releaseYear}年一覧</a>:c.release}</p></div>
     <div><small>種類</small><p>{c.type}</p></div>
     <div><small>相場メモ</small><p>{m?.market||c.market}</p></div>
     <div><small>分析</small><p>{c.note}</p></div>
    </div>
 
-   {c.id==="忍-1"&&<section className="deepAnalysis">
-    <span className="eyebrow">DAILY DEEP ANALYSIS / #001</span>
-    <h2>忍-1 うずまきナルト｜旧カードの原点を追う</h2>
+   {c.id==="忍-1"&&<details className="deepAnalysis researchDetails">
+    <summary>忍-1 うずまきナルト｜旧カードの原点を追う</summary><div className="researchContent">
     <p><strong>位置づけ：</strong>2002年12月13日発売「巻ノ壱」の公式カードリスト先頭に掲載された、主人公うずまきナルトの忍カードNo.1。忍-2はうちはサスケ、忍-3は春野サクラと続きます。</p>
     <div className="analysisFacts">
      <div><small>発売</small><b>2002年12月13日</b></div>
@@ -235,11 +233,10 @@ export default async function Page({params}){
     <h3>PSA・保管判断</h3>
     <p>番号1のコレクション性があるため、傷の少ない個体は鑑定候補として継続観察。鑑定前はスリーブ＋硬質ケースまたはローダーで、表面・角・湿気・紫外線から守るのを優先します。</p>
     <small>事実・SOLD・分析・予測を分けて掲載しています。相場は確認時点の記録で、将来価格を保証するものではありません。</small>
-   </section>}
+   </div></details>}
 
-   {c.id==="PR忍-1-R"&&<section className="deepAnalysis" id="pr-ninja-1-r-analysis">
-    <span className="eyebrow">VERIFIED SOLD / PROMO DEEP ANALYSIS</span>
-    <h2>PR忍-1-R うずまきナルト｜大会賞品プロモの相場と価値</h2>
+   {c.id==="PR忍-1-R"&&<details className="deepAnalysis researchDetails" id="pr-ninja-1-r-analysis">
+    <summary>PR忍-1-R うずまきナルト｜大会賞品プロモの相場と価値</summary><div className="researchContent">
     <p><strong>確認できた配布背景：</strong>2005年夏の勝ち抜き戦で、5勝達成者が選択できたBランク賞品の一つ。PR忍-4、PR作-5との選択式で、銀色の特製ナルトコインと任務完遂証明書も賞品欄に記載されています。配布枚数は未確認です。</p>
     <div className="analysisFacts">
      <div><small>確認SOLD価格帯（下記4件）</small><b>160,000〜300,000円</b></div>
@@ -262,8 +259,8 @@ export default async function Page({params}){
     <p>旧NARUTOカードへの関心が増せば大会賞品プロモの再評価余地はあります。一方、薄い取引市場では一件の高額成約だけで相場が大きく見えるリスクがあります。今後は同番号・同加工・状態別SOLD、再出品の有無、PSA実売、海外成約を追跡します。</p>
     <p><a href="https://naruto-card.jp/guides/tournament-win-promos" target="_blank" rel="noreferrer">2005年夏の大会賞品資料を読む ↗</a></p>
     <small>2026年10月9日調査。成約表示と独自分析を区別。取引時点の価格であり現在の買取保証額ではありません。</small>
-   </section>}
-   <section className="deepAnalysis">
+   </div></details>}
+   <section className="deepAnalysis" id="psa-storage">
     <span className="eyebrow">CARD VALUE CHECK</span>
     <h2>{c.id} {c.name}｜収集・PSA判断</h2>
     <div className="analysisFacts">
@@ -297,7 +294,7 @@ export default async function Page({params}){
     <p>現在、実売データを調査中です。確認できたSOLDから順次反映します。</p>
    </section>}
 
-   <section className="cardStorageCta" id="psa-storage">
+   <section className="cardStorageCta" id="storage">
     <span className="eyebrow">STORAGE GUIDE</span>
     <h2>{storageLabel}</h2>
     <p>{live?`${live.price}で確認中のカード。状態を落とさない保管方法を価格帯から選べます。`:"カードの状態を落とさない基本保管を確認できます。"}</p>
@@ -312,7 +309,7 @@ export default async function Page({params}){
    <section className="related" id="related">
     <span className="eyebrow">RELATED CARDS</span>
     <h2>{c.name}の関連カード</h2>
-    <div className="grid">{related.map(x=><a className="card" href={"/card/"+encodeURIComponent(x.id)} key={x.id}><div className="num">{x.id}</div><h3>{x.name}</h3><p>{x.series}</p><b>{x.id}の相場・収録情報 →</b></a>)}</div>
+    <div className="grid">{related.map(card=><CardTile card={card} key={card.id}/>)}</div>
     <div className="miniLinks"><a href={"/character/"+encodeURIComponent(c.character)}>「{c.character}」の旧カードをすべて見る →</a><a href="/ranking">NARUTO旧カードの注目ランキングを見る →</a></div>
    </section>
 

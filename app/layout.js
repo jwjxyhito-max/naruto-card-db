@@ -1,8 +1,10 @@
 import Script from "next/script";
 import "./globals.css";
 import OfficialLinksBar from "./components/OfficialLinksBar";
+import SiteNav from "./components/SiteNav";
 
 const siteUrl="https://naruto-card-db.vercel.app";
+export const viewport={width:"device-width",initialScale:1,viewportFit:"cover",themeColor:"#0b0c0f"};
 
 export const metadata={
  metadataBase:new URL(siteUrl),
@@ -75,6 +77,20 @@ export default function RootLayout({children}){
     })();
   `}</Script>
   <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(websiteJsonLd)}} />
-  <OfficialLinksBar />{children}
+  <a className="skipLink" href="#main-content">本文へ移動</a>
+  <header className="siteHeader">
+   <div className="siteHeaderInner">
+    <a className="siteBrand" href="/" aria-label="NARUTO CARD DB トップ"><span className="brandMark" aria-hidden="true">N</span><span>NARUTO <strong>CARD DB</strong><small>旧カードの収録情報・相場を調べる</small></span></a>
+    <a className="headerSearch" href="/search" aria-label="カードを検索">検索 <span aria-hidden="true">⌕</span></a>
+    <SiteNav />
+   </div>
+   <OfficialLinksBar />
+  </header>
+  <div id="main-content" tabIndex={-1}>{children}</div>
+  <footer className="siteFooter"><div>
+   <a className="footerBrand" href="/">NARUTO CARD DB</a>
+   <nav aria-label="補助メニュー"><a href="/shippuden">疾風伝</a><a href="/ranking">注目カード</a><a href="/psa">PSA鑑定</a><a href="/psa-ranking">PSA候補</a><a href="/psa-simulator">PSA計算</a><a href="/storage-guide">保管ガイド</a><a href="/search">詳細検索</a></nav>
+   <p>非公式ファンデータベース。現在出品・SOLD・分析・予測を分けて掲載しています。</p>
+  </div></footer>
  </body></html>
 }
