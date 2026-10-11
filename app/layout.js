@@ -16,13 +16,16 @@ export const metadata={
   url:siteUrl,
   siteName:"NARUTO旧カードDB",
   title:"NARUTO旧カードDB｜カード番号・相場・PSA・収録情報",
-  description:"NARUTO旧カードの収録情報・SOLD相場・希少性・PSA鑑定候補をカード番号から調べる非公式データベース"
+  description:"NARUTO旧カードの収録情報・SOLD相場・希少性・PSA鑑定候補をカード番号から調べる非公式データベース",
+  images:[{url:"https://raw.githubusercontent.com/jwjxyhito-max/naruto-card-db/main/8340944f-47b4-41ce-8706-5d4d41d6f411.png",width:1536,height:768,alt:"NARUTO CARD DB"}]
  },
  twitter:{
   card:"summary_large_image",
   title:"NARUTO旧カードDB｜カード番号・相場・PSA・収録情報",
-  description:"NARUTO旧カードの収録情報・SOLD相場・希少性・PSA鑑定候補をカード番号から検索"
+  description:"NARUTO旧カードの収録情報・SOLD相場・希少性・PSA鑑定候補をカード番号から検索",
+  images:["https://raw.githubusercontent.com/jwjxyhito-max/naruto-card-db/main/8340944f-47b4-41ce-8706-5d4d41d6f411.png"]
  },
+ applicationName:"NARUTO旧カードDB",
  category:"collectibles"
 };
 
