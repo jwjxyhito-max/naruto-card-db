@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-10-11 JST",
+  "catalogTotal": 227,
+  "reviewed": 10,
+  "newlyComplete": 0,
+  "ebaySold": "10枚とも成約根拠未確認",
+  "officialNews": "2027年6月新TCG世界同時発売が公式発表（旧カード値上がりを示すものではない）",
+  "cards": [
+    {
+      "id": "PR学-009",
+      "name": "白",
+      "medianJPY": null,
+      "comparableSamples": 0,
+      "askFromJPY": null,
+      "evidence": "3枚組ASK4999/10枚組SOLD7960除外",
+      "status": "研究途中"
+    },
+    {
+      "id": "PR学-010",
+      "name": "桃地再不斬",
+      "medianJPY": null,
+      "comparableSamples": 0,
+      "askFromJPY": null,
+      "evidence": "同上・単品データ未確認",
+      "status": "研究途中"
+    },
+    {
+      "id": "PR作-3",
+      "name": "受け継ぐ者たち",
+      "medianJPY": 3300,
+      "comparableSamples": 3,
+      "askFromJPY": 3500,
+      "evidence": "SOLD2300/3300/3333,同一状態表示",
+      "status": "研究途中"
+    },
+    {
+      "id": "PR作-11",
+      "name": "存在の証明",
+      "medianJPY": null,
+      "comparableSamples": 1,
+      "askFromJPY": 3600,
+      "evidence": "SOLD5800新品扱い1件・ASK3600良品",
+      "status": "研究途中"
+    },
+    {
+      "id": "PR作-12",
+      "name": "最後の一撃",
+      "medianJPY": null,
+      "comparableSamples": 0,
+      "askFromJPY": 5000,
+      "evidence": "ASK5000傷あり、SOLD未照合",
+      "status": "研究途中"
+    },
+    {
+      "id": "PR作-16",
+      "name": "三忍の攻防",
+      "medianJPY": 4049,
+      "comparableSamples": 2,
+      "askFromJPY": 7000,
+      "evidence": "SOLD良品2099/5999、他傷・プレイ用別計上、海外ASK$131.49",
+      "status": "研究途中"
+    },
+    {
+      "id": "PR作-17",
+      "name": "新たなる敵",
+      "medianJPY": 2650,
+      "comparableSamples": 2,
+      "askFromJPY": 2800,
+      "evidence": "SOLD良品2500/2800、海外ASK$68.89",
+      "status": "研究途中"
+    },
+    {
+      "id": "PR忍伝-1",
+      "name": "うずまきナルト",
+      "medianJPY": null,
+      "comparableSamples": 0,
+      "askFromJPY": 44000,
+      "evidence": "SOLD6000傷/8800良品/30000専用/38000再録疑義、海外ASK$419.29",
+      "status": "研究途中"
+    },
+    {
+      "id": "PR忍伝-2",
+      "name": "春野サクラ",
+      "medianJPY": null,
+      "comparableSamples": 1,
+      "askFromJPY": null,
+      "evidence": "SOLD1200単品、16000は2枚セット除外",
+      "status": "研究途中"
+    },
+    {
+      "id": "PR忍伝-3",
+      "name": "はたけカカシ",
+      "medianJPY": null,
+      "comparableSamples": 0,
+      "askFromJPY": 4199,
+      "evidence": "SOLD3000折れ/3800傷/5000新品、状態不一致",
+      "status": "研究途中"
+    }
+  ]
+}
