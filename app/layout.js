@@ -62,10 +62,15 @@ export default function RootLayout({children}){
         if (url.protocol !== 'https:' && url.protocol !== 'http:') return;
         if (url.origin !== location.origin) {
           send('external_link_click', { destination_host: url.hostname, source_path: location.pathname });
+          if (url.hostname === 'www.amazon.co.jp' || url.hostname === 'amazon.co.jp' || url.hostname === 'link.amazon' || url.hostname === 'amzn.to') {
+            send(anchor.dataset.amazonLink === 'store' ? 'amazon_store_click' : 'amazon_product_click', { product_id: anchor.dataset.productId || 'existing-link', product_category: anchor.dataset.productCategory || 'other', placement: anchor.dataset.shoppingPlacement || 'existing', source_path: location.pathname });
+          }
         } else if (url.pathname.indexOf('/card/') === 0) {
           send('card_detail_click', { card_number: decodeURIComponent(url.pathname.split('/')[2] || ''), source_path: location.pathname });
         } else if (url.pathname === '/analysis') {
           send('market_analysis_click', { source_path: location.pathname });
+        } else if (url.pathname === '/recommended') {
+          send('shopping_guide_click', { placement: anchor.dataset.shoppingPlacement || 'navigation', source_path: location.pathname });
         }
       }, true);
       document.addEventListener('submit', function(event) {
@@ -89,7 +94,7 @@ export default function RootLayout({children}){
   <div id="main-content" tabIndex={-1}>{children}</div>
   <footer className="siteFooter"><div>
    <a className="footerBrand" href="/">NARUTO CARD DB</a>
-   <nav aria-label="補助メニュー"><a href="/shippuden">疾風伝</a><a href="/ranking">注目カード</a><a href="/psa">PSA鑑定</a><a href="/psa-ranking">PSA候補</a><a href="/psa-simulator">PSA計算</a><a href="/storage-guide">保管ガイド</a><a href="/search">詳細検索</a></nav>
+   <nav aria-label="補助メニュー"><a href="/shippuden">疾風伝</a><a href="/ranking">注目カード</a><a href="/psa">PSA鑑定</a><a href="/psa-ranking">PSA候補</a><a href="/psa-simulator">PSA計算</a><a href="/storage-guide">保管ガイド</a><a href="/recommended" data-shopping-placement="footer">おすすめ商品</a><a href="/search">詳細検索</a></nav>
    <p>非公式ファンデータベース。現在出品・SOLD・分析・予測を分けて掲載しています。</p>
   </div></footer>
  </body></html>

@@ -5,6 +5,7 @@ import {dailyResearch} from "../lib/dailyResearch";
 import {sortCards} from "../lib/cardSort";
 import VisitCounter from "./components/VisitCounter";
 import {SearchForm,SectionHeading,CardTile,DataNotice,NewsList} from "./components/DatabaseUI";
+import {ShoppingCallout} from "./components/ShoppingUI";
 
 export const metadata={
  title:{absolute:"NARUTO CARD DB｜旧カードの番号検索・相場・最新ニュース"},
@@ -29,6 +30,7 @@ export default async function Home(){
    <p>番号から探す。実売から知る。<br/>NARUTO旧カードの収録情報と相場を、一枚ずつ。</p>
    <SearchForm/>
    <div className="searchHints"><span>よく調べられる番号</span>{["忍-1","忍-204","PR忍-1-R"].map(id=><a href={"/card/"+encodeURIComponent(id)} key={id}>{id}</a>)}</div>
+   <ShoppingCallout/>
    <div className="homeStats"><div><strong>{cards.length}</strong><span>登録カード</span></div><div><strong>{promoCount}</strong><span>登録プロモ</span></div><div><strong>{Object.keys(dailyResearch).length}</strong><span>連載分析</span></div></div>
   </section>
 
@@ -83,7 +85,7 @@ export default async function Home(){
     <a href="https://link.amazon/B05QqCBV6" target="_blank" rel="sponsored nofollow noreferrer"><b>トレカ用スリーブ</b><span>基本のカード保護</span><strong>Amazonで確認 ↗</strong></a>
     <a href="https://link.amazon/B0etIAWiI" target="_blank" rel="sponsored nofollow noreferrer"><b>マグネットローダー</b><span>高額・お気に入りの保護</span><strong>Amazonで確認 ↗</strong></a>
     <a href="https://link.amazon/B06uxlbxz" target="_blank" rel="sponsored nofollow noreferrer"><b>カードストレージ</b><span>増えたカードを整理</span><strong>Amazonで確認 ↗</strong></a>
-   </div><small className="affiliateNote">Amazonアソシエイトのリンクを使用しています。</small>
+   </div><a className="textLink" href="/recommended" data-shopping-placement="home-storage">NARUTO関連商品・保管用品のおすすめをすべて見る →</a><small className="affiliateNote">Amazonアソシエイトのリンクを使用しています。</small>
   </section>
   <aside className="homeAbout"><h2>確認できたことを、積み重ねる。</h2><p>収録情報・実売・分析・予測を分け、未確認の情報は「不明」と表示します。各カードの詳細から参照資料を確認できます。</p><VisitCounter/></aside>
  </main>;

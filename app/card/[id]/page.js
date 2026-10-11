@@ -303,6 +303,7 @@ export default async function Page({params}){
      <a href={storageProduct.url} target="_blank" rel="sponsored nofollow noreferrer">{storageProduct.name}をAmazonで見る →</a>
     </div>
     <a href="/storage-guide">このカードの保管方法を詳しく見る →</a>
+    <a className="textLink" href="/recommended#storage" data-shopping-placement="card-storage">保護・収納用品のおすすめを選ぶ →</a>
     <small className="affiliateNote">※Amazonアソシエイトのリンクを使用しています。</small>
    </section>
 
@@ -317,7 +318,8 @@ export default async function Page({params}){
     <span className="eyebrow">RELATED / AMAZON</span>
     <h2>NARUTOを作品から振り返る</h2>
     <p>カードのキャラクターや当時の作品背景を確認したい人向けの関連商品です。</p>
-    <a className="amazonBtn" href="https://link.amazon/B06EMOlAu" target="_blank" rel="sponsored nofollow noreferrer">NARUTO関連商品をAmazonで見る →</a>
+    <a className="amazonBtn" href="/recommended#books" data-shopping-placement="card-related">漫画・映像・グッズのおすすめを見る →</a>
+    <a className="textLink" href="https://link.amazon/B06EMOlAu" target="_blank" rel="sponsored nofollow noreferrer">AmazonでNARUTO関連商品を見る ↗</a>
     <small>※Amazonアソシエイトのリンクを使用しています。</small>
    </aside>
 

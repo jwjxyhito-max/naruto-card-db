@@ -420,4 +420,57 @@ main>header:not(.pageIntro){display:flex;align-items:center;justify-content:spac
  .deepAnalysis p,.history p,.valuePanel p{font-size:14px}
  .advancedSearch{padding:24px}
 }
+/* A compact shopping entry and a server-rendered, purpose-based selection. */
+.homeShoppingCta,.homeShoppingCta:visited{display:grid;grid-template-columns:34px minmax(0,1fr) 18px;align-items:center;gap:11px;max-width:660px;margin-top:18px;padding:14px 13px;border:1px solid #835329;border-radius:10px;background:#251a12;color:var(--text);text-decoration:none;min-height:68px}
+.homeShoppingCta:hover{background:#302013;border-color:var(--orange)}
+.shoppingCtaIcon{display:grid;place-items:center;color:var(--orange)}
+.homeShoppingCta b{display:block;font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.homeShoppingCta small{display:block;margin-top:4px;font-size:10px;line-height:1.5;color:var(--muted)}
+.shoppingCtaArrow{color:var(--orange);font-size:19px}
+.recommendedPage .pageIntro h1{font-size:clamp(30px,5vw,48px)}
+.recommendedPage .pageIntro em{font-style:normal;color:var(--orange)}
+.shoppingDisclosure{border-left:2px solid #7b4b26;padding:6px 13px;margin-bottom:22px}
+.shoppingDisclosure>span{font-size:10px;letter-spacing:.04em;color:var(--orange);font-weight:750}
+.shoppingDisclosure p{font-size:11px;line-height:1.8;margin:4px 0 0}
+.shoppingCategories{display:grid;gap:8px}
+.shoppingCategories>a,.shoppingCategories>a:visited{display:flex;align-items:center;gap:12px;min-width:0;min-height:62px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text);text-decoration:none}
+.shoppingCategories>a:hover{border-color:#835329}
+.shoppingCategories svg{color:var(--orange);flex-shrink:0}
+.shoppingCategories>a>span:first-of-type{flex:1;min-width:0}
+.shoppingCategories b{font-size:14px;display:block}
+.shoppingCategories small{font-size:10px;color:var(--muted);display:block}
+.shoppingCategories>a>span:last-child{color:var(--orange)}
+.shoppingSelectionNote{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}
+.shoppingSelectionNote p{font-size:11px;margin:0}
+.shoppingSection{padding:30px 0 20px;border-bottom:1px solid var(--line)}
+.shoppingSectionHead{margin-bottom:18px}
+.shoppingSectionHead h2{font-size:24px;margin:4px 0 9px}
+.shoppingSectionHead p{font-size:13px;max-width:680px;margin:0}
+.shoppingSectionHead .textLink{margin-top:8px}
+.recommendedGrid{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.recommendedCard{display:flex;flex-direction:column;min-width:0;padding:20px 16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.recommendedCardHead{display:flex;align-items:flex-start;gap:13px;min-width:0}
+.recommendedCardHead>div{min-width:0}
+.recommendedIcon{display:grid;place-items:center;flex-shrink:0;width:42px;height:54px;border:1px solid #785032;border-radius:8px;background:#251a12;color:var(--orange)}
+.recommendedFormat{display:block;color:var(--orange);font-size:10px;line-height:1.6;margin-bottom:5px}
+.recommendedCard h3{font-size:18px;margin:0;line-height:1.5}
+.recommendedReason{font-size:13px;line-height:1.85;margin:15px 0}
+.recommendedCheck{padding:12px 13px;border-radius:8px;background:#101115;margin-bottom:18px}
+.recommendedCheck b{font-size:11px;color:var(--text)}
+.recommendedCheck p{font-size:11px;line-height:1.8;margin:4px 0 0}
+.recommendedActions{margin-top:auto;display:grid;gap:7px}
+.recommendedAmazon,.recommendedAmazon:visited{display:flex;align-items:center;justify-content:center;min-height:48px;padding:11px 13px;border:1px solid var(--accent);border-radius:8px;background:var(--accent);color:#17100b;font-size:13px;font-weight:800;text-decoration:none;text-align:center}
+.recommendedAmazon:hover{background:#ffa04e}
+.recommendedSource,.recommendedSource:visited{display:flex;align-items:center;justify-content:center;min-height:38px;color:var(--muted);font-size:11px;text-decoration:none}
+.shoppingStore{display:flex;flex-wrap:wrap;align-items:center;gap:13px;padding:20px 16px;margin:26px 0;background:#21180f;border:1px solid #684527;border-radius:var(--radius)}
+.shoppingStore>svg{color:var(--orange);flex-shrink:0}
+.shoppingStore>div{flex:1;min-width:0}
+.shoppingStore h2{font-size:18px;margin:0 0 5px}
+.shoppingStore p{font-size:12px;margin:0;line-height:1.8}
+.shoppingStore>a{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;padding:10px 16px;border:1px solid #8c572a;border-radius:8px;color:var(--orange);font-size:13px;font-weight:750;text-decoration:none}
+.shoppingReturn{display:grid;gap:8px;margin-top:20px}
+.shoppingReturn>a{display:flex;align-items:center;min-height:48px;padding:12px 16px;border:1px solid var(--line);border-radius:8px;color:var(--muted);text-decoration:none;font-size:13px}
+.cardStorageCta>.textLink{display:flex}
+@media(min-width:680px){.shoppingCategories{grid-template-columns:repeat(3,minmax(0,1fr))}.recommendedGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.shoppingReturn{grid-template-columns:repeat(2,minmax(0,1fr))}.shoppingStore>a{width:auto;flex-shrink:0}}
+@media(min-width:960px){.homeShoppingCta b{font-size:14px}.homeShoppingCta small{font-size:11px}.recommendedCard{padding:24px}.shoppingSectionHead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}.shoppingSectionHead .textLink{flex-shrink:0}.shoppingStore{padding:26px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
