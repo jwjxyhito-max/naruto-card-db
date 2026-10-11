@@ -10,17 +10,35 @@ export async function generateMetadata({params}){
  const {id}=await params;
  const decoded=decodeURIComponent(id);
  let c=findCard(decoded);
+ let live=null;
  if(!c){
   const marketAnalysis=await getMarketAnalysis();
-  const live=marketAnalysis.picks?.find(p=>p.id===decoded);
+  live=marketAnalysis.picks?.find(p=>p.id===decoded);
   if(!live)return {};
-  c={id:live.id,name:live.name};
+  c={id:live.id,name:live.name,character:live.name,series:"収録シリーズ確認中",release:"不明"};
  }
+ const deep=deepAnalysisRecords[c.id]||null;
+ const daily=dailyResearch[c.id]||null;
+ const hasDeep=Boolean(deep||daily);
+ const releaseText=c.release&&c.release!=="不明"?c.release:"発売時期確認中";
+ const seriesText=c.series&&c.series!=="収録シリーズ確認中"?c.series:"収録情報確認中";
+ const title=hasDeep
+  ? `${c.id} ${c.name}｜相場・SOLD履歴・PSA・収録情報`
+  : `${c.id} ${c.name}｜相場・収録情報`;
+ const description=hasDeep
+  ? `${c.id} ${c.name}（${seriesText}）。確認済みSOLD、相場、PSA鑑定判断、歴史的位置づけ、関連カードを整理。NARUTO旧カードを1枚ずつ検証しています。`
+  : `${c.id} ${c.name}の相場、収録シリーズ、発売時期（${releaseText}）、種類、関連カードを確認。NARUTO旧カードをカード番号単位で整理しています。`;
  return {
-  title:`${c.id} ${c.name}の相場・収録情報`,
-  description:`${c.id} ${c.name}の相場、収録シリーズ、発売時期、種類、調査状況を確認。NARUTO旧カードをカード番号単位で整理しています。`,
+  title,
+  description,
   alternates:{canonical:"/card/"+encodeURIComponent(c.id)},
-  openGraph:{title:`${c.id} ${c.name}の相場・収録情報`,description:`${c.id} ${c.name}の収録情報・相場・関連カードを確認`}
+  openGraph:{
+   type:"article",
+   title,
+   description,
+   url:"/card/"+encodeURIComponent(c.id)
+  },
+  twitter:{card:"summary_large_image",title,description}
  };
 }
 
@@ -66,7 +84,22 @@ export default async function Page({params}){
   ? {name:"マグネットローダー",url:"https://link.amazon/B0etIAWiI",note:"高額カードは角・表面を守れるローダーを優先"}
   : {name:"トレカ用スリーブ",url:"https://link.amazon/B05QqCBV6",note:numericPrice>=1000?"まずスリーブで保護し、必要に応じて硬質ケースへ":"低価格帯でも擦れ・皮脂を防ぐ基本保管"};
 
+ const cardJsonLd={
+  "@context":"https://schema.org",
+  "@type":"CollectionPage",
+  name:`${c.id} ${c.name}｜NARUTO旧カードDB`,
+  url:`https://naruto-card-db.vercel.app/card/${encodeURIComponent(c.id)}`,
+  description:`${c.id} ${c.name}の収録情報・相場・SOLD履歴・PSA判断を整理したカード個別ページ。`,
+  about:{
+   "@type":"Thing",
+   name:`${c.id} ${c.name}`,
+   description:`${c.character||c.name} / ${c.series||"NARUTO旧カード"}`
+  },
+  inLanguage:"ja"
+ };
+
  return <main>
+  <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(cardJsonLd)}} />
   <a className="back" href="/">← NARUTO旧カードDB</a>
   <section className="detail">
    <span className="eyebrow">CARD RECORD / VERIFIED FIRST</span>
