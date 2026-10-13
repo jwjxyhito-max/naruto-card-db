@@ -1,0 +1,84 @@
+{
+  "checkedAt": "2026-10-13 JST",
+  "carriedFrom": "2026-10-12",
+  "researchedCards": 10,
+  "completeCards": 0,
+  "incompleteCards": 10,
+  "evaluationRule": "Strict median remains unconfirmed unless the same card number, print, finish, language and condition are verified. ASK and SOLD are separate.",
+  "records": [
+    {
+      "id": "PR忍-10",
+      "status": "incomplete",
+      "verifiedOfficialCatalog": null,
+      "strictMedianJPY": null,
+      "ebaySameSpecSoldConfirmed": false
+    },
+    {
+      "id": "PR忍-4",
+      "status": "incomplete",
+      "verifiedOfficialCatalog": null,
+      "strictMedianJPY": null,
+      "ebaySameSpecSoldConfirmed": false
+    },
+    {
+      "id": "PR作-11",
+      "status": "incomplete",
+      "verifiedOfficialCatalog": null,
+      "strictMedianJPY": null,
+      "ebaySameSpecSoldConfirmed": false
+    },
+    {
+      "id": "PR作-12",
+      "status": "incomplete",
+      "verifiedOfficialCatalog": null,
+      "strictMedianJPY": null,
+      "ebaySameSpecSoldConfirmed": false
+    },
+    {
+      "id": "PR作-16",
+      "status": "incomplete",
+      "verifiedOfficialCatalog": null,
+      "strictMedianJPY": null,
+      "ebaySameSpecSoldConfirmed": false
+    },
+    {
+      "id": "PR作-14",
+      "status": "incomplete",
+      "verifiedOfficialCatalog": null,
+      "strictMedianJPY": null,
+      "ebaySameSpecSoldConfirmed": false
+    },
+    {
+      "id": "PR忍-9",
+      "status": "incomplete",
+      "verifiedOfficialCatalog": null,
+      "strictMedianJPY": null,
+      "ebaySameSpecSoldConfirmed": false
+    },
+    {
+      "id": "忍-288",
+      "status": "incomplete",
+      "verifiedOfficialCatalog": "https://www.tv-tokyo.co.jp/anime/naruto2002/goods/card_13.html",
+      "strictMedianJPY": null,
+      "ebaySameSpecSoldConfirmed": false
+    },
+    {
+      "id": "忍-203",
+      "status": "incomplete",
+      "verifiedOfficialCatalog": null,
+      "strictMedianJPY": null,
+      "ebaySameSpecSoldConfirmed": false
+    },
+    {
+      "id": "忍-289",
+      "status": "incomplete",
+      "verifiedOfficialCatalog": "https://www.tv-tokyo.co.jp/anime/naruto2002/goods/card_13.html",
+      "strictMedianJPY": null,
+      "ebaySameSpecSoldConfirmed": false
+    }
+  ],
+  "newFindings": [
+    "忍-288 and 忍-289 are officially listed in Volume 13.",
+    "The retailer identifies a super-rare pack variant for 忍-289; separate UR-labeled listings must not be pooled."
+  ]
+}
