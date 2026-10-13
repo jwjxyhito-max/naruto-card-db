@@ -168,7 +168,12 @@ export default async function Page({params}){
     </div>
     <p>確認価格：{soldPrices.map(yen).join(" ／ ")}</p>
     <small>数字はDOTの保存済みSOLD記録による参考値。日時・取引URL・状態が全件紐付いていないため、同仕様の確定相場ではありません。上部のSOLD確認件数と金額記録件数は異なる場合があります。</small>
+    </>:deepRecord.soldSamples?.length>0?<>
+    <div className="analysisFacts"><div><small>URL付きSOLD表示</small><b>{deepRecord.soldSamples.length}件（重複未精査）</b></div><div><small>比較方針</small><b>状態別に分離／中央値保留</b></div></div>
+    <ul>{deepRecord.soldSamples.map((x,i)=><li key={i}><a href={x.url} target="_blank" rel="noopener noreferrer">{yen(x.price)} ↗</a> ／ {x.platform} ／ {x.period} ／ {x.condition}</li>)}</ul>
+    <small>これらは各商品ページ・落札検索の表示価格です。取引完了や同仕様であることを保証するものではありません。以前の確認済み3標本との重複が不明なため、単純に7件とは数えません。極端な状態差があり4件の中央値・平均は算出対象外です。</small>
     </>:<p>個別SOLD金額はまだ記録されていません。確認できた取引から追加します。</p>}
+    {deepRecord.askSamples?.length>0&&<><h3>現在の出品価格（SOLDとは別）</h3><ul>{deepRecord.askSamples.map((x,i)=><li key={i}>{yen(x.price)} ／ {x.platform} ／ {x.period} ／ {x.condition}{x.url&&<> ／ <a href={x.url} target="_blank" rel="noopener noreferrer">出品を見る ↗</a></>}</li>)}</ul></>}
     <h3>このカード固有の注目点</h3><p>{deepRecord.note}</p>
     <h3>SOLD・相場の判断</h3><p>{m?m.market:"同番号・同加工・同状態のSOLDを確認するまで価格は設定しません。出品価格を実売と混同しません。"}</p>
     <h3>PSA鑑定・保管</h3><p>角・縁・表裏の擦れ、反り、センタリングを確認し、鑑定料と同仕様のPSA鑑定品SOLDが確認できた場合のみ採算を判断します。</p>
