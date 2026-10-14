@@ -1,3 +1,4 @@
+import {getCardResearch} from "../../../lib/getCardResearch";
 import {deepAnalysisRecords} from "../../../lib/deepAnalysisRecords";
 import {dailyResearch} from "../../../lib/dailyResearch";
 import {marketRecord,formatSold} from "../../../lib/dotMarket";
@@ -15,8 +16,14 @@ export async function generateMetadata({params}){
  if(!c){
   const marketAnalysis=await getMarketAnalysis();
   live=marketAnalysis.picks?.find(p=>p.id===decoded);
-  if(!live)return {};
-  c={id:live.id,name:live.name,character:live.name,series:"収録シリーズ確認中",release:"不明"};
+  if(!live){
+   const snapshot=await getCardResearch(decoded);
+   if(!snapshot)return {};
+   const name=snapshot.research.name||"名称確認中";
+   c={id:decoded,name,character:name,series:"収録資料照合中",release:"不明"};
+  }else{
+   c={id:live.id,name:live.name,character:live.name,series:"収録シリーズ確認中",release:"不明"};
+  }
  }
  const deep=deepAnalysisRecords[c.id]||null;
  const daily=dailyResearch[c.id]||null;
@@ -49,23 +56,26 @@ export default async function Page({params}){
  const marketAnalysis=await getMarketAnalysis();
  const live=marketAnalysis.picks?.find(p=>p.id===decoded)||null;
  const dbCard=findCard(decoded);
- if(!dbCard&&!live)notFound();
+ const researchSnapshot=await getCardResearch(decoded);
+ if(!dbCard&&!live&&!researchSnapshot)notFound();
 
- const c=dbCard||{
-  id:live.id,
-  name:live.name,
-  character:live.name,
-  series:"収録シリーズ確認中",
-  release:"不明",
-  type:"市場分析対象",
-  rank:live.judge,
+ const c=dbCard||(live?{
+  id:live.id,name:live.name,character:live.name,
+  series:"収録シリーズ確認中",release:"不明",type:"市場分析対象",rank:live.judge,
   market:`現在 ${live.price} / 同状態SOLD中央値 ${live.median}`,
-  note:"4時間ごとの市場分析で注目中。収録シリーズ・発売時期は確認でき次第追記します。",
+  note:"定期市場分析で注目中。収録シリーズ・発売時期は確認でき次第追記します。",
   source:null
- };
+ }:{
+  id:decoded,name:researchSnapshot.research.name||"名称確認中",
+  character:researchSnapshot.research.name||"確認中",
+  series:"NARUTO旧カード（収録資料照合中）",
+  release:"不明",type:"調査対象",rank:"C",market:"相場調査中",
+  note:"個別調査の記録があります。公式収録資料・同仕様SOLDの照合は継続中。",source:null
+ });
  const m=getMarketData(c.id);
  const deepRecord=deepAnalysisRecords[c.id]||null;
  const daily=dailyResearch[c.id]||null;
+ const research=researchSnapshot?.research||null;
  const soldRecord=marketRecord(c.id);
  const verifiedMarketCount=m?.soldCount||0;
  const hasRecordedSold=Array.isArray(soldRecord?.sold)&&soldRecord.sold.some(v=>Number.isFinite(v)&&v>0);
@@ -151,6 +161,34 @@ export default async function Page({params}){
    </section>}
 
    <div id="analysis" className="anchorTarget"></div>
+
+   {research&&<details className="deepAnalysis researchDetails" open>
+    <summary>{c.id} {c.name}｜{researchSnapshot.snapshot_date}の個別追跡（{researchSnapshot.status==="complete"?"検証完了":"継続調査・暫定"}）</summary>
+    <div className="researchContent">
+     <p><strong>検証状況：</strong>{researchSnapshot.status==="complete"?"完了":"未完了。版・加工・言語・状態の厳密照合は継続中。"} 未確認の数値は確定相場ではありません。</p>
+     {research.historicalContextAndVerification&&<><h3>基本情報・歴史的位置づけ</h3><p>{research.historicalContextAndVerification}</p></>}
+     {research.verifiedNewFacts?.length>0&&<><h3>今回確認した事実</h3><ul>{research.verifiedNewFacts.map((x,i)=><li key={i}>{x}</li>)}</ul></>}
+     <h3>同仕様SOLD・中央値</h3>
+     <div className="analysisFacts">
+      <div><small>同仕様の確定中央値</small><b>{research.strictSameSpecSoldMedianJPY==null?"未確認":yen(research.strictSameSpecSoldMedianJPY)}</b></div>
+      <div><small>仕様確認済み標本</small><b>{research.strictSameSpecSoldCount||0}件</b></div>
+      <div><small>前回の番号一致SOLD表示</small><b>{research.baselineSoldReference?.numberMatchedSampleCount??"未確認"}件（厳密照合前）</b></div>
+      <div><small>今回のSOLD表示</small><b>{research.additionalSoldCount??0}件（厳密照合前）</b></div>
+     </div>
+     {research.additionalSoldDisplayCandidates?.length>0&&<ul>{research.additionalSoldDisplayCandidates.map((x,i)=><li key={i}>{x.url?.startsWith("https://")?<a href={x.url} target="_blank" rel="noopener noreferrer">{yen(x.displayedPriceJPY)} ↗</a>:yen(x.displayedPriceJPY)} ／ {x.sellerConditionClaim||"状態未確認"}（SOLD表示・最終決済額未確認）</li>)}</ul>}
+     <h3>国内の現在ASK（販売希望額）</h3>
+     {research.currentAskObservations?.length?<ul>{research.currentAskObservations.map((x,i)=><li key={i}>{x.url?.startsWith("https://")?<a href={x.url} target="_blank" rel="noopener noreferrer">{yen(x.askJPY)} ↗</a>:yen(x.askJPY)} ／ {x.sellerConditionClaim||"状態未確認"}</li>)}</ul>:<p>未確認</p>}
+     <h3>海外eBay SOLD・ASK</h3>
+     <p>同仕様の成約額：{research.overseasSameSpecRealizedSoldMedianUSD==null?"未確認":research.overseasSameSpecRealizedSoldMedianUSD+" USD"}。確認済み成約標本：{research.overseasSameSpecRealizedSoldCount||0}件（成約なしと断定しません）。</p>
+     {research.overseasAskObservations?.length?<ul>{research.overseasAskObservations.map((x,i)=><li key={i}>{x.url?.startsWith("https://")?<a href={x.url} target="_blank" rel="noopener noreferrer">{x.askUSD??"価格未確認"} USDのASK ↗</a>:"ASK：価格未確認"} ／ {x.note||"仕様未照合"}</li>)}</ul>:<p>海外ASKは未確認</p>}
+     {research.marketAndVariantCautions&&<><h3>仕様・状態差と希少性</h3><p>{research.marketAndVariantCautions}</p><p>配布枚数・希少性：{research.scarcityVerified?"裏付け確認済み":"未確認"}</p></>}
+     {research.futureForecastUnverified&&<><h3>今後の材料・予測（未検証）</h3><p>{research.futureForecastUnverified}</p></>}
+     {research.psaDecision&&<><h3>PSA判断</h3><p>{research.psaDecision}</p></>}
+     {research.storageDecision&&<><h3>保管判断</h3><p>{research.storageDecision}</p></>}
+     {research.pendingVerification?.length>0&&<><h3>未完了・次の確認項目</h3><ul>{research.pendingVerification.map((x,i)=><li key={i}>{x}</li>)}</ul></>}
+     <small>この追跡記録は従来の価格履歴を上書きせず、日付ごとに別保存。ASK、SOLD表示、事実、予測は別扱いです。</small>
+    </div>
+   </details>
    {deepRecord&&<details className="deepAnalysis researchDetails">
     <summary>{c.id} {c.name}｜個別分析・SOLD追跡</summary><div className="researchContent">
     <div className="analysisFacts">
