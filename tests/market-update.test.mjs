@@ -79,3 +79,36 @@ test('invalid newest rows are skipped and a failed fetch retains the last normal
     if (originalKey===undefined) delete process.env.SUPABASE_ANON_KEY;else process.env.SUPABASE_ANON_KEY=originalKey;
   }
 });
+
+test('verified SOLD persists across later analysis snapshots and recently checked available listings remain distinct', async () => {
+ const oldFetch=globalThis.fetch, oldUrl=process.env.SUPABASE_URL, oldKey=process.env.SUPABASE_ANON_KEY;
+ process.env.SUPABASE_URL='https://db.test';process.env.SUPABASE_ANON_KEY='test-anon-key';
+ const now=Date.now(), analyzedAt=new Date(now-5*3600000).toISOString();
+ const recent=new Date(now-30*60000).toISOString(),oldSold=new Date(now-6*3600000).toISOString();
+ const statuses=[
+  {item_id:'m38023486906',status:'sold_confirmed',checked_at:oldSold},
+  {item_id:'m56088153394',status:'sold_confirmed',checked_at:recent},
+  {item_id:'m18746104685',status:'available',checked_at:recent},
+  {item_id:'m54013916520',status:'available',checked_at:recent},
+  {item_id:'m96880070399',status:'sold_confirmed',checked_at:recent}
+ ];
+ const payload=clean();
+ try{
+  globalThis.fetch=async(url)=>url.includes('naruto_listing_status')
+   ? Response.json(statuses)
+   : Response.json([{id:31,analyzed_at:analyzedAt,payload}]);
+  const result=await getMarketAnalysis();
+  assert.deepEqual(result.picks.map(p=>p.listingStatus),[
+   'sold_confirmed','sold_confirmed','available','available','sold_confirmed'
+  ]);
+  assert.equal(result.picks[0].soldOut,true);
+  assert.equal(result.picks[0].displayJudge,'売り切れ確認済み');
+  assert.match(result.picks[0].displaySummary,/購入候補ではありません/);
+  assert.equal(result.picks[2].displayJudge,'販売中を確認');
+  assert.equal(result.picks[4].displayPrice,'¥7,777');
+ } finally {
+  globalThis.fetch=oldFetch;
+  if(oldUrl===undefined)delete process.env.SUPABASE_URL;else process.env.SUPABASE_URL=oldUrl;
+  if(oldKey===undefined)delete process.env.SUPABASE_ANON_KEY;else process.env.SUPABASE_ANON_KEY=oldKey;
+ }
+});
