@@ -23,6 +23,7 @@ function PromoCard({promo}){
   <p className="tournamentCondition">{promo.conditions}</p>
   <p className="tournamentEvidenceNote">{promo.evidenceNote}</p>
   {promo.reprint&&<p className="tournamentEvidenceNote">再録：{promo.reprint}</p>}
+  {promo.marketSummary&&<p className="tournamentEvidenceNote"><strong>2026年10月15日の相場調査：</strong>{promo.marketSummary}</p>}
   <SaleList sales={promo.sales}/>
   <div className="tournamentCardLinks"><a href={promo.source} target="_blank" rel="noopener noreferrer">配布情報の根拠を確認 ↗</a>{registered&&<a href={"/card/"+encodeURIComponent(promo.id)}>カード詳細 →</a>}</div>
  </article>;
