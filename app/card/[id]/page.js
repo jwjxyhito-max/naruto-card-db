@@ -150,9 +150,10 @@ export default async function Page({params}){
    </section>}
 
    {!live&&m&&<section className="valuePanel compactValue">
-    <div className="sectionHead"><h2>現在の価値判断</h2><span>MARKET CHECKED</span></div>
-    <div className="valueVerdict"><span>相場確認済み</span><p>{m.market}</p></div>
-    <p>SOLD標本 {m.soldCount}件を確認。TOP5対象外でも実売データは継続して蓄積します。</p>
+    <div className="sectionHead"><h2>相場調査・SOLD確認</h2><span>{m.soldCount>0?"SOLD CHECKED":"RESEARCHING"}</span></div>
+    <div className="valueVerdict"><span>{m.soldCount>0?"個別SOLD表示あり":"同番号SOLD未確認"}</span><p>{m.market}</p></div>
+    <p>{m.soldCount>0? `掲載した単品SOLD標本 ${m.soldCount}件。状態や仕様の異なる標本を混ぜた中央値は未確定です。`:"現時点で確認できるSOLD価格はありません。成約が存在しないという意味ではありません。"}</p>
+    {m.checkedAt&&<p className="mutedNote">最終調査記録：{m.checkedAt}</p>}
    </section>}
 
    {!live&&!m&&<section className="valuePanel compactValue">
