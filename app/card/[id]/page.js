@@ -188,7 +188,7 @@ export default async function Page({params}){
      {research.pendingVerification?.length>0&&<><h3>未完了・次の確認項目</h3><ul>{research.pendingVerification.map((x,i)=><li key={i}>{x}</li>)}</ul></>}
      <small>この追跡記録は従来の価格履歴を上書きせず、日付ごとに別保存。ASK、SOLD表示、事実、予測は別扱いです。</small>
     </div>
-   </details>
+   </details>}
    {deepRecord&&<details className="deepAnalysis researchDetails">
     <summary>{c.id} {c.name}｜個別分析・SOLD追跡</summary><div className="researchContent">
     <div className="analysisFacts">
