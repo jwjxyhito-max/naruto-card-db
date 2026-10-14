@@ -26,6 +26,7 @@ export default async function Page({searchParams}){
  return <main className="promoPage">
   <PageIntro eyebrow="PROMOTION CARD ARCHIVE" title={group?`${group.prefix}のプロモ一覧`:"プロモカード一覧"} description="大会賞品・配布カードを系統別に。配布背景と仕様の違いを確かめて、一枚ずつ調べられます。" items={group?[{href:"/promo",label:"プロモ一覧"},{label:group.prefix}]:undefined}/>
   <div className="catalogStats"><span><b>{all.length}</b> 登録プロモ</span><span><b>{groups.length}</b> 系統</span></div>
+  <p className="mutedNote"><a href="/promo/tournament">大会優勝・入賞・連勝・参加賞のプロモ特集 →</a></p>
   <SearchForm compact/>
   <nav className="categoryTabs" aria-label="カードの区分"><a href="/cards">忍カード</a><a href="/promo" aria-current="page">プロモ</a><a href="/shippuden">疾風伝</a><a href="/search?promo=promo">プロモ検索</a></nav>
   <nav className="promoIndex" aria-label="プロモ系統へ移動">{groups.map(({prefix,list})=><a href={group?"/promo?group="+encodeURIComponent(prefix):"#"+encodeURIComponent(prefix)} aria-current={group?.prefix===prefix?"page":undefined} key={prefix}><b>{prefix}</b><span>{list.length}枚 {group?"→":"↓"}</span></a>)}</nav>
