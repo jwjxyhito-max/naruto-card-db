@@ -2,6 +2,7 @@ import {cards} from "../lib/cards";
 import {getMarketAnalysis} from "../lib/getMarketAnalysis";
 import {getLatestNews} from "../lib/getLatestNews";
 import {dailyResearch} from "../lib/dailyResearch";
+import {getCardResearchIndex} from "../lib/getCardResearch";
 import {sortCards} from "../lib/cardSort";
 import VisitCounter from "./components/VisitCounter";
 import {SearchForm,SectionHeading,CardTile,NewsList} from "./components/DatabaseUI";
@@ -15,7 +16,7 @@ export const metadata={
 export const dynamic="force-dynamic";
 
 export default async function Home(){
- const [analysis,news]=await Promise.all([getMarketAnalysis(),getLatestNews(3)]);
+ const [analysis,news,researchIndex]=await Promise.all([getMarketAnalysis(),getLatestNews(3),getCardResearchIndex()]);
  const picks=(analysis.picks||[]).slice(0,3);
  const recentResearch=Object.entries(dailyResearch).sort((a,b)=>(b[1].sequence||0)-(a[1].sequence||0)).slice(0,3);
  const characters=[...new Set(cards.map(c=>c.character).filter(v=>v&&v!=="不明"&&v!=="複数"))]
@@ -32,6 +33,7 @@ export default async function Home(){
    <div className="searchHints"><span>よく調べられる番号</span>{["忍-1","忍-204","PR忍-1-R"].map(id=><a href={"/card/"+encodeURIComponent(id)} key={id}>{id}</a>)}</div>
    <ShoppingCallout/>
    <div className="homeStats"><div><strong>{cards.length}</strong><span>登録カード</span></div><div><strong>{promoCount}</strong><span>登録プロモ</span></div><div><strong>{Object.keys(dailyResearch).length}</strong><span>連載分析</span></div></div>
+   {researchIndex?.length>0&&<a className="textLink" href="#published-card-research">追加の詳細調査：{researchIndex.length}枚を見る →</a>}
   </section>
 
   <nav className="homeRoutes" aria-label="目的から探す">
@@ -54,6 +56,17 @@ export default async function Home(){
    </article>)}</div>
    <p className="mutedNote">出品価格とSOLDは別扱い。価格は確認時点の記録です。</p>
   </section>
+
+  {researchIndex?.length>0&&<section className="homeSection" id="published-card-research">
+   <SectionHeading title="追加の詳細調査" label="CARD RESEARCH"/>
+   <p className="mutedNote">{researchIndex.length}枚を公開中。相場・仕様・売買判断をカードごとに確認できます。未確認の情報は調査中と表示します。</p>
+   <div className="researchList">{researchIndex.slice(0,5).map(record=><a href={"/card/"+encodeURIComponent(record.card_id)+"#analysis"} key={record.card_id}>
+    <div><small>{record.snapshot_date} ／ {record.status==="complete"?"検証完了":"継続調査"}</small><b>{record.card_id} {record.name}</b></div><span aria-hidden="true">→</span>
+   </a>)}</div>
+   {researchIndex.length>5&&<details className="moreSeries"><summary>ほかの詳細調査を見る（{researchIndex.length-5}枚）</summary><div className="researchList">{researchIndex.slice(5).map(record=><a href={"/card/"+encodeURIComponent(record.card_id)+"#analysis"} key={record.card_id}>
+    <div><small>{record.snapshot_date} ／ {record.status==="complete"?"検証完了":"継続調査"}</small><b>{record.card_id} {record.name}</b></div><span aria-hidden="true">→</span>
+   </a>)}</div></details>}
+  </section>}
 
   {recentResearch.length>0&&<section className="homeSection">
    <SectionHeading title="一枚ずつ、詳しく分析" label="CARD RESEARCH" href="/search" action="カード検索"/>

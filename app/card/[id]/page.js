@@ -168,6 +168,7 @@ export default async function Page({params}){
      <p><strong>検証状況：</strong>{researchSnapshot.status==="complete"?"完了":"未完了。版・加工・言語・状態の厳密照合は継続中。"} 未確認の数値は確定相場ではありません。</p>
      {research.historicalContextAndVerification&&<><h3>基本情報・歴史的位置づけ</h3><p>{research.historicalContextAndVerification}</p></>}
      {research.verifiedNewFacts?.length>0&&<><h3>今回確認した事実</h3><ul>{research.verifiedNewFacts.map((x,i)=><li key={i}>{x}</li>)}</ul></>}
+     {research.collectionAndGameplayAnalysis&&<><h3>収集・当時のゲームでの役割</h3><p>{research.collectionAndGameplayAnalysis}</p></>}
      <h3>同仕様SOLD・中央値</h3>
      <div className="analysisFacts">
       <div><small>同仕様の確定中央値</small><b>{research.strictSameSpecSoldMedianJPY==null?"未確認":yen(research.strictSameSpecSoldMedianJPY)}</b></div>
@@ -176,16 +177,27 @@ export default async function Page({params}){
       <div><small>今回のSOLD表示</small><b>{research.additionalSoldCount??0}件（厳密照合前）</b></div>
      </div>
      {research.additionalSoldDisplayCandidates?.length>0&&<ul>{research.additionalSoldDisplayCandidates.map((x,i)=><li key={i}>{x.url?.startsWith("https://")?<a href={x.url} target="_blank" rel="noopener noreferrer">{yen(x.displayedPriceJPY)} ↗</a>:yen(x.displayedPriceJPY)} ／ {x.sellerConditionClaim||"状態未確認"}（SOLD表示・最終決済額未確認）</li>)}</ul>}
+     {research.soldSummary&&<p>{research.soldSummary}</p>}
      <h3>国内の現在ASK（販売希望額）</h3>
      {research.currentAskObservations?.length?<ul>{research.currentAskObservations.map((x,i)=><li key={i}>{x.url?.startsWith("https://")?<a href={x.url} target="_blank" rel="noopener noreferrer">{yen(x.askJPY)} ↗</a>:yen(x.askJPY)} ／ {x.sellerConditionClaim||"状態未確認"}</li>)}</ul>:<p>未確認</p>}
      <h3>海外eBay SOLD・ASK</h3>
      <p>同仕様の成約額：{research.overseasSameSpecRealizedSoldMedianUSD==null?"未確認":research.overseasSameSpecRealizedSoldMedianUSD+" USD"}。確認済み成約標本：{research.overseasSameSpecRealizedSoldCount||0}件（成約なしと断定しません）。</p>
      {research.overseasAskObservations?.length?<ul>{research.overseasAskObservations.map((x,i)=><li key={i}>{x.url?.startsWith("https://")?<a href={x.url} target="_blank" rel="noopener noreferrer">{x.askUSD??"価格未確認"} USDのASK ↗</a>:"ASK：価格未確認"} ／ {x.note||"仕様未照合"}</li>)}</ul>:<p>海外ASKは未確認</p>}
+     {research.overseasSoldDisplayCandidates?.length>0&&<ul>{research.overseasSoldDisplayCandidates.map((x,i)=><li key={i}>{x.url?.startsWith("https://")?<a href={x.url} target="_blank" rel="noopener noreferrer">{x.displayedPriceUSD} USDのSOLD表示 ↗</a>:"SOLD表示"} ／ {x.note}（同仕様・最終決済額は未確認）</li>)}</ul>}
+     {research.overseasAnalysis&&<p>{research.overseasAnalysis}</p>}
+     {research.bundlesOtherGradesAndNonComparable?.length>0&&<><h3>セット・別仕様の比較（単品統計に含めない）</h3><ul>{research.bundlesOtherGradesAndNonComparable.map((x,i)=>typeof x==="string"?<li key={i}>{x}</li>:x&&typeof x==="object"?<li key={i}>{x.url?.startsWith("https://")?<a href={x.url} target="_blank" rel="noopener noreferrer">{yen(x.displayedPriceJPY)} ↗</a>:yen(x.displayedPriceJPY)} ／ {x.note} {x.status&&`（${x.status}）`}</li>:null)}</ul></>}
      {research.marketAndVariantCautions&&<><h3>仕様・状態差と希少性</h3><p>{research.marketAndVariantCautions}</p><p>配布枚数・希少性：{research.scarcityVerified?"裏付け確認済み":"未確認"}</p></>}
+     {research.buyDecision&&<><h3>買う・仕入れる判断</h3><p>{research.buyDecision}</p></>}
+     {research.sellDecision&&<><h3>売る場合の判断</h3><p>{research.sellDecision}</p></>}
      {research.futureForecastUnverified&&<><h3>今後の材料・予測（未検証）</h3><p>{research.futureForecastUnverified}</p></>}
      {research.psaDecision&&<><h3>PSA判断</h3><p>{research.psaDecision}</p></>}
      {research.storageDecision&&<><h3>保管判断</h3><p>{research.storageDecision}</p></>}
      {research.pendingVerification?.length>0&&<><h3>未完了・次の確認項目</h3><ul>{research.pendingVerification.map((x,i)=><li key={i}>{x}</li>)}</ul></>}
+     {research.officialAndRetailerSources?.length>0&&<><h3>収録・仕様・公式情報の出典</h3><ul>{research.officialAndRetailerSources.map((x,i)=>{
+      const url=typeof x==="string"?x:x?.url;
+      const label=typeof x==="string"?x:x?.label||url;
+      return url?.startsWith("https://")?<li key={i}><a href={url} target="_blank" rel="noopener noreferrer">{label} ↗</a></li>:null;
+     })}</ul></>}
      <small>この追跡記録は従来の価格履歴を上書きせず、日付ごとに別保存。ASK、SOLD表示、事実、予測は別扱いです。</small>
     </div>
    </details>}

@@ -1,0 +1,404 @@
+{
+  "snapshotDate": "2026-10-14",
+  "checkedAtJST": "2026-10-14（日本時間）",
+  "sourceLabel": "2026-10-14 source-linked detailed research: maki1 nin11-15",
+  "method": "同番号のSOLD表示と販売中を個別ページで確認。加工・版・状態の厳密同一性や最終決済額が不明な標本は確定中央値へ採用しない。検索抜粋だけの価格は未採用。売買目安は独自分析であり実売保証ではない。",
+  "cards": [
+    {
+      "id": "忍-11",
+      "name": "はたけカカシ",
+      "status": "research_incomplete",
+      "checkedAtJST": "2026-10-14（日本時間）",
+      "historicalContextAndVerification": "2002年12月13日発売、バンダイ『NARUTO-ナルト-カードゲーム 巻ノ壱』の忍カード。テレビ東京の当時の公式一覧で忍-10エビスの次、忍-12猿飛アスマの前に置かれる。駿河屋のGL410573は『レア／火／巻ノ壱』と分類する。最初期カカシの一枚として調べる対象であり、忍-23・忍-37、PR忍-11大蛇丸、映画関連カードやデータカードダスの番号11とは区別する。",
+      "verifiedNewFacts": [
+        "公式収録一覧で番号・名称・発売日を照合。忍-11と忍-23は同じ巻ノ壱でも別番号。",
+        "メルカリの単品SOLD表示は3,820円と8,400円の2ページを確認。どちらも出品者の状態区分は『目立った傷や汚れなし』だが、説明には経年ダメージ／白欠けがある。",
+        "販売中17,000円の個体は『やや傷や汚れあり』、33,680円の個体は『目立った傷や汚れなし』。高額出品を実売へ混ぜない。"
+      ],
+      "collectionAndGameplayAnalysis": "分析上の注目点は『人気キャラクターの最初期番号』と『同じ番号でも加工・印刷・傷を見分ける必要』の両立。カカシの別番号を集める需要と巻ノ壱の番号順コンプリート需要は考えられるが、需要の強さは成約件数で確かめる。単にカカシという名前だけで、後期のウルトラレアやプロモの高額実売を移さない。当時の対戦性能は公式画像の効果文を拡大照合するまで断定しない。",
+      "strictSameSpecSoldCount": 0,
+      "strictSameSpecSoldMedianJPY": null,
+      "additionalSoldCount": 2,
+      "additionalSoldDisplayCandidates": [
+        {
+          "displayedPriceJPY": 3820,
+          "sellerConditionClaim": "目立った傷や汚れなし。説明に経年ダメージあり。加工と版は未照合。",
+          "soldAt": null,
+          "url": "https://jp.mercari.com/item/m46689357698"
+        },
+        {
+          "displayedPriceJPY": 8400,
+          "sellerConditionClaim": "目立った傷や汚れなし。ただし説明に端の白欠けあり。属性『幻』という説明は公式分類との照合が必要。",
+          "soldAt": null,
+          "url": "https://jp.mercari.com/item/m58886350724"
+        }
+      ],
+      "soldSummary": "番号一致の参考標本は2件、範囲3,820～8,400円、計算上の参考中央値6,110円。最高は最低の約2.20倍。ただし同じ加工・版・客観的状態と確認できていないため、6,110円を確定相場と扱わない。正確な成約日は不明で、二つの価格差を時系列の値上がりとは解釈できない。33,680円のASKは確認SOLD上限8,400円の約4.01倍で、高額な希望価格だけでは上昇の証拠にならない。",
+      "currentAskObservations": [
+        {
+          "askJPY": 17000,
+          "sellerConditionClaim": "単品・やや傷や汚れあり。題名の『箔押し』は販売者の表記。購入手続き表示を確認。",
+          "url": "https://jp.mercari.com/item/m60343402139"
+        },
+        {
+          "askJPY": 33680,
+          "sellerConditionClaim": "単品・目立った傷や汚れなし。ホログラム加工は販売者の説明。購入手続き表示を確認。",
+          "url": "https://jp.mercari.com/item/m96784579823"
+        },
+        {
+          "askJPY": 10000,
+          "sellerConditionClaim": "駿河屋GL410573の中古販売表示。在庫1の表示。最終在庫、送料、個体の写真確認は別途必要。",
+          "url": "https://www.suruga-ya.jp/product/detail/GL410573"
+        }
+      ],
+      "overseasSameSpecRealizedSoldCount": 0,
+      "overseasSameSpecRealizedSoldMedianUSD": null,
+      "overseasAskObservations": [],
+      "overseasAnalysis": "同番号・同加工・同程度の状態のeBay確定成約は今回確保できていない。海外検索で日本語忍-11の出品は見つかるが、価格の再確認と国内個体との写真照合が未了。海外の高額ASKやBest Offerから国内の売値を逆算することは見送る。",
+      "marketAndVariantCautions": "レアという小売分類は、流通枚数の少なさや希少な別加工の証明ではない。カード番号全体、表裏の印刷年・著作権表記、文字や枠の箔、光を斜めに当てた加工、角の白欠け、線傷、押し跡を揃えて比較する。題名の『プロモ』『箔押し』『美品』だけで仕様や鑑定結果を確定しない。公式の発行枚数・現存枚数・PSA10枚数は今回未確認。",
+      "scarcityVerified": false,
+      "distributionVolume": null,
+      "buyDecision": "コレクション目的なら、希望する加工を先に決めて写真を比較する。転売目的では現在確認した17,000円・33,680円を、3,820～8,400円の少数SOLDだけで割安とは判断できない。例えば売却3,820円、手数料10％・送料160円・資材30円・必要利益1,000円を仮定すると、仕入れ上限は2,248円。これは採算計算例で、実際の成約額・送料・状態が変われば上限も変わる。",
+      "sellDecision": "加工を照合できた中古個体に限る暫定の独自目安は、早期3,500～4,000円、適正候補4,500～6,000円。状態良好かつ同加工の追加SOLDが揃う場合に6,500～8,000円を検討するが、現時点では少数標本の上限寄り。希少加工やプロモと判明した個体にはこの目安を使わず再調査する。海外需要による追加上乗せは今回非推奨。",
+      "futureForecastUnverified": "公式は新NARUTO CARD GAMEの2027年夏発売を案内している。旧カカシの再注目は仮説であり、旧カードの再録・新ゲームでの使用や価格上昇を意味しない。上向きを判断するには、同加工の単品SOLDが増え、同程度の状態で8,000円前後の成約が反復するかを観察する。高額ASKが残るだけなら需要増とみなさない。",
+      "psaDecision": "同仕様PSA9・10の実売と鑑定費を引いた手残りが未確認なので、利益目的の提出判断は保留。白欠けを記すSOLD例をPSA10候補の価格へ転用しない。自分の個体は表裏の四隅、枠、箔面の線傷、印刷位置、反りを先に確認する。",
+      "storageDecision": "スリーブを先に装着して硬質ケースまたは適合ローダーへ。箔面を裸のケースへ擦り付けず、暗所で保管。複数加工を持つ場合は番号・加工・状態・購入額を分けて記録する。",
+      "pendingVerification": [
+        "2件のSOLDの加工・版・実物状態を写真で厳密照合。",
+        "正確な成約日と追加の同仕様単品SOLDを収集。",
+        "PSA鑑定品の同番号・同仕様・同グレードの実売を確認。"
+      ],
+      "officialAndRetailerSources": [
+        {
+          "label": "テレビ東京・巻ノ壱の公式収録一覧",
+          "url": "https://www.tv-tokyo.co.jp/anime/naruto2002/goods/card_01.html"
+        },
+        {
+          "label": "駿河屋・忍-11のレア／火分類",
+          "url": "https://www.suruga-ya.jp/product/detail/GL410573"
+        },
+        {
+          "label": "NARUTO公式・新カードゲーム発売予定",
+          "url": "https://naruto-official.com/news/01_2661"
+        }
+      ]
+    },
+    {
+      "id": "忍-12",
+      "name": "猿飛アスマ",
+      "status": "research_incomplete",
+      "checkedAtJST": "2026-10-14（日本時間）",
+      "historicalContextAndVerification": "巻ノ壱の忍-12、2002年12月13日発売。公式一覧ではカカシと三代目火影の間に収録される。駿河屋GL406809は『レア／土』と分類。初期の猪鹿蝶である忍-4いの・忍-5シカマル・忍-6チョウジと並べて第十班の収集を考える対象。後期のアスマ忍-124・158・194などとは単品価格を分ける。",
+      "verifiedNewFacts": [
+        "番号・名前・巻ノ壱の発売日を旧公式収録資料で照合。土属性は旧公式デッキ資料、小売の個別ページでも確認。",
+        "単品SOLD表示3件を確認。白欠けを記す450円、プレイ用を記す1,000円、未使用に近いという出品者区分の3,500円。",
+        "現在ASK1,900円の個体はやや傷や汚れあり。検索抜粋の3,700円は、個別ページ再取得時の1,900円と異なるため現在値へ採用しない。",
+        "eBayの日本語忍-12に4.00 USDのSOLD表示と3 soldを確認。ただし1つの出品ページであり、3つの独立した成約標本には数えない。"
+      ],
+      "collectionAndGameplayAnalysis": "収集面ではアスマ単体に加え、最初期猪鹿蝶3枚と合わせる組み合わせに意味がある。これは収集の提案で、セットの上乗せ利益が実証されたわけではない。当時の旧公式『三代目威厳デッキ』の構築用として、支援2以上の候補一覧に土属性の忍-12が掲載される。初期の対戦資料を追える点は特徴だが、候補への掲載と実際の採用数は別である。現在の転売価値や新TCGでの使用可能性と、当時の支援性能も分ける。",
+      "strictSameSpecSoldCount": 0,
+      "strictSameSpecSoldMedianJPY": null,
+      "additionalSoldCount": 3,
+      "additionalSoldDisplayCandidates": [
+        {
+          "displayedPriceJPY": 450,
+          "sellerConditionClaim": "やや傷や汚れあり。説明に白欠けが目立つと記載。",
+          "soldAt": null,
+          "url": "https://jp.mercari.com/item/m92232603481"
+        },
+        {
+          "displayedPriceJPY": 1000,
+          "sellerConditionClaim": "やや傷や汚れあり、プレイ用。オークション落札者を示す題名。",
+          "soldAt": null,
+          "url": "https://jp.mercari.com/item/m65544866359"
+        },
+        {
+          "displayedPriceJPY": 3500,
+          "sellerConditionClaim": "未使用に近い、出品者説明では綺麗。コメントにも3,500円への変更記録。第三者鑑定ではない。",
+          "soldAt": null,
+          "url": "https://jp.mercari.com/item/m70067814997"
+        }
+      ],
+      "soldSummary": "番号一致3件は450円・1,000円・3,500円。参考中央値1,000円、最高／最低は約7.78倍。状態区分も白欠けの記述も違うため、3,500円を普通の中古個体の売却見込みにしない。450円と1,000円も加工・傷の程度を厳密に統一できておらず、同状態相場は保留。すべて正確な成約日不明のため、高騰の時系列も判定できない。",
+      "currentAskObservations": [
+        {
+          "askJPY": 1900,
+          "sellerConditionClaim": "やや傷や汚れあり、単品。購入手続き表示を確認。",
+          "url": "https://jp.mercari.com/item/m88936566380"
+        }
+      ],
+      "overseasSameSpecRealizedSoldCount": 0,
+      "overseasSameSpecRealizedSoldMedianUSD": null,
+      "overseasAskObservations": [],
+      "overseasSoldDisplayCandidates": [
+        {
+          "displayedPriceUSD": 4,
+          "note": "日本語忍-12／2002／Regularという販売者登録。2026-06-22のSOLD表示、3 soldは一つの在庫出品の表示。加工と最終決済額は未照合。",
+          "url": "https://www.ebay.com/itm/318137459847"
+        }
+      ],
+      "overseasAnalysis": "日本語版に海外のSOLD表示は確認できたが、4 USDの一つの在庫出品から高額な海外プレミアムは証明できない。Regularという登録と国内レア個体の加工差を照合する必要がある。換算レート・海外送料・手数料・販売者の仕入れ地が未確認なので、日本からの輸出利益は算出しない。",
+      "marketAndVariantCautions": "レア度と流通量を分けて考える。『初期』『2002』『プロモ』が検索用語に並んでいても、すべてが商品の仕様を示すわけではない。番号、印刷年、加工、表裏写真と白欠けを優先する。同名の後期ノーマルや外国語カードを統計に混ぜない。未使用に近いという区分だけで鑑定10相当と扱わない。発行枚数・PSA人口は未確認。",
+      "scarcityVerified": false,
+      "distributionVolume": null,
+      "buyDecision": "1,900円の傷あり個体を買って3,500円で売れるとは見積もらない。独自の暫定目安は、傷ありコレクション用途300～500円、写真で傷が少ない個体600～1,000円程度までを比較の入口にする。例えば売却1,000円・手数料10％・送料160円・資材30円・利益300円を仮定すると仕入れ上限410円。現在ASK1,900円はこの採算例に収まらない。",
+      "sellDecision": "加工が一致する中古の独自目安は、早期500～700円、適正候補800～1,100円。写真で状態の優位が示せ、同状態の追加SOLDが揃うなら1,500～2,000円を検討。3,500円は今回の上限標本として扱い、その一例だけを根拠に出品全体を引き上げない。海外向け上乗せは保留。",
+      "futureForecastUnverified": "新TCGの2027年夏発売は作品全体の材料だが、アスマ旧カードへの波及は未確認。単品の同状態SOLDが1,000円を継続して超えるか、猪鹿蝶＋アスマのセット成約に再現性があるかを検証する。人気人物の上昇率をそのまま当てはめる予測は採用しない。",
+      "psaDecision": "国内生カードの状態差が大きく、同仕様PSAの売却額が未確認。利益目的の提出は見送り寄り。3,500円の未使用に近い個体も角・箔面・押し跡の確認なしにPSA10候補とは扱えない。",
+      "storageDecision": "スリーブ＋ファイルを基本とし、状態良好な初期レアや発送時は硬質ケースで保護。忍-4～6と番号ラベルを付けて並べると、初期第十班の組み合わせを管理しやすい。",
+      "pendingVerification": [
+        "国内3件の加工と傷の程度を写真で比較。",
+        "eBayのRegular登録を実物加工と照合。",
+        "第十班セットの実売と単品の正確な成約日を別々に収集。"
+      ],
+      "officialAndRetailerSources": [
+        {
+          "label": "テレビ東京・巻ノ壱公式一覧",
+          "url": "https://www.tv-tokyo.co.jp/anime/naruto2002/goods/card_01.html"
+        },
+        {
+          "label": "テレビ東京・当時の2大デッキ",
+          "url": "https://www.tv-tokyo.co.jp/anime/naruto2002/goods/card_game.html"
+        },
+        {
+          "label": "駿河屋・忍-12 レア／土",
+          "url": "https://www.suruga-ya.jp/product/detail/GL406809"
+        },
+        {
+          "label": "NARUTO公式・新TCG発売予定",
+          "url": "https://naruto-official.com/news/01_2661"
+        }
+      ]
+    },
+    {
+      "id": "忍-13",
+      "name": "三代目火影",
+      "status": "research_incomplete",
+      "checkedAtJST": "2026-10-14（日本時間）",
+      "historicalContextAndVerification": "バンダイの巻ノ壱、2002年12月13日発売の忍-13。公式収録一覧で忍-12アスマの次に掲載される。駿河屋GL406810は『レア／火』。当時の公式攻略資料に三代目火影を主軸とする『三代目威厳デッキ』の説明があるが、掲載される別番号の火影と忍-13を混同しない。同名の後期カードや疾風伝の忍伝番号とは別商品として調べる。",
+      "verifiedNewFacts": [
+        "番号・名称・発売日を旧公式一覧、レア／火の分類を駿河屋個別資料で確認。",
+        "単品SOLD表示980円と1,280円を確認。980円はやや傷あり、1,280円は未使用に近い区分だが、説明には枠スレとプレイ用の注意がある。",
+        "メルカリ単品1,000円の購入手続き表示を確認。駿河屋個別ページは中古510円の販売表示があるが、送料・通販手数料が別条件。"
+      ],
+      "collectionAndGameplayAnalysis": "三代目火影の歴史性は、最初期の公式番号と当時の火影デッキの紹介資料を組み合わせて説明できる。公式の支援候補一覧には別番号の忍-44三代目火影も載るため、三代目という名前だけで忍-13の採用実績を確定しない。初期火影を揃える収集やアスマとの連番整理は考えられるが、現在の強い購入需要は成約件数で検証する。術-129屍鬼封尽などとのセット価格は組み合わせ全体の対価であり、忍-13単品へ割り振らない。",
+      "strictSameSpecSoldCount": 0,
+      "strictSameSpecSoldMedianJPY": null,
+      "additionalSoldCount": 2,
+      "additionalSoldDisplayCandidates": [
+        {
+          "displayedPriceJPY": 980,
+          "sellerConditionClaim": "やや傷や汚れあり、単品。",
+          "soldAt": null,
+          "url": "https://jp.mercari.com/item/m98470468485"
+        },
+        {
+          "displayedPriceJPY": 1280,
+          "sellerConditionClaim": "未使用に近い区分。説明に初期特有の枠スレ、プレイ用と記載。",
+          "soldAt": null,
+          "url": "https://jp.mercari.com/item/m21040184889"
+        }
+      ],
+      "soldSummary": "番号一致2件の参考範囲980～1,280円、参考中央値1,130円。300円の差は980円に対して約30.6％だが、状態差・加工差・売れた時期のどれによる差かは確定できない。美品プレミアムや上昇率と断定しない。2件だけなので、1,130円は確定相場へ採用せず比較の入口にする。",
+      "currentAskObservations": [
+        {
+          "askJPY": 1000,
+          "sellerConditionClaim": "メルカリ単品・目立った傷や汚れなし。購入手続き表示を確認。",
+          "url": "https://jp.mercari.com/item/m69001054406"
+        },
+        {
+          "askJPY": 510,
+          "sellerConditionClaim": "駿河屋・中古商品価格の表示。送料、通販手数料、個体写真や在庫の最終確認は別途必要。",
+          "url": "https://www.suruga-ya.jp/product/detail/GL406810"
+        }
+      ],
+      "overseasSameSpecRealizedSoldCount": 0,
+      "overseasSameSpecRealizedSoldMedianUSD": null,
+      "overseasAskObservations": [],
+      "overseasAnalysis": "同番号・同加工の海外確定実売は今回未確認。英語のThird HokageやHiruzenという名前だけで別言語・別弾・別ゲームを同じ価格にしない。国内の数百～千円帯の商品に海外送料を足しただけの表示は、カード自体のプレミアムとは言えない。",
+      "marketAndVariantCautions": "『未使用に近い』でも枠スレが説明される例があり、状態ラベルより写真と傷の記述を優先する。印刷年2002／2004という出品文だけで初版・再版・希少加工を確定しない。駿河屋の510円とメルカリの1,000円は送料条件が異なり、仕入れ総額で比較する。発行枚数・PSA人口・特別加工の供給量は未確認。",
+      "scarcityVerified": false,
+      "distributionVolume": null,
+      "buyDecision": "収集目的なら、1,000円の個体と小売510円＋諸費用を写真・送料込みで比べる。単品を転売する仮定では、売却1,000円・手数料10％・送料160円・資材30円・利益300円なら仕入れ上限410円。小売510円でも送料や手数料を加えるとこの条件を超えるため、安い商品価格だけで利益ありとしない。",
+      "sellDecision": "同加工中古の暫定独自目安は早期800～950円、適正候補1,000～1,200円。枠スレや角の状態が良く、同状態SOLDが追加確認できる場合のみ1,250～1,500円を検討。海外上乗せは根拠不足で見送り。1,000円で売れても、手数料10％・送料160円・資材30円を仮定した仕入れ前手残りは710円である。",
+      "futureForecastUnverified": "初期火影の収集や公式新TCGの2027年夏発売が関心を呼ぶ可能性はあるが、忍-13への値上がり波及は未確認。同状態の単品SOLDが1,200円超で複数成立し、小売の供給も減るかを合わせて追う。売り切れ店舗が一つあるだけで全国的な品薄とは扱わない。",
+      "psaDecision": "生カードの参考標本は千円前後で、同仕様の鑑定品実売は未確認。利益目的のPSA提出は見送り寄り。『初期特有の枠スレ』がある個体を、写真だけで最高評価の候補にしない。",
+      "storageDecision": "スリーブ＋ファイルを基本とし、箔面の擦れを避ける。美品や発送時は硬質ケースを併用し、角・枠スレを保管前に記録する。",
+      "pendingVerification": [
+        "2件のSOLDの加工・印刷年・角と枠の傷を照合。",
+        "駿河屋の最終在庫と送料込み総額を確認。",
+        "同状態の単品SOLDと鑑定品実売を追加収集。"
+      ],
+      "officialAndRetailerSources": [
+        {
+          "label": "テレビ東京・巻ノ壱公式一覧",
+          "url": "https://www.tv-tokyo.co.jp/anime/naruto2002/goods/card_01.html"
+        },
+        {
+          "label": "テレビ東京・三代目威厳デッキ",
+          "url": "https://www.tv-tokyo.co.jp/anime/naruto2002/goods/card_game.html"
+        },
+        {
+          "label": "駿河屋・忍-13 レア／火",
+          "url": "https://www.suruga-ya.jp/product/detail/GL406810"
+        },
+        {
+          "label": "NARUTO公式・新TCG発売予定",
+          "url": "https://naruto-official.com/news/01_2661"
+        }
+      ]
+    },
+    {
+      "id": "忍-14",
+      "name": "鬼兄弟 業頭",
+      "status": "research_incomplete",
+      "checkedAtJST": "2026-10-14（日本時間）",
+      "historicalContextAndVerification": "巻ノ壱の2002年12月13日発売カード。旧公式一覧では忍-13三代目火影の次、忍-15鬼兄弟冥頭の前に掲載される。2003年9月4日更新の旧公式デッキ資料に『水』『登場コスト2以下』の対象として掲載。PR忍-14君麻呂とは番号の接頭辞も名前も異なるため、プロモの高額実売を混ぜない。",
+      "verifiedNewFacts": [
+        "番号・名前・発売日を旧公式収録一覧で照合。",
+        "旧公式『下克上デッキ』の低コストカード一覧に水属性の忍-14と忍-15が並ぶ。",
+        "単品ASK444円・600円・1,891円を商品詳細で確認。444円は傷や汚れあり、600円と1,891円は目立った傷や汚れなしという出品者区分。",
+        "忍-14＋忍-15＋術-11の3枚セットは現在777円の購入手続き表示。検索抜粋888円と異なるため個別ページ値を採用。"
+      ],
+      "collectionAndGameplayAnalysis": "このカードの特徴は鬼兄弟の連番と、当時の速攻向けデッキ資料を追えること。忍-15と術-11阿吽の暗殺術を合わせれば、人物二人と関連する術を一組として収集できる。低コスト一覧への掲載は対戦の歴史的事実だが、現在の大会需要を示すものではない。単品高額化より、状態の良い兄弟を無理のない総額で揃えられるかが現実的な見方。",
+      "strictSameSpecSoldCount": 0,
+      "strictSameSpecSoldMedianJPY": null,
+      "additionalSoldCount": 0,
+      "additionalSoldDisplayCandidates": [],
+      "soldSummary": "今回の調査では、番号一致を商品詳細で確認できる単品SOLD標本を確保できなかった。『売れていない』という断定ではなく、実売相場は未確認。販売中444～1,891円という幅をSOLDレンジや中央値に置き換えない。検索に出た『初期絶版』という高額出品も、希少性や成約価格の証拠にしない。",
+      "currentAskObservations": [
+        {
+          "askJPY": 444,
+          "sellerConditionClaim": "単品・傷や汚れあり。購入手続き表示を確認。",
+          "url": "https://jp.mercari.com/item/m67504410282"
+        },
+        {
+          "askJPY": 600,
+          "sellerConditionClaim": "単品・目立った傷や汚れなし。出品者はレアリティなしと説明。購入手続き表示を確認。",
+          "url": "https://jp.mercari.com/item/m52459970681"
+        },
+        {
+          "askJPY": 1891,
+          "sellerConditionClaim": "単品・目立った傷や汚れなし。購入手続き表示を確認。",
+          "url": "https://jp.mercari.com/item/m66229475843"
+        }
+      ],
+      "bundlesOtherGradesAndNonComparable": [
+        {
+          "displayedPriceJPY": 777,
+          "status": "販売中ASK・単品SOLDに不採用",
+          "note": "忍-14＋忍-15＋術-11の3枚。やや傷や汚れあり。",
+          "url": "https://jp.mercari.com/item/m70174710688"
+        }
+      ],
+      "overseasSameSpecRealizedSoldCount": 0,
+      "overseasSameSpecRealizedSoldMedianUSD": null,
+      "overseasAskObservations": [],
+      "overseasAnalysis": "Gozu、Demon Brothersなどの海外検索も行ったが、同番号・日本語・同加工の確定実売は未確認。兄弟セットや英語版の出品を業頭単品の相場へ流用しない。海外需要を理由とする上乗せは保留。",
+      "marketAndVariantCautions": "業頭と冥頭は見た目や名前が似ても忍-14と忍-15で別カード。PR忍-14は君麻呂で全く別のカード。検索結果の小売索引ではノーマル分類が見つかるが、実物の加工・再録差は個体ごとに照合する。傷あり444円と状態区分の違う1,891円を同じ品質の価格差とはしない。発行枚数・現存数は未確認。",
+      "scarcityVerified": false,
+      "distributionVolume": null,
+      "buyDecision": "兄弟と術を揃える収集なら、単品600円＋冥頭700円の確認ASK合計1,300円と、3枚セット777円を比較する。セットは差額523円、約40.2％低いが状態は違うため『割安確定』ではない。単品1,891円を買う前に、追加写真・特別加工の有無と777円セットの傷を比較したい。SOLD未確認のため転売の仕入れ上限は算出しない。",
+      "sellDecision": "単品SOLD未確認につき、成約見込みを伴う早期・適正・強気の価格表は保留。出品するなら確認ASK444円・600円を競合資料として状態差を説明する。兄弟＋術のセット販売を検討しても、777円は他人の販売希望額であり売れる保証はない。仮に売却600円、手数料10％・送料160円・資材30円なら、仕入れ前手残りは350円で単品転売の余地は小さい。",
+      "futureForecastUnverified": "新TCGなどから旧カード全体が再注目される可能性はあるが、業頭の個別需要や値上がりを示すSOLDは今回不足。まず単品SOLDと鬼兄弟セットSOLDを確保することを優先。単品が継続して売れるのか、安価なセットでしか動かないのかで、その後の買付方針を変える。",
+      "psaDecision": "国内単品実売も同仕様PSA実売も未確認なので、利益目的のPSA提出は見送り。低額コレクションとして揃え、鑑定は保存目的と採算目的を分けて考える。",
+      "storageDecision": "スリーブ＋ファイルで忍-14・15を別ポケットに連番収納し、術-11を隣に置く。カードを重ねて一つのスリーブへ入れず、持ち出しや発送時は折れ防止を加える。",
+      "pendingVerification": [
+        "業頭の番号一致・単品SOLDを商品詳細で確保。",
+        "兄弟＋術セットのSOLDを単品と別に収集。",
+        "ノーマル分類、加工、印刷年の実物照合と流通量の裏付け。"
+      ],
+      "officialAndRetailerSources": [
+        {
+          "label": "テレビ東京・巻ノ壱公式収録一覧",
+          "url": "https://www.tv-tokyo.co.jp/anime/naruto2002/goods/card_01.html"
+        },
+        {
+          "label": "テレビ東京・低コスト一覧と下克上デッキ",
+          "url": "https://www.tv-tokyo.co.jp/anime/naruto2002/goods/card_game.html"
+        },
+        {
+          "label": "NARUTO公式・新TCG発売予定",
+          "url": "https://naruto-official.com/news/01_2661"
+        }
+      ]
+    },
+    {
+      "id": "忍-15",
+      "name": "鬼兄弟 冥頭",
+      "status": "research_incomplete",
+      "checkedAtJST": "2026-10-14（日本時間）",
+      "historicalContextAndVerification": "2002年12月13日発売の巻ノ壱。公式一覧で鬼兄弟業頭の忍-14の直後、白の忍-16の前に収録。旧公式デッキ資料では水属性・登場コスト2以下の一覧に忍-14と並んで掲載される。PR忍-15うずまきナルトとは別番号として識別し、プロモの価格を冥頭の通常番号へ移さない。",
+      "verifiedNewFacts": [
+        "公式収録一覧で忍-15の名称・発売日、当時の低コストデッキ資料で水属性を確認。",
+        "単品600円のSOLD表示を1件確認。出品者区分は未使用に近い、説明では傷がないと思うと記す。第三者鑑定ではない。",
+        "現在の冥頭出品は700円と899円の購入手続き表示を確認。700円の個体は番号を題名に記していないため、カード写真の番号確認を継続する。",
+        "業頭・冥頭・術-11の3枚セットは販売中777円。単品SOLD600円とは分離する。"
+      ],
+      "collectionAndGameplayAnalysis": "冥頭は鬼兄弟の後ろの連番を埋めるカードで、忍-14と術-11を合わせたまとまりで楽しめる。旧公式の速攻用低コスト一覧に入るという一次資料は説明材料になるが、現在の対戦需要や高額化の証明ではない。今回の単品SOLD600円は収集需要が存在した参考になる一方、売れる速度や同状態で繰り返し600円で売れるかは未確認。",
+      "strictSameSpecSoldCount": 0,
+      "strictSameSpecSoldMedianJPY": null,
+      "additionalSoldCount": 1,
+      "additionalSoldDisplayCandidates": [
+        {
+          "displayedPriceJPY": 600,
+          "sellerConditionClaim": "未使用に近い。傷がないと思うという販売者説明。正確な成約日・加工は未照合。",
+          "soldAt": null,
+          "url": "https://jp.mercari.com/item/m48360122462"
+        }
+      ],
+      "soldSummary": "番号一致単品のSOLD表示は600円の1件。1件の値を市場全体の中央値や美品相場として固定しない。販売中700円・899円はこの標本に対して約16.7％・49.8％高い表示だが、状態と加工が同じとは確認できていない。300円の検索結果は個別ページが404でSOLD／ASKを再確認できなかったため標本から除外。",
+      "currentAskObservations": [
+        {
+          "askJPY": 700,
+          "sellerConditionClaim": "目立った傷や汚れなし。名称一致、題名・説明で忍-15を明記していないため番号と加工の写真照合を継続。購入手続き表示あり。",
+          "url": "https://jp.mercari.com/item/m43799017525"
+        },
+        {
+          "askJPY": 899,
+          "sellerConditionClaim": "単品・やや傷や汚れあり、番号忍-15を説明に記載。購入手続き表示あり。",
+          "url": "https://jp.mercari.com/item/m88108023318"
+        }
+      ],
+      "bundlesOtherGradesAndNonComparable": [
+        {
+          "displayedPriceJPY": 777,
+          "status": "販売中ASK・単品SOLDに不採用",
+          "note": "忍-14＋忍-15＋術-11の3枚。やや傷や汚れあり。",
+          "url": "https://jp.mercari.com/item/m70174710688"
+        }
+      ],
+      "overseasSameSpecRealizedSoldCount": 0,
+      "overseasSameSpecRealizedSoldMedianUSD": null,
+      "overseasAskObservations": [],
+      "overseasAnalysis": "Meizu／Demon Brothersなどで確認を試みたが、同番号・同加工・日本語の海外確定実売は今回未確認。海外需要の強さを示す成約根拠がないので、海外向けの強気上乗せは非推奨。",
+      "marketAndVariantCautions": "業頭と冥頭の表記、忍-15とPR忍-15を区別する。単品SOLD600円の『未使用に近い』は出品者の区分で、PSA10や新品の保証ではない。商品名に初期・希少・キラとあってもカード番号・表裏・印刷年・実際の加工を先に見る。小売索引のノーマル分類だけで、個体の加工差を説明し切らない。流通量は未確認。",
+      "scarcityVerified": false,
+      "distributionVolume": null,
+      "buyDecision": "収集用なら単品700円の個体の番号・角・裏面を確認し、3枚セット777円の状態とも比較する。セットとの総額差は77円だが、冥頭単品の状態が良いなら目的により単品を選ぶ余地はある。転売で売却600円・手数料10％・送料160円・資材30円・利益150円を仮定した仕入れ上限は200円。現在ASK700円・899円ではこの採算例に合わない。",
+      "sellDecision": "同加工中古を仮定した独自目安は早期400～500円、適正候補550～650円。ただし600円のSOLD1件だけに依存するため成約保証はない。写真で状態良好な個体でも海外上乗せは見送り、700円超を狙うなら同状態の追加SOLDを先に確認する。兄弟＋術セットは単品統計とは別に管理する。",
+      "futureForecastUnverified": "新TCGの注目から最初期コンプリート需要が増える可能性はあるが、冥頭への波及は未確認。単品600円前後が複数続くか、セット販売の方が早く動くかを調べる。限定配布プロモではなく通常番号の収録カードであることを踏まえ、希少という題名だけでは高騰予測を作らない。",
+      "psaDecision": "同番号・同仕様の鑑定品成約が未確認で、生カードの確認標本も600円の1件。利益目的のPSAは見送り寄り。提出する場合は私的保存の価値と鑑定費を自分の予算で比較する。",
+      "storageDecision": "スリーブ＋ファイルで兄弟を番号順に収納。表裏の白欠け・擦れ・押し跡を記録し、発送時は硬質ケースと防水を追加する。高額ケースを重ねるより、裸で擦らない保管を優先。",
+      "pendingVerification": [
+        "600円SOLDの加工・版・傷と成約日を確認。",
+        "700円ASK個体の実物カード番号を写真照合。",
+        "同状態の単品SOLDを追加し、兄弟セットの成約と分離して追跡。"
+      ],
+      "officialAndRetailerSources": [
+        {
+          "label": "テレビ東京・巻ノ壱公式収録一覧",
+          "url": "https://www.tv-tokyo.co.jp/anime/naruto2002/goods/card_01.html"
+        },
+        {
+          "label": "テレビ東京・下克上デッキの低コスト一覧",
+          "url": "https://www.tv-tokyo.co.jp/anime/naruto2002/goods/card_game.html"
+        },
+        {
+          "label": "NARUTO公式・新TCG発売予定",
+          "url": "https://naruto-official.com/news/01_2661"
+        }
+      ]
+    }
+  ]
+}
