@@ -1,4 +1,5 @@
 import {getMarketAnalysis} from "../../lib/getMarketAnalysis";
+import {tournamentPromos} from "../../lib/tournamentPromos";
 import {PageIntro,DataNotice,SectionHeading} from "../components/DatabaseUI";
 
 export const metadata={title:"NARUTO旧カード相場分析｜SOLD・注目カード・海外需要",description:"メルカリSOLD、eBay海外需要、NARUTO CARD GAME、新作アニメ、BORUTO、イベントをまとめて分析。出品価格と実売を区別して掲載します。",alternates:{canonical:"/analysis"}};
@@ -7,12 +8,13 @@ export const dynamic="force-dynamic";
 export default async function AnalysisPage(){
  const analysis=await getMarketAnalysis();
  const picks=analysis.picks||[],dropped=analysis.droppedPicks||[];
+ const tournamentWatch=tournamentPromos.filter(card=>card.marketCheckedAt==="2026-10-15");
  return <main className="analysisPage" data-analysis-id={analysis.analysisId || "fallback"}>
   <PageIntro eyebrow="MARKET RESEARCH" title={analysis.headline} description="出品価格・同状態SOLD・海外需要を並べて確認。気になるカードの根拠から購入判断につなげられます。" items={[{label:"相場分析"}]}/>
   <DataNotice analysis={analysis}/>
   <p className="analysisNote">最終分析：{analysis.updatedAt}。掲載価格は分析時点の記録です。購入前にリンク先で販売状況を確認してください。</p>
   <div className="analysisIntro"><div><b>国内の実売</b><span>同番号・単品・同状態</span></div><div><b>海外需要</b><span>ASKとSOLDを区別</span></div><div><b>判断の根拠</b><span>状態差・標本数・出典</span></div></div>
-  <nav className="anchorTabs" aria-label="分析カードへ移動">{picks.map(p=><a href={"#pick-"+encodeURIComponent(p.id)} key={p.id}>#{p.rank} {p.id}</a>)}</nav>
+  <nav className="anchorTabs" aria-label="分析カードへ移動">{picks.map(p=><a href={"#pick-"+encodeURIComponent(p.id)} key={p.id}>#{p.rank} {p.id}</a>)}<a href="#tournament-market">大会プロモ5枚</a></nav>
   <section className="marketPicks">
    <SectionHeading title={`今回の注目カード ${picks.length}枚`} label="MARKET PICKS" href="/search" action="カード検索"/>
    {dropped.length>0&&<details className="droppedMarket"><summary>前回から外れたカード（{dropped.length}枚）</summary>{dropped.map(p=><a href={"/card/"+encodeURIComponent(p.id)} key={p.id}>{p.id} {p.name} · 前回{p.rank}位</a>)}</details>}
@@ -32,6 +34,20 @@ export default async function AnalysisPage(){
     <details className="pickEvidence"><summary>海外需要の確認</summary><p>{p.overseas}</p></details>
     <div className="marketLinks">{p.mercariUrl&&<a className="mercariBtn" href={p.mercariUrl} target="_blank" rel="noopener noreferrer">メルカリで現状を確認 ↗</a>}{p.ebayUrl&&<a className="secondaryButton" href={p.ebayUrl} target="_blank" rel="noopener noreferrer">eBayで同番号を確認 ↗</a>}</div>
    </article>)}</div>
+  </section>
+  <section className="marketPicks" id="tournament-market">
+   <SectionHeading title="大会プロモ5枚の相場チェック" label="TOURNAMENT / SOLD EVIDENCE" href="/promo/tournament" action="全記録を見る"/>
+   <p className="analysisNote">2026年10月15日調査。上記の通常ランキング5枚とは別枠です。SOLD表示と出品中ASKを分け、状態が異なる成約を混合して単一の相場・中央値とは断定しません。</p>
+   <div className="analysisCards">{tournamentWatch.map(p=><article className="analysisCard" key={p.id}>
+     <div className="analysisCardTop"><span className="analysisRank">{p.sales?.length?"SOLD表示 "+p.sales.length+"件":"同番号SOLD未確認"}</span><a href={"/card/"+encodeURIComponent(p.id)}>カード詳細 →</a></div>
+     <div className="num">{p.id}</div><h2>{p.name}</h2>
+     <p className="pickSummary">{p.marketSummary}</p>
+     {p.sales?.length>0&&<details className="pickEvidence"><summary>個別SOLD表示と確認元（{p.sales.length}件）</summary>
+      <ul>{p.sales.map(sale=><li key={sale.url}><a href={sale.url} target="_blank" rel="noopener noreferrer">{sale.price.toLocaleString("ja-JP")}円・{sale.marketplace} {sale.date||"取引日未確認"} ↗</a> ― {sale.note}</li>)}</ul>
+     </details>}
+     <p className="analysisNote">大会優勝の配布条件は公式一次資料未照合。販売者申告やコレクター記録と、実売表示の根拠を分離しています。</p>
+    </article>)}</div>
+   <a className="textLink" href="/promo/tournament">優勝・上位入賞・連勝・参加賞の大会プロモ一覧 →</a>
   </section>
   <section className="analysisMethod"><SectionHeading title="分析の見方と今の買い方" label="METHOD & STRATEGY"/><p>{analysis.lead}</p><p>{analysis.strategy}</p><p className="analysisNote">{analysis.disclaimer}</p>
    <details className="contextDetails"><summary>海外需要（eBay）の見方</summary>{(analysis.overseasSummary||[]).map((text,i)=><p key={i}>{text}</p>)}</details>
