@@ -17,7 +17,7 @@ export const dynamic="force-dynamic";
 
 export default async function Home(){
  const [analysis,news,researchIndex]=await Promise.all([getMarketAnalysis(),getLatestNews(3),getCardResearchIndex()]);
- const picks=(analysis.picks||[]).slice(0,3);
+ const picks=(analysis.picks||[]).filter(p=>!p.soldOut).slice(0,3);
  const recentResearch=Object.entries(dailyResearch).sort((a,b)=>(b[1].sequence||0)-(a[1].sequence||0)).slice(0,3);
  const characters=[...new Set(cards.map(c=>c.character).filter(v=>v&&v!=="不明"&&v!=="複数"))]
   .map(name=>({name,count:cards.filter(c=>c.character===name).length})).sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name,"ja")).slice(0,8);
@@ -48,11 +48,12 @@ export default async function Home(){
 
   <section className="homeSection">
    <SectionHeading title="いまの相場を読む" label="MARKET WATCH" href="/analysis" action="全文分析"/>
+   {picks.length===0&&<p className="mutedNote">現在購入候補として確認できた商品はありません。過去のSOLD相場は全文分析に保存しています。</p>}
    <div className="marketPreviewGrid">{picks.map(p=><article className="marketPreview" key={p.id}>
-    <div className="marketPreviewHead"><span className="rank">#{p.rank} {p.judge}</span><span>{p.id}</span></div>
+    <div className="marketPreviewHead"><span className="rank">#{p.rank} {p.displayJudge||p.judge}</span><span>{p.id}</span></div>
     <h3><a href={"/card/"+encodeURIComponent(p.id)}>{p.name}</a></h3>
-    <dl><div><dt>出品確認価格</dt><dd>{p.price||"未確認"}</dd></div><div><dt>SOLD中央値</dt><dd>{p.median||"未確認"}</dd></div></dl>
-    <p>{p.summary}</p><a className="textLink" href={"/analysis#pick-"+encodeURIComponent(p.id)}>根拠と分析を見る →</a>
+    <dl><div><dt>過去の出品確認価格</dt><dd>{p.displayPrice||p.price||"未確認"}</dd></div><div><dt>SOLD中央値</dt><dd>{p.median||"未確認"}</dd></div></dl>
+    <p>{p.displaySummary||p.summary}</p><a className="textLink" href={"/analysis#pick-"+encodeURIComponent(p.id)}>根拠と分析を見る →</a>
    </article>)}</div>
    <p className="mutedNote">出品価格とSOLDは別扱い。価格は確認時点の記録です。</p>
   </section>

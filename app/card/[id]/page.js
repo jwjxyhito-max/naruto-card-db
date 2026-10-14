@@ -135,16 +135,16 @@ export default async function Page({params}){
    {live&&<section className="valuePanel">
     <div className="sectionHead"><h2>現在の価値判断</h2><span>{marketAnalysis.updatedAt}</span></div>
     <div className="valueMetrics">
-     <div><small>出品確認価格</small><b>{live.price}</b></div>
+     <div><small>過去の出品確認価格</small><b>{live.displayPrice||live.price}</b></div>
      <div><small>同状態SOLD中央値</small><b>{live.median}</b></div>
      <div><small>SOLD標本</small><b>{live.samples}</b></div>
      <div><small>中央値比</small><b>{live.discount}</b></div>
     </div>
-    <div className="valueVerdict"><span>{live.judge}</span><p>{live.summary}</p></div>
+    <div className="valueVerdict"><span>{live.displayJudge||live.judge}</span><p>{live.displaySummary||live.summary}</p></div>
     {live.previousPrice&&<p className="valueMove">前回確認：{live.previousPrice} → 今回：{live.price}{live.priceChangeText&&`（${live.priceChangeText}）`}</p>}
     <p><strong>海外：</strong>{live.overseas}</p>
     <div className="miniLinks">
-     <a href={live.mercariUrl} target="_blank" rel="noreferrer">現行メルカリ出品を見る ↗</a>
+     <a href={live.mercariUrl} target="_blank" rel="noreferrer">{live.soldOut?"売り切れ商品（過去記録）を見る ↗":live.listingStatus==="available"?"販売中の出品を確認 ↗":"過去に確認した商品ページを見る ↗"}</a>
      <a href="/analysis">TOP5全文分析を見る →</a>
     </div>
    </section>}
