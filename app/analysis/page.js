@@ -7,7 +7,7 @@ export const dynamic="force-dynamic";
 export default async function AnalysisPage(){
  const analysis=await getMarketAnalysis();
  const picks=analysis.picks||[],dropped=analysis.droppedPicks||[];
- return <main className="analysisPage">
+ return <main className="analysisPage" data-analysis-id={analysis.analysisId || "fallback"}>
   <PageIntro eyebrow="MARKET RESEARCH" title={analysis.headline} description="出品価格・同状態SOLD・海外需要を並べて確認。気になるカードの根拠から購入判断につなげられます。" items={[{label:"相場分析"}]}/>
   <DataNotice analysis={analysis}/>
   <div className="analysisIntro"><div><b>国内の実売</b><span>同番号・単品・同状態</span></div><div><b>海外需要</b><span>ASKとSOLDを区別</span></div><div><b>判断の根拠</b><span>状態差・標本数・出典</span></div></div>

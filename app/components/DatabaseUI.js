@@ -48,13 +48,8 @@ export function Pagination({page,pages,href}){
  </nav>;
 }
 
-export function DataNotice({analysis}){
- return <div className={`dataNotice ${analysis.isStale?"staleNotice":""}`}>
-  <span className="dataDot" aria-hidden="true"/><div><b>{analysis.dataSource==="supabase"?"最新の保存分析":"保存済みの分析"}</b>
-   <span>最終確認：{analysis.updatedAt||"確認待ち"}</span>
-   {analysis.isStale&&<small>更新から時間が経っています。リンク先の価格・出品状況をご確認ください。</small>}
-  </div>
- </div>;
+export function DataNotice(){
+ return <div className="dataNotice"><span className="dataDot" aria-hidden="true"/><b>保存済みの分析</b></div>;
 }
 
 export function NewsList({items,compact=false}){

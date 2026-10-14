@@ -1,0 +1,3 @@
+[functions.naruto-market-update]
+# Authentication is the database-issued expiring 256-bit job ticket, checked before any write.
+verify_jwt = false

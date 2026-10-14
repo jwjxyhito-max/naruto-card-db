@@ -4,7 +4,7 @@ import {getLatestNews} from "../lib/getLatestNews";
 import {dailyResearch} from "../lib/dailyResearch";
 import {sortCards} from "../lib/cardSort";
 import VisitCounter from "./components/VisitCounter";
-import {SearchForm,SectionHeading,CardTile,DataNotice,NewsList} from "./components/DatabaseUI";
+import {SearchForm,SectionHeading,CardTile,NewsList} from "./components/DatabaseUI";
 import {ShoppingCallout} from "./components/ShoppingUI";
 
 export const metadata={
@@ -23,7 +23,7 @@ export default async function Home(){
  const series=[...new Set(sortCards(cards).map(c=>c.series).filter(Boolean))];
  const promoCount=cards.filter(c=>/^PR|^OP忍-/.test(c.id)).length;
 
- return <main className="homePage">
+ return <main className="homePage" data-analysis-id={analysis.analysisId || "fallback"}>
   <section className="homeHero">
    <span className="eyebrow">NARUTO OLD CARD DATABASE</span>
    <h1>その一枚を、<br/><em>もっと深く。</em></h1>
@@ -46,7 +46,6 @@ export default async function Home(){
 
   <section className="homeSection">
    <SectionHeading title="いまの相場を読む" label="MARKET WATCH" href="/analysis" action="全文分析"/>
-   <DataNotice analysis={analysis}/>
    <div className="marketPreviewGrid">{picks.map(p=><article className="marketPreview" key={p.id}>
     <div className="marketPreviewHead"><span className="rank">#{p.rank} {p.judge}</span><span>{p.id}</span></div>
     <h3><a href={"/card/"+encodeURIComponent(p.id)}>{p.name}</a></h3>
