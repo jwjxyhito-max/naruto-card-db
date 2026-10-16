@@ -32,7 +32,7 @@ export default async function Home(){
    <SearchForm/>
    <div className="searchHints"><span>よく調べられる番号</span>{["忍-1","忍-204","PR忍-1-R"].map(id=><a href={"/card/"+encodeURIComponent(id)} key={id}>{id}</a>)}</div>
    <ShoppingCallout/>
-   <div className="homeStats"><div><strong>{cards.length}</strong><span>登録カード</span></div><div><strong>{promoCount}</strong><span>登録プロモ</span></div><div><strong>{Object.keys(dailyResearch).length}</strong><span>連載分析</span></div></div>
+   <div className="homeStats"><div><strong>{cards.length}</strong><span>登録カード</span></div><div><strong>{promoCount}</strong><span>登録プロモ</span></div><div><strong>{researchIndex?.length ?? "—"}</strong><span>公開詳細調査</span></div></div>
    {researchIndex?.length>0&&<a className="textLink" href="#published-card-research">追加の詳細調査：{researchIndex.length}枚を見る →</a>}
   </section>
 
