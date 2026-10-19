@@ -16,5 +16,13 @@ export default async function LegacyCardDetail({ params, searchParams }) {
   }
 
   const suffix = query.toString();
-  permanentRedirect("/card/" + encodeURIComponent(id) + (suffix ? "?" + suffix : ""));
+  // Next.js can pass a percent-encoded dynamic segment. Decode once before
+  // encoding the canonical URL, otherwise Japanese IDs become %25E5... .
+  let cardId = id;
+  try {
+    cardId = decodeURIComponent(id);
+  } catch {
+    // Preserve malformed legacy IDs rather than throwing on redirect.
+  }
+  permanentRedirect("/card/" + encodeURIComponent(cardId) + (suffix ? "?" + suffix : ""));
 }
