@@ -238,9 +238,9 @@ export default async function Page({params}){
     <p>調査日：{daily.checkedAt}　／　{daily.attribute||"属性確認中"}　／　{daily.rarity||"レア度確認中"}</p>
     {daily.history&&<><h3>歴史的位置づけ</h3><p>{daily.history}</p></>}
     {daily.facts?.length>0&&<><h3>確認できた事実</h3><ul>{daily.facts.map((x,i)=><li key={i}>{x}</li>)}</ul></>}
-    {daily.sold?.length>0&&<><h3>確認SOLD（単品）</h3><div className="analysisFacts"><div><small>件数</small><b>{daily.sold.length}件</b></div><div><small>中央値</small><b>{yen((()=>{const v=daily.sold.map(x=>x.price).sort((a,b)=>a-b);return v.length%2?v[(v.length-1)/2]:(v[v.length/2-1]+v[v.length/2])/2})())}</b></div></div><ul>{daily.sold.map((x,i)=><li key={i}>{x.url?<a href={x.url} target="_blank" rel="noopener noreferrer">{yen(x.price)} ↗</a>:yen(x.price)} {x.condition||""} {x.period||""}</li>)}</ul></>}
+    {daily.sold?.length>0&&<><h3>{daily.soldMedianComparable===false?"単品SOLD表示候補（同仕様照合保留）":"確認SOLD（単品）"}</h3><div className="analysisFacts"><div><small>件数</small><b>{daily.sold.length}件</b></div><div><small>同仕様中央値</small><b>{daily.soldMedianComparable===false?"算出保留（状態・加工不一致）":yen((()=>{const v=daily.sold.map(x=>x.price).sort((a,b)=>a-b);return v.length%2?v[(v.length-1)/2]:(v[v.length/2-1]+v[v.length/2])/2})())}</b></div></div><ul>{daily.sold.map((x,i)=><li key={i}>{x.url?<a href={x.url} target="_blank" rel="noopener noreferrer">{yen(x.price)} ↗</a>:yen(x.price)} {x.condition||""} {x.period||""}</li>)}</ul></>}
     {daily.bundles?.length>0&&<><h3>セットSOLD（単品とは別集計）</h3><ul>{daily.bundles.map((x,i)=><li key={i}>{x.label}：{yen(x.price)} {x.url&&<a href={x.url} target="_blank" rel="noopener noreferrer">根拠 ↗</a>}</li>)}</ul></>}
-    {daily.asks?.length>0&&<><h3>現在の出品価格（SOLDではありません）</h3><ul>{daily.asks.map((x,i)=><li key={i}>{x.label}：{yen(x.price)}</li>)}</ul></>}
+    {daily.asks?.length>0&&<><h3>現在の出品価格（SOLDではありません）</h3><ul>{daily.asks.map((x,i)=><li key={i}>{x.label}：{x.url?<a href={x.url} target="_blank" rel="noopener noreferrer">{yen(x.price)} ↗</a>:yen(x.price)}</li>)}</ul></>}
     {daily.marketMovement&&<><h3>相場の動き</h3><p>{daily.marketMovement}</p></>}
     {daily.analysis&&<><h3>独自分析</h3><p>{daily.analysis}</p></>}
     {daily.forecast&&<><h3>今後の予測</h3><p>{daily.forecast}</p></>}
