@@ -15,7 +15,13 @@ export default async function AnalysisPage(){
  return <main className="analysisPage" data-analysis-id={analysis.analysisId || "fallback"}>
   <PageIntro eyebrow="MARKET RESEARCH" title={analysis.headline} description="出品価格・同状態SOLD・海外需要を並べて確認。気になるカードの根拠から購入判断につなげられます。" items={[{label:"相場分析"}]}/>
   <DataNotice analysis={analysis}/>
-  <p className="analysisNote">最終分析：{analysis.updatedAt}。掲載価格は分析時点の記録です。購入前にリンク先で販売状況を確認してください。</p>
+  {analysis.recentSnapshot&&<aside className="analysisMethod" aria-label="最新の部分記録">
+   <p className="analysisNote"><strong>最新の参考記録：{analysis.recentSnapshot.updatedAt}</strong>（詳細分析とは別の部分記録）</p>
+   <p><strong>{analysis.recentSnapshot.headline}</strong></p>
+   <p>{analysis.recentSnapshot.lead}</p>
+   <p className="analysisNote">下記ランキング・SOLD中央値・出品リンクの最終詳細分析は {analysis.updatedAt} 時点のものです。最新の部分記録を用いて価格や成約を自動更新していません。</p>
+  </aside>}
+  <p className="analysisNote">最終詳細分析：{analysis.updatedAt}。掲載価格は分析時点の記録です。購入前にリンク先で販売状況を確認してください。</p>
   <div className="analysisIntro"><div><b>国内の実売</b><span>同番号・単品・同状態</span></div><div><b>海外需要</b><span>ASKとSOLDを区別</span></div><div><b>判断の根拠</b><span>状態差・標本数・出典</span></div></div>
   <nav className="anchorTabs" aria-label="分析カードへ移動">{picks.map(p=><a href={"#pick-"+encodeURIComponent(p.id)} key={p.id}>#{p.rank} {p.id}</a>)}<a href="#tournament-market">大会プロモ5枚</a></nav>
   <section className="marketPicks">
