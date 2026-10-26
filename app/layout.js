@@ -96,6 +96,7 @@ export default function RootLayout({children}){
    <a className="footerBrand" href="/">NARUTO CARD DB</a>
    <nav aria-label="補助メニュー"><a href="/shippuden">疾風伝</a><a href="/ranking">注目カード</a><a href="/psa">PSA鑑定</a><a href="/psa-ranking">PSA候補</a><a href="/psa-simulator">PSA計算</a><a href="/storage-guide">保管ガイド</a><a href="/recommended" data-shopping-placement="footer">おすすめ商品</a><a href="/search">詳細検索</a></nav>
    <p>非公式ファンデータベース。現在出品・SOLD・分析・予測を分けて掲載しています。</p>
+   <p className="affiliateNote">Amazonのアソシエイトとして、NARUTO CARD DATABASEは適格販売により収入を得ています。</p>
   </div></footer>
  </body></html>
 }

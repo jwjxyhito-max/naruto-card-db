@@ -1,3 +1,5 @@
+import {amazonProductUrl,amazonSearchUrl} from "../../lib/recommendedProducts";
+
 export const metadata={
  title:"カードの価値別・おすすめ保管方法｜NARUTO旧カードDB",
  description:"通常カードから高額カード、PSA鑑定候補・PSA鑑定品まで、カードの価値と目的に合わせた保管方法を段階別に解説します。",
@@ -17,18 +19,19 @@ export default function StorageGuide(){
 
   <section className="storageQuick"><div><b>通常</b><span>スリーブ</span></div><div><b>少し価値あり</b><span>＋硬質ケース</span></div><div><b>高額</b><span>＋ローダー・環境対策</span></div><div><b>PSA候補</b><span>鑑定前保管</span></div><div><b>PSA済み</b><span>専用収納</span></div></section>
 
+  <p className="affiliateNote">【PR】本ページには広告・アフィリエイトリンクが含まれます（Amazonアソシエイト）。</p>
   <section className="storageTiers">
    <Step level="LEVEL 1" title="通常カード" summary="まずはスリーブ">
     <p>裸のまま重ねず、サイズの合うスリーブで表面の擦れ・指紋・汚れを防ぐのが基本。頻繁に見返すカードも出し入れを減らせます。</p>
-    <A href="https://link.amazon/B05QqCBV6">基本のスリーブをAmazonで確認 →</A>
+    <A href={amazonSearchUrl("トレカ スリーブ 透明 100枚")}>基本のスリーブをAmazonで確認 →</A>
    </Step>
    <Step level="LEVEL 2" title="少し価値があるカード" summary="スリーブ＋硬質ケース">
     <p>相場が上がってきたカード、初版・プロモ・お気に入りは、スリーブの上から硬質ケースやローダーへ。角や折れへの保護を一段上げます。</p>
-    <A href="https://link.amazon/B0etIAWiI">保護用ローダーを確認 →</A>
+    <A href={amazonSearchUrl("マグネットローダー 35pt")}>保護用ローダーを確認 →</A>
    </Step>
    <Step level="LEVEL 3" title="高額カード" summary="ローダー＋湿気・紫外線対策">
     <p>高額カードは物理的な保護だけでなく保管場所も重要。直射日光を避け、湿度変化の大きい場所に放置しない。長期保管では防湿環境も選択肢です。</p>
-    <A href="https://amzn.to/4rkYuJW">防湿保管用品を確認 →</A>
+    <A href={amazonProductUrl("B0H58MGC3T")}>防湿保管用品を確認 →</A>
    </Step>
    <Step level="LEVEL 4" title="PSA候補カード" summary="鑑定前は状態維持を優先">
     <p>鑑定候補は、表面を擦ったり角を傷めたりする出し入れを減らすことが最優先。状態確認後は清潔なスリーブと適切な保護ケースで保管し、無理なクリーニングや加工は避けます。</p>
@@ -36,7 +39,7 @@ export default function StorageGuide(){
    </Step>
    <Step level="LEVEL 5" title="PSA鑑定品" summary="スラブ対応収納へ">
     <p>鑑定後はカード自体には触れにくくなりますが、スラブの擦れ・落下・日焼け・湿気への対策は必要。枚数が増えたらPSAサイズに対応したケースや収納でまとめます。</p>
-    <A href="https://link.amazon/B06uxlbxz">カード収納用品を確認 →</A>
+    <A href={amazonSearchUrl("トレカ ストレージボックス 大容量")}>カード収納用品を確認 →</A>
    </Step>
   </section>
 
