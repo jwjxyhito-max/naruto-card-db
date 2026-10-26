@@ -173,7 +173,7 @@ export default async function Page({params}){
      <h3>同仕様SOLD・中央値</h3>
      <div className="analysisFacts">
       <div><small>同仕様の確定中央値</small><b>{research.strictSameSpecSoldMedianJPY==null?"未確認":yen(research.strictSameSpecSoldMedianJPY)}</b></div>
-      <div><small>仕様確認済み標本</small><b>{research.strictSameSpecSoldCount||0}件</b></div>
+      <div><small>仕様確認済み標本</small><b>{research.strictSameSpecSoldCount==null?"未確認":research.strictSameSpecSoldCount+"件"}</b></div>
       <div><small>前回の番号一致SOLD表示</small><b>{research.baselineSoldReference?.numberMatchedSampleCount??"未確認"}件（厳密照合前）</b></div>
       <div><small>今回のSOLD表示</small><b>{research.additionalSoldCount??0}件（厳密照合前）</b></div>
      </div>
@@ -182,7 +182,7 @@ export default async function Page({params}){
      <h3>国内の現在ASK（販売希望額）</h3>
      {research.currentAskObservations?.length?<ul>{research.currentAskObservations.map((x,i)=><li key={i}>{x.url?.startsWith("https://")?<a href={x.url} target="_blank" rel="noopener noreferrer">{yen(x.askJPY)} ↗</a>:yen(x.askJPY)} ／ {x.sellerConditionClaim||"状態未確認"}</li>)}</ul>:<p>未確認</p>}
      <h3>海外eBay SOLD・ASK</h3>
-     <p>同仕様の成約額：{research.overseasSameSpecRealizedSoldMedianUSD==null?"未確認":research.overseasSameSpecRealizedSoldMedianUSD+" USD"}。確認済み成約標本：{research.overseasSameSpecRealizedSoldCount||0}件（成約なしと断定しません）。</p>
+     <p>同仕様の成約額：{research.overseasSameSpecRealizedSoldMedianUSD==null?"未確認":research.overseasSameSpecRealizedSoldMedianUSD+" USD"}。確認済み成約標本：{research.overseasSameSpecRealizedSoldCount==null?"未確認":research.overseasSameSpecRealizedSoldCount+"件"}（成約なしと断定しません）。</p>
      {research.overseasAskObservations?.length?<ul>{research.overseasAskObservations.map((x,i)=><li key={i}>{x.url?.startsWith("https://")?<a href={x.url} target="_blank" rel="noopener noreferrer">{x.askUSD??"価格未確認"} USDのASK ↗</a>:"ASK：価格未確認"} ／ {x.note||"仕様未照合"}</li>)}</ul>:<p>海外ASKは未確認</p>}
      {research.overseasSoldDisplayCandidates?.length>0&&<ul>{research.overseasSoldDisplayCandidates.map((x,i)=><li key={i}>{x.url?.startsWith("https://")?<a href={x.url} target="_blank" rel="noopener noreferrer">{x.displayedPriceUSD} USDのSOLD表示 ↗</a>:"SOLD表示"} ／ {x.note}（同仕様・最終決済額は未確認）</li>)}</ul>}
      {research.overseasAnalysis&&<p>{research.overseasAnalysis}</p>}
