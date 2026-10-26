@@ -7,6 +7,7 @@ import {getMarketData} from "../../../lib/market";
 import {getMarketAnalysis} from "../../../lib/getMarketAnalysis";
 import {notFound} from "next/navigation";
 import {Breadcrumbs,CardTile,DataNotice} from "../../components/DatabaseUI";
+import {amazonProductUrl,amazonSearchUrl} from "../../../lib/recommendedProducts";
 
 export async function generateMetadata({params}){
  const {id}=await params;
@@ -93,8 +94,8 @@ export default async function Page({params}){
  const numericPrice=live?Number(String(live.price).replace(/[^0-9]/g,"")):null;
  const storageLabel=numericPrice>=5000?"高額カード向け保管":numericPrice>=1000?"スリーブ＋ケース保管":"基本スリーブ保管";
  const storageProduct=numericPrice>=5000
-  ? {name:"マグネットローダー",url:"https://link.amazon/B0etIAWiI",note:"高額カードは角・表面を守れるローダーを優先"}
-  : {name:"トレカ用スリーブ",url:"https://link.amazon/B05QqCBV6",note:numericPrice>=1000?"まずスリーブで保護し、必要に応じて硬質ケースへ":"低価格帯でも擦れ・皮脂を防ぐ基本保管"};
+  ? {name:"マグネットローダー",url:amazonSearchUrl("マグネットローダー 35pt"),note:"高額カードは角・表面を守れるローダーを優先"}
+  : {name:"トレカ用スリーブ",url:amazonSearchUrl("トレカ スリーブ 透明 100枚"),note:numericPrice>=1000?"まずスリーブで保護し、必要に応じて硬質ケースへ":"低価格帯でも擦れ・皮脂を防ぐ基本保管"};
 
  const cardJsonLd={
   "@context":"https://schema.org",
@@ -360,7 +361,7 @@ export default async function Page({params}){
     </div>
     <a href="/storage-guide">このカードの保管方法を詳しく見る →</a>
     <a className="textLink" href="/recommended#storage" data-shopping-placement="card-storage">保護・収納用品のおすすめを選ぶ →</a>
-    <small className="affiliateNote">※Amazonアソシエイトのリンクを使用しています。</small>
+    <small className="affiliateNote">【PR】本ページには広告・アフィリエイトリンクが含まれます（Amazonアソシエイト）。</small>
    </section>
 
    <section className="related" id="related">
@@ -375,8 +376,8 @@ export default async function Page({params}){
     <h2>NARUTOを作品から振り返る</h2>
     <p>カードのキャラクターや当時の作品背景を確認したい人向けの関連商品です。</p>
     <a className="amazonBtn" href="/recommended#books" data-shopping-placement="card-related">漫画・映像・グッズのおすすめを見る →</a>
-    <a className="textLink" href="https://link.amazon/B06EMOlAu" target="_blank" rel="sponsored nofollow noreferrer">AmazonでNARUTO関連商品を見る ↗</a>
-    <small>※Amazonアソシエイトのリンクを使用しています。</small>
+    <a className="textLink" href={amazonProductUrl("B07571D6J4")} target="_blank" rel="sponsored nofollow noreferrer">AmazonでNARUTO関連商品を見る ↗</a>
+    <small>【PR】本ページには広告・アフィリエイトリンクが含まれます（Amazonアソシエイト）。</small>
    </aside>
 
    <p>※出品希望額と販売済み価格は別扱い。未確認情報は推測で補完しません。</p>

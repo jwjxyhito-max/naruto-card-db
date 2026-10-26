@@ -3,11 +3,11 @@ import assert from "node:assert/strict";
 import {AMAZON_ASSOCIATE_TAG,amazonProductUrl,amazonSearchUrl,amazonStorefrontUrl,recommendedCategories,recommendedProducts} from "../lib/recommendedProducts.js";
 
 test("All purchase and storefront links use the owner's confirmed Japanese Associates tag",()=>{
- assert.equal(AMAZON_ASSOCIATE_TAG,"jakusha5092-22");
+ assert.equal(AMAZON_ASSOCIATE_TAG,"naruto-card-22");
  for(const href of [amazonStorefrontUrl,...recommendedProducts.map(product=>product.url)]){
   const url=new URL(href);
   assert.equal(url.origin,"https://www.amazon.co.jp");
-  assert.deepEqual(url.searchParams.getAll("tag"),["jakusha5092-22"]);
+  assert.deepEqual(url.searchParams.getAll("tag"),["naruto-card-22"]);
  }
 });
 

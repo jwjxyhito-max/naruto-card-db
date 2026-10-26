@@ -7,6 +7,7 @@ import {sortCards} from "../lib/cardSort";
 import VisitCounter from "./components/VisitCounter";
 import {SearchForm,SectionHeading,CardTile,NewsList} from "./components/DatabaseUI";
 import {ShoppingCallout} from "./components/ShoppingUI";
+import {amazonSearchUrl} from "../lib/recommendedProducts";
 
 export const metadata={
  title:{absolute:"NARUTO CARD DB｜旧カードの番号検索・相場・最新ニュース"},
@@ -95,10 +96,10 @@ export default async function Home(){
   <section className="homeSection">
    <SectionHeading title="集めた一枚を守る" label="COLLECTION & STORAGE" href="/storage-guide" action="保管ガイド"/>
    <div className="affiliateGrid">
-    <a href="https://link.amazon/B05QqCBV6" target="_blank" rel="sponsored nofollow noreferrer"><b>トレカ用スリーブ</b><span>基本のカード保護</span><strong>Amazonで確認 ↗</strong></a>
-    <a href="https://link.amazon/B0etIAWiI" target="_blank" rel="sponsored nofollow noreferrer"><b>マグネットローダー</b><span>高額・お気に入りの保護</span><strong>Amazonで確認 ↗</strong></a>
-    <a href="https://link.amazon/B06uxlbxz" target="_blank" rel="sponsored nofollow noreferrer"><b>カードストレージ</b><span>増えたカードを整理</span><strong>Amazonで確認 ↗</strong></a>
-   </div><a className="textLink" href="/recommended" data-shopping-placement="home-storage">NARUTO関連商品・保管用品のおすすめをすべて見る →</a><small className="affiliateNote">Amazonアソシエイトのリンクを使用しています。</small>
+    <a href={amazonSearchUrl("トレカ スリーブ 透明 100枚")} target="_blank" rel="sponsored nofollow noreferrer"><b>トレカ用スリーブ</b><span>基本のカード保護</span><strong>Amazonで確認 ↗</strong></a>
+    <a href={amazonSearchUrl("マグネットローダー 35pt")} target="_blank" rel="sponsored nofollow noreferrer"><b>マグネットローダー</b><span>高額・お気に入りの保護</span><strong>Amazonで確認 ↗</strong></a>
+    <a href={amazonSearchUrl("トレカ ストレージボックス 大容量")} target="_blank" rel="sponsored nofollow noreferrer"><b>カードストレージ</b><span>増えたカードを整理</span><strong>Amazonで確認 ↗</strong></a>
+   </div><a className="textLink" href="/recommended" data-shopping-placement="home-storage">NARUTO関連商品・保管用品のおすすめをすべて見る →</a><small className="affiliateNote">【PR】本ページには広告・アフィリエイトリンクが含まれます（Amazonアソシエイト）。</small>
   </section>
   <aside className="homeAbout"><h2>確認できたことを、積み重ねる。</h2><p>収録情報・実売・分析・予測を分け、未確認の情報は「不明」と表示します。各カードの詳細から参照資料を確認できます。</p><VisitCounter/></aside>
  </main>;
