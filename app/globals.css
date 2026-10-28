@@ -510,3 +510,16 @@ main>header:not(.pageIntro){display:flex;align-items:center;justify-content:spac
 .tournamentMethod dl>div{padding:10px 0;border-bottom:1px solid #aaa4}
 .tournamentMethod dt{font-weight:750}.tournamentMethod dd{margin:4px 0 0}
 @media(max-width:680px){.tournamentPromoPage{padding:16px 14px 100px}.tournamentGrid{grid-template-columns:1fr}.tournamentJump{grid-template-columns:repeat(2,minmax(0,1fr))}.tournamentCard{padding:15px}}
+.featureNotice{border-left:3px solid var(--orange);background:#211810;padding:12px 14px;font-size:13px;line-height:1.8;color:var(--muted);margin:0 0 22px}
+.featureSection{margin:28px 0}
+.featureSection h2{scroll-margin-top:128px}
+.featureTableWrap{display:block;overflow-x:auto;max-width:100%;margin:14px 0 8px;-webkit-overflow-scrolling:touch}
+.featureTable{width:max-content;min-width:100%;border-collapse:collapse;font-size:13px}
+.featureTable th,.featureTable td{white-space:nowrap}
+.featureTable caption{caption-side:bottom;text-align:left;color:var(--muted);font-size:12px;padding:8px 0}
+.featureTable th,.featureTable td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;line-height:1.7}
+.featureTable th{background:#121318;color:var(--orange);font-size:11px}
+.featureTable td{color:var(--text);background:var(--surface)}
+.featureFaq div{padding:12px 0;border-bottom:1px solid var(--line)}
+.featureFaq dt{font-weight:750;color:var(--text)}
+.featureFaq dd{margin:6px 0 0;color:var(--muted)}
