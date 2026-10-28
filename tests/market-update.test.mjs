@@ -62,7 +62,7 @@ test('invalid newest rows are skipped and a failed fetch retains the last normal
   process.env.SUPABASE_URL='https://db.test';process.env.SUPABASE_ANON_KEY='public-test-key';
   try {
     globalThis.fetch=async(url,init)=>{
-      assert.equal(init.cache,'no-store');
+      assert.equal(init.next.revalidate,1800);
       return Response.json([
         {id:32,analyzed_at:'2026-10-14T00:00:00Z',payload:{headline:'bad'}},
         {id:31,analyzed_at:'2026-10-13T12:00:00Z',payload:clean()},

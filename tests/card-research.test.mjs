@@ -16,7 +16,7 @@ test("Homepage research index keeps the latest version per card and reads past a
   const url=new URL(endpoint);
   offsets.push(url.searchParams.get("offset"));
   assert.equal(url.searchParams.get("published"),"eq.true");
-  assert.equal(options.cache,"no-store");
+  assert.equal(options.next.revalidate,1800);
   const rows=offsets.length===1
    ? [latest,...Array.from({length:499},(_,i)=>({id:999-i,card_id:"忍-"+(i+20),snapshot_date:"2026-10-14",name:"カード"+i,status:"complete"}))]
    : [older,{id:2,card_id:"忍-12",snapshot_date:"2026-10-13",name:"猿飛アスマ",status:"research_incomplete"}];

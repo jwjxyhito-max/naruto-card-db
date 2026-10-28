@@ -6,6 +6,7 @@ export default function VisitCounter(){
   const [total,setTotal]=useState(null);
 
   useEffect(()=>{
+    if(!['naruto-card-db.vercel.app','naruto-card-db-jwjxyhito-2386.vercel.app'].includes(location.hostname)) return;
     let active=true;
     fetch("/api/visit",{method:"POST"})
       .then(r=>r.json())

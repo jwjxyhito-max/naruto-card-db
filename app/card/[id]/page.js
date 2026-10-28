@@ -9,6 +9,9 @@ import {notFound} from "next/navigation";
 import {Breadcrumbs,CardTile,DataNotice} from "../../components/DatabaseUI";
 import {amazonProductUrl,amazonSearchUrl} from "../../../lib/recommendedProducts";
 
+export const revalidate=1800;
+export async function generateStaticParams(){ return []; }
+
 export async function generateMetadata({params}){
  const {id}=await params;
  const decoded=decodeURIComponent(id);
@@ -99,12 +102,14 @@ export default async function Page({params}){
 
  const cardJsonLd={
   "@context":"https://schema.org",
-  "@type":"CollectionPage",
+  "@type":"WebPage",
   name:`${c.id} ${c.name}｜NARUTO旧カードDB`,
   url:`https://naruto-card-db.vercel.app/card/${encodeURIComponent(c.id)}`,
   description:`${c.id} ${c.name}の収録情報・相場・SOLD履歴・PSA判断を整理したカード個別ページ。`,
-  about:{
-   "@type":"Thing",
+  mainEntity:{
+   "@type":"Product",
+   sku:c.id,
+   category:"トレーディングカード",
    name:`${c.id} ${c.name}`,
    description:`${c.character||c.name} / ${c.series||"NARUTO旧カード"}`
   },

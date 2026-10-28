@@ -14,7 +14,7 @@ export const metadata={
  description:"NARUTO旧カードを番号・名前から検索。収録シリーズ、SOLD相場、プロモ、PSA判断と公式最新ニュースを整理する非公式データベースです。",
  alternates:{canonical:"/"}
 };
-export const dynamic="force-dynamic";
+export const revalidate=1800;
 
 export default async function Home(){
  const [analysis,news,researchIndex]=await Promise.all([getMarketAnalysis(),getLatestNews(3),getCardResearchIndex()]);

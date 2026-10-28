@@ -41,12 +41,14 @@ export default function RootLayout({children}){
   inLanguage:"ja"
  };
  return <html lang="ja"><body>
-  <Script src="https://www.googletagmanager.com/gtag/js?id=G-9F6Z3TXQ7G" strategy="afterInteractive" />
   <Script id="ga4" strategy="afterInteractive">{`
+    if (['naruto-card-db.vercel.app','naruto-card-db-jwjxyhito-2386.vercel.app'].includes(location.hostname)) {
+    var script=document.createElement('script');script.async=true;script.src='https://www.googletagmanager.com/gtag/js?id=G-9F6Z3TXQ7G';document.head.appendChild(script);
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-9F6Z3TXQ7G');
+    }
   `}</Script>
   <Script id="naruto-analytics-click-events" strategy="afterInteractive">{`
     (function() {

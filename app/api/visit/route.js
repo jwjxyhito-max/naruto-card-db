@@ -3,6 +3,7 @@ import {cookies} from "next/headers";
 export const dynamic="force-dynamic";
 
 export async function POST(){
+  if(process.env.VERCEL_ENV !== 'production') return Response.json({total:null,preview:true});
   const store=await cookies();
   let visitorId=store.get("naruto_visitor_id")?.value;
 

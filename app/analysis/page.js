@@ -3,7 +3,7 @@ import {tournamentPromos} from "../../lib/tournamentPromos";
 import {PageIntro,DataNotice,SectionHeading} from "../components/DatabaseUI";
 
 export const metadata={title:"NARUTO旧カード相場分析｜SOLD・注目カード・海外需要",description:"メルカリSOLD、eBay海外需要、NARUTO CARD GAME、新作アニメ、BORUTO、イベントをまとめて分析。出品価格と実売を区別して掲載します。",alternates:{canonical:"/analysis"}};
-export const dynamic="force-dynamic";
+export const revalidate=1800;
 
 export default async function AnalysisPage(){
  const analysis=await getMarketAnalysis();
