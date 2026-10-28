@@ -43,6 +43,13 @@ export default async function Home(){
   </nav>
 
   <section className="homeSection">
+   <aside className="nextStep">
+    <div><small>2027 / NEW TCG</small><h2>NARUTOカードゲームは、2027年6月に世界同時発売。</h2><p>2026年10月11日の公式記事で確認できた商品と体験会だけをまとめています。</p></div>
+    <a href="/naruto-card-game-2027">公式発表の要点を見る →</a>
+   </aside>
+  </section>
+
+  <section className="homeSection">
    <SectionHeading title="最新ニュース" label="OFFICIAL NEWS" href="/news"/>
    {news.length?<NewsList items={news} compact/>:<div className="emptyState"><p>ニュースを取得できませんでした。</p><a href="/news">ニュース・公式リンクを確認する →</a></div>}
   </section>
