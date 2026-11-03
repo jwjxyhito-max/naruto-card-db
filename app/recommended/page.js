@@ -4,7 +4,7 @@ import {ShoppingIcon,RecommendedProduct} from "../components/ShoppingUI";
 
 const title="NARUTO関連商品・保管用品のおすすめ";
 const description="NARUTOカードを守るスリーブ・ローダー・収納用品と、原作漫画・資料集・Blu-ray・グッズを目的別に紹介。選ぶ理由と確認ポイントから、Amazonで商品を探せます。";
-export const metadata={title,description,alternates:{canonical:"/recommended"},openGraph:{title,description,url:"/recommended"},twitter:{title,description}};
+export const metadata={title,description,alternates:{canonical:"/recommended"},openGraph:{title,description,url:"/recommended",images:["/ogp.png"]},twitter:{title,description,images:["/ogp.png"]}};
 
 export default function Recommended(){
  const schema={"@context":"https://schema.org","@type":"ItemList",name:title,numberOfItems:recommendedProducts.length,itemListElement:recommendedProducts.map((product,index)=>({"@type":"ListItem",position:index+1,name:product.name,url:`https://naruto-card-db.vercel.app/recommended#${product.id}`}))};

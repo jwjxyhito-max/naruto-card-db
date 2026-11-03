@@ -6,7 +6,7 @@ export async function generateMetadata({searchParams}){
  const category=queryValue((await searchParams).category);
  return {title:"NARUTO最新ニュース",description:"NARUTO・BORUTO・完全新作アニメ・NARUTO CARD GAME・世界イベントの公式最新情報を整理して表示します。",alternates:{canonical:"/news"},...(category?{robots:{index:false,follow:true,googleBot:{index:false,follow:true}}}:{})};
 }
-export const dynamic="force-dynamic";
+export const revalidate=3600;
 
 export default async function NewsPage({searchParams}){
  const [news,params]=await Promise.all([getLatestNews(30),searchParams]);

@@ -8,17 +8,18 @@ import VisitCounter from "./components/VisitCounter";
 import {SearchForm,SectionHeading,CardTile,NewsList} from "./components/DatabaseUI";
 import {ShoppingCallout} from "./components/ShoppingUI";
 import {amazonSearchUrl} from "../lib/recommendedProducts";
+import {selectHomeMarketPicks} from "../lib/homeMarketPicks.mjs";
 
 export const metadata={
  title:{absolute:"NARUTO CARD DB｜旧カードの番号検索・相場・最新ニュース"},
  description:"NARUTO旧カードを番号・名前から検索。収録シリーズ、SOLD相場、プロモ、PSA判断と公式最新ニュースを整理する非公式データベースです。",
  alternates:{canonical:"/"}
 };
-export const dynamic="force-dynamic";
+export const revalidate=3600;
 
 export default async function Home(){
  const [analysis,news,researchIndex]=await Promise.all([getMarketAnalysis(),getLatestNews(3),getCardResearchIndex()]);
- const picks=(analysis.picks||[]).filter(p=>!p.soldOut).slice(0,3);
+ const picks=selectHomeMarketPicks(analysis.picks);
  const recentResearch=Object.entries(dailyResearch).sort((a,b)=>(b[1].sequence||0)-(a[1].sequence||0)).slice(0,3);
  const characters=[...new Set(cards.map(c=>c.character).filter(v=>v&&v!=="不明"&&v!=="複数"))]
   .map(name=>({name,count:cards.filter(c=>c.character===name).length})).sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name,"ja")).slice(0,8);
@@ -56,14 +57,14 @@ export default async function Home(){
 
   <section className="homeSection">
    <SectionHeading title="いまの相場を読む" label="MARKET WATCH" href="/analysis" action="全文分析"/>
-   {picks.length===0&&<p className="mutedNote">現在購入候補として確認できた商品はありません。過去のSOLD相場は全文分析に保存しています。</p>}
+   {picks.length===0&&<p className="mutedNote">現在、複数の条件一致SOLDを確認できる掲載候補はありません。標本1件・根拠確認中の記録も全文分析で確認できます。</p>}
    <div className="marketPreviewGrid">{picks.map(p=><article className="marketPreview" key={p.id}>
-    <div className="marketPreviewHead"><span className="rank">#{p.rank} {p.displayJudge||p.judge}</span><span>{p.id}</span></div>
+    <div className="marketPreviewHead"><span className="rank">{p.displayJudge||p.judge}</span><span>{p.id}</span></div>
     <h3><a href={"/card/"+encodeURIComponent(p.id)}>{p.name}</a></h3>
     <dl><div><dt>過去の出品確認価格</dt><dd>{p.displayPrice||p.price||"未確認"}</dd></div><div><dt>SOLD中央値</dt><dd>{p.median||"未確認"}</dd></div></dl>
     <p>{p.displaySummary||p.summary}</p><a className="textLink" href={"/analysis#pick-"+encodeURIComponent(p.id)}>根拠と分析を見る →</a>
    </article>)}</div>
-   <p className="mutedNote">出品価格とSOLDは別扱い。価格は確認時点の記録です。</p>
+   <p className="mutedNote">条件一致SOLDが複数確認できる記録を優先掲載。標本1件・根拠確認中の記録は全文分析に残しています。出品価格とSOLDは別扱いで、価格は確認時点の記録です。表示データは1時間ごとに再取得します。</p>
   </section>
 
   {researchIndex?.length>0&&<section className="homeSection" id="published-card-research">
@@ -107,6 +108,14 @@ export default async function Home(){
     <a href={amazonSearchUrl("マグネットローダー 35pt")} target="_blank" rel="sponsored nofollow noreferrer"><b>マグネットローダー</b><span>高額・お気に入りの保護</span><strong>Amazonで確認 ↗</strong></a>
     <a href={amazonSearchUrl("トレカ ストレージボックス 大容量")} target="_blank" rel="sponsored nofollow noreferrer"><b>カードストレージ</b><span>増えたカードを整理</span><strong>Amazonで確認 ↗</strong></a>
    </div><a className="textLink" href="/recommended" data-shopping-placement="home-storage">NARUTO関連商品・保管用品のおすすめをすべて見る →</a><small className="affiliateNote">【PR】本ページには広告・アフィリエイトリンクが含まれます（Amazonアソシエイト）。</small>
+  </section>
+  <section className="homeSection" aria-labelledby="related-blog-heading">
+   <h2 id="related-blog-heading">関連記事｜弱者には弱者の戦い方</h2>
+   <div className="researchList">
+    <a href="https://jakusha-no-tatakai.com/naruto-old-card-guide/"><div><small>IDENTIFICATION</small><b>旧NARUTOカードの見分け方</b></div><span aria-hidden="true">↗</span></a>
+    <a href="https://jakusha-no-tatakai.com/naruto-kyu-card-souba/"><div><small>MARKET RECORDS</small><b>NARUTO旧カードの相場記録</b></div><span aria-hidden="true">↗</span></a>
+    <a href="https://jakusha-no-tatakai.com/ags-grading-psa-comparison-guide/"><div><small>GRADING GUIDE</small><b>トレカ鑑定の出し方</b></div><span aria-hidden="true">↗</span></a>
+   </div>
   </section>
   <aside className="homeAbout"><h2>確認できたことを、積み重ねる。</h2><p>収録情報・実売・分析・予測を分け、未確認の情報は「不明」と表示します。各カードの詳細から参照資料を確認できます。</p><VisitCounter/></aside>
  </main>;

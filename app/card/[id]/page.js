@@ -9,6 +9,9 @@ import {notFound} from "next/navigation";
 import {Breadcrumbs,CardTile,DataNotice} from "../../components/DatabaseUI";
 import {amazonProductUrl,amazonSearchUrl} from "../../../lib/recommendedProducts";
 
+export const revalidate=3600;
+export function generateStaticParams(){return [];}
+
 export async function generateMetadata({params}){
  const {id}=await params;
  const decoded=decodeURIComponent(id);
@@ -45,9 +48,10 @@ export async function generateMetadata({params}){
    type:"article",
    title,
    description,
-   url:"/card/"+encodeURIComponent(c.id)
+   url:"/card/"+encodeURIComponent(c.id),
+   images:[{url:"/ogp.png",width:1536,height:768,alt:"NARUTO CARD DB"}]
   },
-  twitter:{card:"summary_large_image",title,description}
+  twitter:{card:"summary_large_image",title,description,images:["/ogp.png"]}
  };
 }
 
