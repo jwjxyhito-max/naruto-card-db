@@ -14,7 +14,25 @@ test("Home prioritizes comparable SOLD evidence without altering source records"
   assert.deepEqual(selectHomeMarketPicks(picks).map(p=>p.id),["five","two"]);
   assert.deepEqual(picks,original);
   assert.equal(selectHomeMarketPicks(picks)[0],picks[3]);
-  assert.deepEqual(selectHomeMarketPicks([picks[0],picks[2]]),[]);
+  assert.deepEqual(selectHomeMarketPicks([picks[0],picks[2]]).map(p=>[p.id,p.homeReference]),[["one",true],["unknown",true]]);
+});
+
+test("An empty eligible pool shows three references by SOLD count and preserves sold status",()=>{
+  const picks=[
+    {id:"one",rank:1,samples:"1件",soldOut:false},
+    {id:"unknown",rank:2,samples:"不明"},
+    {id:"sold-two",rank:3,samples:"2件",soldOut:true,displayJudge:"売り切れ確認済み"},
+    {id:"sold-four",rank:4,samples:"4件",soldOut:true},
+    {id:"another-one",rank:5,samples:"1件",soldOut:false}
+  ];
+  const original=structuredClone(picks);
+  const result=selectHomeMarketPicks(picks);
+  assert.deepEqual(result.map(p=>p.id),["sold-four","sold-two","one"]);
+  assert.ok(result.every(p=>p.homeReference===true));
+  assert.equal(result[1].soldOut,true);
+  assert.equal(result[1].displayJudge,"売り切れ確認済み");
+  assert.deepEqual(picks,original);
+  assert.deepEqual(selectHomeMarketPicks(),[]);
 });
 
 test("Conflicting counts use the lower count; prices and excluded old samples never inflate evidence",()=>{

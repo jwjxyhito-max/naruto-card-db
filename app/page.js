@@ -57,14 +57,14 @@ export default async function Home(){
 
   <section className="homeSection">
    <SectionHeading title="いまの相場を読む" label="MARKET WATCH" href="/analysis" action="全文分析"/>
-   {picks.length===0&&<p className="mutedNote">現在、複数の条件一致SOLDを確認できる掲載候補はありません。標本1件・根拠確認中の記録も全文分析で確認できます。</p>}
    <div className="marketPreviewGrid">{picks.map(p=><article className="marketPreview" key={p.id}>
-    <div className="marketPreviewHead"><span className="rank">{p.displayJudge||p.judge}</span><span>{p.id}</span></div>
+    <div className="marketPreviewHead"><span className="rank">{p.homeReference?"参考（標本少）":p.displayJudge||p.judge}</span><span>{p.id}</span></div>
     <h3><a href={"/card/"+encodeURIComponent(p.id)}>{p.name}</a></h3>
+    {p.homeReference&&<small className="mutedNote">{p.displayJudge||p.judge}</small>}
     <dl><div><dt>過去の出品確認価格</dt><dd>{p.displayPrice||p.price||"未確認"}</dd></div><div><dt>SOLD中央値</dt><dd>{p.median||"未確認"}</dd></div></dl>
     <p>{p.displaySummary||p.summary}</p><a className="textLink" href={"/analysis#pick-"+encodeURIComponent(p.id)}>根拠と分析を見る →</a>
    </article>)}</div>
-   <p className="mutedNote">条件一致SOLDが複数確認できる記録を優先掲載。標本1件・根拠確認中の記録は全文分析に残しています。出品価格とSOLDは別扱いで、価格は確認時点の記録です。表示データは1時間経過後のアクセス時に再取得します。</p>
+   <p className="mutedNote">条件一致SOLDが2件以上の掲載候補を優先し、ない場合はSOLD件数順に「参考（標本少）」を表示。価格・販売状況は記録時点のもので、根拠は全文分析へ。</p>
   </section>
 
   {researchIndex?.length>0&&<section className="homeSection" id="published-card-research">
