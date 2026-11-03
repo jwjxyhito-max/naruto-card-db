@@ -64,7 +64,7 @@ export default async function Home(){
     <dl><div><dt>過去の出品確認価格</dt><dd>{p.displayPrice||p.price||"未確認"}</dd></div><div><dt>SOLD中央値</dt><dd>{p.median||"未確認"}</dd></div></dl>
     <p>{p.displaySummary||p.summary}</p><a className="textLink" href={"/analysis#pick-"+encodeURIComponent(p.id)}>根拠と分析を見る →</a>
    </article>)}</div>
-   <p className="mutedNote">条件一致SOLDが複数確認できる記録を優先掲載。標本1件・根拠確認中の記録は全文分析に残しています。出品価格とSOLDは別扱いで、価格は確認時点の記録です。表示データは1時間ごとに再取得します。</p>
+   <p className="mutedNote">条件一致SOLDが複数確認できる記録を優先掲載。標本1件・根拠確認中の記録は全文分析に残しています。出品価格とSOLDは別扱いで、価格は確認時点の記録です。表示データは1時間経過後のアクセス時に再取得します。</p>
   </section>
 
   {researchIndex?.length>0&&<section className="homeSection" id="published-card-research">
