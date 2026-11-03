@@ -25,7 +25,7 @@ import {
 const title=naruto2027Meta.title;
 const description=naruto2027Meta.description;
 const siteImage={
- url:"https://raw.githubusercontent.com/jwjxyhito-max/naruto-card-db/main/8340944f-47b4-41ce-8706-5d4d41d6f411.png",
+ url:"/ogp.png",
  width:1536,
  height:768,
  alt:"NARUTO CARD DB"

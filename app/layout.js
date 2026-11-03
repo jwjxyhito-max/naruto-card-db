@@ -19,13 +19,13 @@ export const metadata={
   siteName:"NARUTO旧カードDB",
   title:"NARUTO旧カードDB｜カード番号・相場・PSA・収録情報",
   description:"NARUTO旧カードの収録情報・SOLD相場・希少性・PSA鑑定候補をカード番号から調べる非公式データベース",
-  images:[{url:"https://raw.githubusercontent.com/jwjxyhito-max/naruto-card-db/main/8340944f-47b4-41ce-8706-5d4d41d6f411.png",width:1536,height:768,alt:"NARUTO CARD DB"}]
+  images:[{url:"/ogp.png",width:1536,height:768,alt:"NARUTO CARD DB"}]
  },
  twitter:{
   card:"summary_large_image",
   title:"NARUTO旧カードDB｜カード番号・相場・PSA・収録情報",
   description:"NARUTO旧カードの収録情報・SOLD相場・希少性・PSA鑑定候補をカード番号から検索",
-  images:["https://raw.githubusercontent.com/jwjxyhito-max/naruto-card-db/main/8340944f-47b4-41ce-8706-5d4d41d6f411.png"]
+  images:["/ogp.png"]
  },
  applicationName:"NARUTO旧カードDB",
  category:"collectibles"
@@ -96,6 +96,7 @@ export default function RootLayout({children}){
    <a className="footerBrand" href="/">NARUTO CARD DB</a>
    <nav aria-label="補助メニュー"><a href="/shippuden">疾風伝</a><a href="/ranking">注目カード</a><a href="/psa">PSA鑑定</a><a href="/psa-ranking">PSA候補</a><a href="/psa-simulator">PSA計算</a><a href="/storage-guide">保管ガイド</a><a href="/recommended" data-shopping-placement="footer">おすすめ商品</a><a href="/search">詳細検索</a></nav>
    <p>非公式ファンデータベース。現在出品・SOLD・分析・予測を分けて掲載しています。</p>
+   <p><a href="https://jakusha-no-tatakai.com/">ブログ（弱者には弱者の戦い方） ↗</a></p>
    <p className="affiliateNote">Amazonのアソシエイトとして、NARUTO CARD DATABASEは適格販売により収入を得ています。</p>
   </div></footer>
  </body></html>
