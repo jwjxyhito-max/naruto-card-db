@@ -2,6 +2,7 @@ import Script from "next/script";
 import "./globals.css";
 import OfficialLinksBar from "./components/OfficialLinksBar";
 import SiteNav from "./components/SiteNav";
+import {footerBlogUrl} from "../lib/blogLinks";
 
 const siteUrl="https://naruto-card-db.vercel.app";
 export const viewport={width:"device-width",initialScale:1,viewportFit:"cover",themeColor:"#0b0c0f"};
@@ -96,7 +97,7 @@ export default function RootLayout({children}){
    <a className="footerBrand" href="/">NARUTO CARD DB</a>
    <nav aria-label="補助メニュー"><a href="/shippuden">疾風伝</a><a href="/ranking">注目カード</a><a href="/psa">PSA鑑定</a><a href="/psa-ranking">PSA候補</a><a href="/psa-simulator">PSA計算</a><a href="/storage-guide">保管ガイド</a><a href="/recommended" data-shopping-placement="footer">おすすめ商品</a><a href="/search">詳細検索</a></nav>
    <p>非公式ファンデータベース。現在出品・SOLD・分析・予測を分けて掲載しています。</p>
-   <p><a href="https://jakusha-no-tatakai.com/">ブログ（弱者には弱者の戦い方） ↗</a></p>
+   <p><a href={footerBlogUrl()}>ブログ（弱者には弱者の戦い方） ↗</a></p>
    <p className="affiliateNote">Amazonのアソシエイトとして、NARUTO CARD DATABASEは適格販売により収入を得ています。</p>
   </div></footer>
  </body></html>
