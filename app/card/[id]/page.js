@@ -8,6 +8,7 @@ import {getMarketAnalysis} from "../../../lib/getMarketAnalysis";
 import {notFound} from "next/navigation";
 import {Breadcrumbs,CardTile,DataNotice} from "../../components/DatabaseUI";
 import {amazonProductUrl,amazonSearchUrl} from "../../../lib/recommendedProducts";
+import {cardDetailBlogUrl} from "../../../lib/blogLinks";
 
 export const revalidate=3600;
 export function generateStaticParams(){return [];}
@@ -165,6 +166,10 @@ export default async function Page({params}){
     <div className="sectionHead"><h2>現在の価値判断</h2><span>RESEARCHING</span></div>
     <div className="valueVerdict"><span>調査中</span><p>同番号・単品・状態を揃えたSOLDデータを収集中です。</p></div>
    </section>}
+
+   <div className="miniLinks">
+    <a href={cardDetailBlogUrl(c.id)} target="_blank" rel="noopener">実際の成約価格をまとめて見る ↗</a>
+   </div>
 
    <div id="analysis" className="anchorTarget"></div>
 
