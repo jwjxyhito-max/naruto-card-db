@@ -8,7 +8,9 @@ import {getMarketAnalysis} from "../../../lib/getMarketAnalysis";
 import {notFound} from "next/navigation";
 import {Breadcrumbs,CardTile,DataNotice} from "../../components/DatabaseUI";
 import {amazonProductUrl,amazonSearchUrl} from "../../../lib/recommendedProducts";
-import {cardDetailBlogUrl} from "../../../lib/blogLinks";
+import {cardDetailBlogUrl,itachiMarketCardIds} from "../../../lib/blogLinks";
+import {mercariSearchUrl} from "../../../lib/mercariSearch";
+import {ItachiMarketBox} from "../../components/ItachiMarketBox";
 
 export const revalidate=3600;
 export function generateStaticParams(){return [];}
@@ -135,6 +137,13 @@ export default async function Page({params}){
     <div><small>シリーズ</small><b>{c.series}</b></div>
     <div><small>発売</small><b>{c.release}</b></div>
    </section>
+
+   {itachiMarketCardIds.includes(c.id)&&<ItachiMarketBox utmContent="itachi_card" lead={`${c.id} ${c.name}を含む、うちはイタチの旧カード相場を週ごとにまとめています。`}/>}
+
+   <div className="mercariSearch">
+    <a className="mercariBtn" href={mercariSearchUrl(c)} target="_blank" rel="nofollow sponsored noopener">メルカリでこのカードを探す<span className="srOnly">（新しいタブ）</span></a>
+    <small className="affiliateNote">【PR・広告】メルカリの検索リンクにはアフィリエイトが含まれます。</small>
+   </div>
 
    <div id="market" className="anchorTarget"></div>
    {live&&<DataNotice analysis={marketAnalysis}/>}

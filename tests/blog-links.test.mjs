@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {cardArticlePaths,cardDetailBlogUrl,footerBlogUrl} from "../lib/blogLinks.js";
+import {ITACHI_MARKET_LABEL,cardArticlePaths,cardDetailBlogUrl,footerBlogUrl,itachiMarketBlogUrl,itachiMarketCardIds} from "../lib/blogLinks.js";
 
 function assertBlog(href,pathname,utmContent){
  const url=new URL(href);
@@ -29,4 +29,11 @@ test("Card pages link to a dedicated article when one exists, otherwise the mark
 
 test("The footer blog link keeps the blog home and uses the footer campaign content",()=>{
  assertBlog(footerBlogUrl(),"/","footer");
+});
+
+test("The weekly Itachi market article is linked from the home page and two card pages",()=>{
+ assert.equal(ITACHI_MARKET_LABEL,"イタチ相場推移（毎週更新）");
+ assert.deepEqual(itachiMarketCardIds,["忍-203","忍-259"]);
+ assertBlog(itachiMarketBlogUrl("home"),"/naruto-card-itachi-souba/","home");
+ assertBlog(itachiMarketBlogUrl("itachi_card"),"/naruto-card-itachi-souba/","itachi_card");
 });
