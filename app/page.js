@@ -9,6 +9,8 @@ import {SearchForm,SectionHeading,CardTile,NewsList} from "./components/Database
 import {ShoppingCallout} from "./components/ShoppingUI";
 import {amazonSearchUrl} from "../lib/recommendedProducts";
 import {selectHomeMarketPicks} from "../lib/homeMarketPicks.mjs";
+import {itachiMarketBlogUrl} from "../lib/blogLinks";
+import {ItachiMarketBox} from "./components/ItachiMarketBox";
 
 export const metadata={
  title:{absolute:"NARUTO CARD DB｜旧カードの番号検索・相場・最新ニュース"},
@@ -67,6 +69,10 @@ export default async function Home(){
    <p className="mutedNote">条件一致SOLDが2件以上の掲載候補を優先し、ない場合はSOLD件数順に「参考（標本少）」を表示。価格・販売状況は記録時点のもので、根拠は全文分析へ。</p>
   </section>
 
+  <section className="homeSection" aria-labelledby="itachi-market-heading">
+   <ItachiMarketBox headingId="itachi-market-heading" utmContent="home" lead="うちはイタチの旧カードについて、週ごとの相場の動きをブログでまとめています。"/>
+  </section>
+
   {researchIndex?.length>0&&<section className="homeSection" id="published-card-research">
    <SectionHeading title="追加の詳細調査" label="CARD RESEARCH"/>
    <p className="mutedNote">{researchIndex.length}枚を公開中。相場・仕様・売買判断をカードごとに確認できます。未確認の情報は調査中と表示します。</p>
@@ -112,6 +118,7 @@ export default async function Home(){
   <section className="homeSection" aria-labelledby="related-blog-heading">
    <h2 id="related-blog-heading">関連記事｜弱者には弱者の戦い方</h2>
    <div className="researchList">
+    <a href={itachiMarketBlogUrl("home_related")} target="_blank" rel="noopener noreferrer"><div><small>WEEKLY MARKET</small><b>イタチ相場推移（毎週更新）</b></div><span aria-hidden="true">↗</span></a>
     <a href="https://jakusha-no-tatakai.com/naruto-old-card-guide/"><div><small>IDENTIFICATION</small><b>旧NARUTOカードの見分け方</b></div><span aria-hidden="true">↗</span></a>
     <a href="https://jakusha-no-tatakai.com/naruto-kyu-card-souba/"><div><small>MARKET RECORDS</small><b>NARUTO旧カードの相場記録</b></div><span aria-hidden="true">↗</span></a>
     <a href="https://jakusha-no-tatakai.com/ags-grading-psa-comparison-guide/"><div><small>GRADING GUIDE</small><b>トレカ鑑定の出し方</b></div><span aria-hidden="true">↗</span></a>
