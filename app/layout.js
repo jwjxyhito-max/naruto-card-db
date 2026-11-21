@@ -29,7 +29,8 @@ export const metadata={
   images:["/ogp.png"]
  },
  applicationName:"NARUTO旧カードDB",
- category:"collectibles"
+ category:"collectibles",
+ verification:{google:"d0MJpkSV2YOkEvI-wPiG2GdUUJWYcDAfKCmnU1jSG3w"}
 };
 
 export default function RootLayout({children}){
