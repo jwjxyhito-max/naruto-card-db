@@ -11,6 +11,7 @@ import {amazonProductUrl,amazonSearchUrl} from "../../../lib/recommendedProducts
 import {cardDetailBlogUrl,itachiMarketCardIds} from "../../../lib/blogLinks";
 import {mercariSearchUrl} from "../../../lib/mercariSearch";
 import {ItachiMarketBox} from "../../components/ItachiMarketBox";
+import {BuybackLinks} from "../../components/BuybackLinks";
 
 export const revalidate=3600;
 export function generateStaticParams(){return [];}
@@ -145,6 +146,7 @@ export default async function Page({params}){
     <small className="affiliateNote">【PR・広告】メルカリの検索リンクにはアフィリエイトが含まれます。</small>
    </div>
 
+   <BuybackLinks/>
    <div id="market" className="anchorTarget"></div>
    {live&&<DataNotice analysis={marketAnalysis}/>}
    {live&&<section className="valuePanel">
